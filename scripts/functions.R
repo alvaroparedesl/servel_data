@@ -1,9 +1,10 @@
-library(data.table)
-library(readxl)
-library(igraph)
-
-setwd('G:/GIT/servel_data')
-
+#' Parsea excel de datos de entrada a data.frame de data.table
+#'
+#' @param df A data.frame
+#'
+#' @return un data.frame de data.table en el formato apropiado
+#' @export
+#'
 prep_table <- function(df){
   tipo_mesa <- 'Tipo mesa'
   mesa <- "Mesa"
@@ -13,20 +14,18 @@ prep_table <- function(df){
   return(t_[!is.na(Mesa)])
 }
 
-e2017_1v = prep_table(read_excel('07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx'))
-e2017_2v = prep_table(read_excel('07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_2v_DEF.xlsx'))
-e2018 = prep_table(read_excel('08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx'))
-e2020_cp = prep_table(read_excel('08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx'))
 
-elecciones_lista <- list(e2017_1v, e2018, e2020_cp)
-
-# Columnas
-names(e2017_1v)
-names(e2017_2v)
-names(e2018)
-names(e2020_cp)
-
-ids_mesa_tiempo <- function(blist) {
+#' Generar un id en común entre mesas de diferentes elecciones
+#' 
+#' @description Entre elecciones, no siempre se agrupan las mesas de la misma forma. Esta función busca las agrupaciones correspondientes entre elecciones de diferentes periodos.
+#'
+#' @param blist una lista de data.frames data.table, leídos por prep_table
+#'
+#' @return un único data.frame data.table, con una columna de grupos por la cuál se puede hacer seguimiento a través del tiempo
+#' @export
+#'
+#' @examples
+ids_mesa <- function(blist) {
   
   cols_fil <- c('Circ.Electoral', 'Local', 'Mesa', 'Tipo mesa', 'Mesas Fusionadas')
   
@@ -68,11 +67,9 @@ ids_mesa_tiempo <- function(blist) {
   
   df$group = gmap$group[ match(df[[newcols[1]]], gmap$node) ]
   
-  merge(t1_, unique(df[, c('id', 'group')]), on="id")  
+  ans <- merge(t1_, unique(df[, c('id', 'group')]), on="id")  
+  ans[, id:=NULL]
+  
+  return(ans)
 }
-
-
-#----
-all <- ids_mesa_tiempo(elecciones_lista)
-
 
