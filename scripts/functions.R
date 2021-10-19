@@ -1,16 +1,49 @@
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+  # I prefer straight data.frames
+  # but if you like tidyverse tibbles (the default with read_excel)
+  # then just pass tibble = TRUE
+  sheets <- readxl::excel_sheets(filename)
+  x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+  if(!tibble) x <- lapply(x, as.data.frame)
+  names(x) <- sheets
+  x
+}
+
 #' Parsea excel de datos de entrada a data.frame de data.table
 #'
-#' @param df A data.frame
+#' @param path path a un archivo excel
 #'
 #' @return un data.frame de data.table en el formato apropiado
 #' @export
 #'
-prep_table <- function(df){
+prep_table <- function(path){
+  df <- readxl::read_excel(path)
+  
   tipo_mesa <- 'Tipo mesa'
   mesa <- "Mesa"
   t_ <- data.table(df)
   eval(parse(text=sprintf("t_[is.na(`%s`), `%s`:='']", tipo_mesa, tipo_mesa)))
   t_[, mesa_:=do.call(paste0, .SD), .SDcols=c(mesa, tipo_mesa)]
+  
+  #----- DICTIO-
+  #- Columnas
+  idx_cols <- unlist(lapply(DICTIO$columnas$Archivo, function(x) grepl(x, path)))
+  if (any(idx_cols)) {
+    dict_names <- DICTIO$columnas[idx_cols, c("old", "new")]
+    data.table::setnames(t_, dict_names$old, dict_names$new)
+  }
+  
+  #- Renombrando  opcion
+  t_[, opcion:=trimws(tolower(opcion))]
+  idx_opc <- t_$opcion %in% DICTIO$valores$old
+  Map <- setNames(DICTIO$valores$new, DICTIO$valores$old)
+  if (any(idx_opc)) {
+    t_[idx_opc, opcion:=Map[opcion]]
+  }
+  
+  #- Asignando tendencia
+  
+  
   return(t_[!is.na(Mesa)])
 }
 
