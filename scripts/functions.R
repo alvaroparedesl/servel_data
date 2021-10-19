@@ -25,7 +25,7 @@ prep_table <- function(path){
   eval(parse(text=sprintf("t_[is.na(`%s`), `%s`:='']", tipo_mesa, tipo_mesa)))
   t_[, mesa_:=do.call(paste0, .SD), .SDcols=c(mesa, tipo_mesa)]
   
-  #----- DICTIO-
+  #-------------------------- DICTIO ---------------------------------
   #- Columnas
   idx_cols <- unlist(lapply(DICTIO$columnas$Archivo, function(x) grepl(x, path)))
   if (any(idx_cols)) {
@@ -36,12 +36,17 @@ prep_table <- function(path){
   #- Renombrando  opcion
   t_[, opcion:=trimws(tolower(opcion))]
   idx_opc <- t_$opcion %in% DICTIO$valores$old
-  Map <- setNames(DICTIO$valores$new, DICTIO$valores$old)
   if (any(idx_opc)) {
+    Map <- setNames(DICTIO$valores$new, DICTIO$valores$old)
     t_[idx_opc, opcion:=Map[opcion]]
   }
   
   #- Asignando tendencia
+  idx_tend <- unlist(lapply(DICTIO$tendencia$Archivo, function(x) grepl(x, path)))
+  if (any(idx_tend)) {
+    Map <- with(DICTIO$tendencia[idx_tend, ], setNames(tendencia, tolower(trimws(opcion))))
+    t_[, tendencia:=Map[opcion]]
+  }
   
   
   return(t_[!is.na(Mesa)])
