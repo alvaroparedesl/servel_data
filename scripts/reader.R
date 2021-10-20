@@ -18,7 +18,6 @@ elecciones_lista <- list(e2017_1v, e2017_2v, e2020_cp)
 # Columnas
 names(e2017_1v)
 names(e2017_2v)
-names(e2018)
 names(e2020_cp)
 
 
@@ -26,3 +25,8 @@ names(e2020_cp)
 all <- ids_mesa(elecciones_lista)
 
 
+#--- tendencia por mesa y elección??
+ans <- dcast(all[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Comuna', 'group', 'Electores', 'tendencia')], 
+             Comuna + group + db + Electores ~ tendencia, value.var=c("N"), fun.aggregate=sum)
+
+ans[group == 22903]
