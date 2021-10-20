@@ -1,0 +1,347 @@
+CUT,Nombre,Unnamed: 2,Provincia,Región,Superficie(km²),Población2020,Densidad(hab./km²),IDH 2005,IDH 2005.1,Latitud,Longitud,Reg_cod,nom_com
+15101,Arica,,Arica,Arica y Parinacota,"4.799,4",247.552,51.6,0.866,Alto,-18.455,-70.28999999999999,15,Arica
+15102,Camarones,,Arica,Arica y Parinacota,3.927,1.233,0.31,0.791,Alto,-19.017,-69.86699999999999,15,Camarones
+15201,Putre,,Parinacota,Arica y Parinacota,"5.902,5",2.515,0.43,0.817,Alto,-18.2,-69.583,15,Putre
+15202,General Lagos,,Parinacota,Arica y Parinacota,"2.244,4",810.0,0.36,0.773,Medio,-17.653,-69.635,15,General Lagos
+1101,Iquique,,Iquique,Tarapacá,"2.242,1",223.463,996,0.826,Alto,-20.244,-70.13900000000001,1,Iquique
+1107,Alto Hospicio,,Iquique,Tarapacá,572.9,129.999,2268,0.735,Medio,-20.257,-70.022,1,Alto Hospicio
+1401,Pozo Almonte,,Tamarugal,Tarapacá,"13.765,8",17.395,1.26,0.772,Alto,-20.291,-69.696,1,Pozo Almonte
+1402,Camiña,,Tamarugal,Tarapacá,"2.200,2",1.375,0.62,0.699,Medio,-20.482999999999997,-69.36699999999999,1,Camina
+1403,Colchane,,Tamarugal,Tarapacá,"4.015,6",1.583,0.39,0.683,Medio,-19.284000000000002,-68.67500000000001,1,Colchane
+1404,Huara,,Tamarugal,Tarapacá,"10.474,6",3.0,0.29,0.746,Medio,-19.809,-69.97200000000001,1,Huara
+1405,Pica,,Tamarugal,Tarapacá,"8.934,3",5.958,066,0.823,Alto,-20.482999999999997,-69.378,1,Pica
+2101,Antofagasta,,Antofagasta,Antofagasta,"30.718,1",425.725,13.8,0.854,Alto,-23.651,-70.39500000000001,2,Antofagasta
+2102,Mejillones,,Antofagasta,Antofagasta,"3.803,9",14.776,3.88,0.795,Alto,-23.110000000000003,-70.456,2,Mejillones
+2103,Sierra Gorda,,Antofagasta,Antofagasta,12.886,1.746,0.14,0.809,Alto,-22.898,-69.323,2,Sierra Gorda
+2104,Taltal,,Antofagasta,Antofagasta,"20.405,1",13.657,0.67,0.776,Alto,-25.41,-70.489,2,Taltal
+2201,Calama,,El Loa,Antofagasta,"15.596,9",190.336,12.2,0.857,Alto,-22.473999999999997,-68.924,2,Calama
+2202,Ollagüe,,El Loa,Antofagasta,2.964,287.0,0.09,0.739,Medio,-21.232999999999997,-68.267,2,Ollague
+2203,San Pedro de Atacama,,El Loa,Antofagasta,23.439,10.434,0.45,0.771,Alto,-22.92,-68.21000000000001,2,San Pedro de Atacama
+2301,Tocopilla,,Tocopilla,Antofagasta,"4.038,8",28.079,6.95,0.796,Medio,-22.082,-70.18900000000001,2,Tocopilla
+2302,María Elena,,Tocopilla,Antofagasta,12.197,6.814,0.55,0.779,Alto,-22.317,-69.677,2,Maria Elena
+3101,Copiapó,,Copiapó,Atacama,"16.681,3",171.766,10.2,0.725,Alto,-27.375,-70.329,3,Copiapo
+3102,Caldera,,Copiapó,Atacama,"4.666,6",19.426,4.16,0.741,Alto,-27.066,-70.826,3,Caldera
+3103,Tierra Amarilla,,Copiapó,Atacama,11.191,14.312,1.27,0.686,Medio,-27.473,-70.283,3,Tierra Amarilla
+3201,Chañaral,,Chañaral,Atacama,5.772,13.164,2.28,0.714,Alto,-26.346,-70.624,3,Chanaral
+3202,Diego de Almagro,,Chañaral,Atacama,18.664,14.358,0.77,0.789,Alto,-26.39,-70.05199999999999,3,Diego de Almagro
+3301,Vallenar,,Huasco,Atacama,7.084,57.009,8.04,0.731,Alto,-28.576999999999998,-70.77,3,Vallenar
+3302,Alto del Carmen,,Huasco,Atacama,5.939,5.729,0.96,0.664,Medio,-28.749000000000002,-70.491,3,Alto del Carmen
+3303,Freirina,,Huasco,Atacama,"3.207,9",7.681,2.39,0.693,Medio,-28.506,-71.076,3,Freirina
+3304,Huasco,,Huasco,Atacama,"1.601,4",11.264,7.03,0.695,Medio,-28.456,-71.186,3,Huasco
+4101,La Serena,,Elqui,Coquimbo,"1.892,8",249.656,131.8,0.781,Alto,-29.907,-71.247,4,La Serena
+4102,Coquimbo,,Elqui,Coquimbo,1.429,256.735,179.6,0.731,Alto,-29.971,-71.307,4,Coquimbo
+4103,Andacollo,,Elqui,Coquimbo,310,11.791,38.0,0.675,Medio,-30.229999999999997,-71.086,4,Andacollo
+4104,La Higuera,,Elqui,Coquimbo,"4.158,2",4.45,1.07,0.67,Medio,-29.5,-71.283,4,La Higuera
+4105,Paihuano,,Elqui,Coquimbo,1.495,4.675,3.12,0.734,Alto,-30.038,-70.507,4,Paihuano
+4106,Vicuña,,Elqui,Coquimbo,7.610,29.741,3.90,0.716,Alto,-30.019,-70.715,4,Vicuna
+4201,Illapel,,Choapa,Coquimbo,2.629,32.801,12.4,0.667,Medio,-31.639,-71.179,4,Illapel
+4202,Canela,,Choapa,Coquimbo,"2.196,6",9.546,4.34,0.644,Medio,-31.396,-71.41900000000001,4,Canela
+4203,Los Vilos,,Choapa,Coquimbo,"1.823,8",23.374,12.8,0.675,Medio,-31.915,-71.506,4,Los Vilos
+4204,Salamanca,,Choapa,Coquimbo,3.445,29.11,8.44,0.676,Medio,-31.779999999999998,-70.967,4,Salamanca
+4301,Ovalle,,Limarí,Coquimbo,3.835,121.269,31.6,0.725,Alto,-30.599,-71.18900000000001,4,Ovalle
+4302,Combarbalá,,Limarí,Coquimbo,"2.257,5",13.884,6.14,0.661,Medio,-31.18,-71.004,4,Combarbala
+4303,Monte Patria,,Limarí,Coquimbo,"4.366,9",32.527,7.44,0.653,Medio,-30.775,-70.943,4,Monte Patria
+4304,Punitaqui,,Limarí,Coquimbo,1.339,12.165,9.08,0.653,Medio,-30.833,-71.26,4,Punitaqui
+4305,Río Hurtado,,Limarí,Coquimbo,2.180,4.372,2.01,0.653,Medio,-30.273,-70.667,4,Rio Hurtado
+5101,Valparaíso,,Valparaíso,Valparaíso,401.6,315.732,810.2,0.701,Alto,-33.05,-71.616,5,Valparaiso
+5102,Casablanca,,Valparaíso,Valparaíso,953,29.17,30.6,0.712,Alto,-33.325,-71.41000000000001,5,Casablanca
+5103,Concón,,Valparaíso,Valparaíso,76,45.889,603.8,0.781,Alto,-32.96,-71.46900000000001,5,Concon
+5104,Juan Fernández,,Valparaíso,Valparaíso,149.4,1.033,6.93,0.744,Alto,-33.633,-78.86699999999999,5,Juan Fernandez
+5105,Puchuncaví,,Valparaíso,Valparaíso,300,20.071,66.9,0.734,Alto,-32.748,-71.39800000000001,5,Puchuncavi
+5107,Quintero,,Valparaíso,Valparaíso,148,36.135,244.1,0.733,Alto,-32.845,-71.467,5,Quintero
+5109,Viña del Mar,,Valparaíso,Valparaíso,121.6,361.371,2.962,0.766,Alto,-33.025,-71.515,5,Vina del Mar
+5201,Isla de Pascua,,Isla de Pascua,Valparaíso,163.6,8.277,50.4,0.715,Alto,-27.128811111111112,-109.35996944444445,5,Isla de Pascua
+5301,Los Andes,,Los Andes,Valparaíso,1.248,68.093,54.5,0.756,Alto,-32.837,-70.597,5,Los Andes
+5302,Calle Larga,,Los Andes,Valparaíso,321.7,16.482,51.1,0.706,Alto,-32.88305555555556,-70.48194444444445,5,Calle Larga
+5303,Rinconada,,Los Andes,Valparaíso,122.5,11.263,91.5,0.691,Medio,-32.83316111111112,-70.68841111111111,5,Rinconada
+5304,San Esteban,,Los Andes,Valparaíso,681,20.643,30.3,0.732,Alto,-32.805,-70.581,5,San Esteban
+5401,La Ligua,,Petorca,Valparaíso,1.163,37.739,32.4,0.708,Alto,-32.35368888888889,-71.27211944444444,5,La Ligua
+5402,Cabildo,,Petorca,Valparaíso,1.455,20.663,14.2,0.671,Medio,-32.409,-71.08,5,Cabildo
+5403,Papudo,,Petorca,Valparaíso,64.3,6.201,96.8,0.734,Alto,-32.47,-71.381,5,Papudo
+5404,Petorca,,Petorca,Valparaíso,1.517,10.558,6.95,0.696,Medio,-32.29,-70.95,5,Petorca
+5405,Zapallar,,Petorca,Valparaíso,288,7.994,27.7,0.743,Alto,-32.568000000000005,-71.438,5,Zapallar
+5501,Quillota,,Quillota,Valparaíso,302,97.572,323,0.726,Alto,-32.915,-71.264,5,Quillota
+5502,La Calera,,Quillota,Valparaíso,60.5,53.591,878.5,0.7,Alto,-32.784,-71.20400000000001,5,La Calera
+5503,Hijuelas,,Quillota,Valparaíso,267,19.099,71.5,0.672,Medio,-32.855000000000004,-71.094,5,Hijuelas
+5504,La Cruz,,Quillota,Valparaíso,78,25.321,324.6,0.763,Alto,-32.824000000000005,-71.244,5,La Cruz
+5506,Nogales,,Quillota,Valparaíso,405,23.49,58,0.689,Medio,-32.736000000000004,-71.208,5,Nogales
+5601,San Antonio,,San Antonio,Valparaíso,405,96.761,238.9,0.697,Medio,-33.594722222222224,-71.60747222222221,5,San Antonio
+5602,Algarrobo,,San Antonio,Valparaíso,1760,15.174,86.2,722.0,Alto,-33.369166666666665,-71.66805555555555,5,Algarrobo
+5603,Cartagena,,San Antonio,Valparaíso,246,25.357,103,0.708,Alto,-33.55383333333333,-71.60761111111111,5,Cartagena
+5604,El Quisco,,San Antonio,Valparaíso,51,17.742,347.8,0.745,Alto,-33.39138888888889,-71.69277777777778,5,El Quisco
+5605,El Tabo,,San Antonio,Valparaíso,99,14.338,144.8,0.747,Alto,-33.480000000000004,-71.621,5,El Tabo
+5606,Santo Domingo,,San Antonio,Valparaíso,536,11.934,22.2,0.751,Alto,-33.708000000000006,-71.63,5,Santo Domingo
+5701,San Felipe,,San Felipe de Aconcagua,Valparaíso,186,83.494,448.8,0.73,Alto,-32.75,-70.71300000000001,5,San Felipe
+5702,Catemu,,San Felipe de Aconcagua,Valparaíso,361.6,15.213,42,0.669,Medio,-32.781,-70.96900000000001,5,Catemu
+5703,Llay-Llay,,San Felipe de Aconcagua,Valparaíso,349.1,26.533,76,0.676,Medio,-32.844,-70.95700000000001,5,Llay-Llay
+5704,Panquehue,,San Felipe de Aconcagua,Valparaíso,121.9,7.633,62.5,0.696,Medio,-32.784,-70.83699999999999,5,Panquehue
+5705,Putaendo,,San Felipe de Aconcagua,Valparaíso,1.474,17.645,11.9,0.674,Medio,-32.628,-70.71600000000001,5,Putaendo
+5706,Santa María,,San Felipe de Aconcagua,Valparaíso,166.3,16.367,98.5,0.699,Medio,-32.75033333333333,-70.667,5,Santa Maria
+5801,Quilpué,,Marga Marga,Valparaíso,536.9,167.085,311.1,0.752,Alto,-33.04751944444444,-71.44248888888889,5,Quilpue
+5802,Limache,,Marga Marga,Valparaíso,294,49.931,169.8,0.722,Alto,-33.003,-71.261,5,Limache
+5803,Olmué,,Marga Marga,Valparaíso,232,19.266,83,0.701,Alto,-33.009,-71.17,5,Olmue
+5804,Villa Alemana,,Marga Marga,Valparaíso,97,139.31,"1.436,1",0.755,Alto,-33.065999999999995,-71.329,5,Villa Alemana
+6101,Rancagua,,Cachapoal,Lib. Gral. Bernardo O'Higgins,260.3,265.211,1.020,0.732,Alto,-34.162,-70.741,6,Rancagua
+6102,Codegua,,Cachapoal,Lib. Gral. Bernardo O'Higgins,287,14.096,49.1,0.706,Alto,-34.033,-70.667,6,Codegua
+6103,Coinco,,Cachapoal,Lib. Gral. Bernardo O'Higgins,98,7.831,79.9,0.678,Medio,-34.272999999999996,-70.953,6,Coinco
+6104,Coltauco,,Cachapoal,Lib. Gral. Bernardo O'Higgins,225,21.263,94.5,0.644,Medio,-34.297,-71.092,6,Coltauco
+6105,Doñihue,,Cachapoal,Lib. Gral. Bernardo O'Higgins,78,22.7,291,0.685,Medio,-34.184999999999995,-70.884,6,Donihue
+6106,Graneros,,Cachapoal,Lib. Gral. Bernardo O'Higgins,113,36.504,323,0.691,Medio,-34.062999999999995,-70.721,6,Graneros
+6107,Las Cabras,,Cachapoal,Lib. Gral. Bernardo O'Higgins,749,26.74,35.7,0.661,Medio,-34.285,-71.31,6,Las Cabras
+6108,Machalí,,Cachapoal,Lib. Gral. Bernardo O'Higgins,2.597,59.913,23.1,0.73,Alto,-34.184999999999995,-70.662,6,Machali
+6109,Malloa,,Cachapoal,Lib. Gral. Bernardo O'Higgins,113,14.163,125.3,0.649,Medio,-34.44499999999999,-70.94500000000001,6,Malloa
+6110,Mostazal,,Cachapoal,Lib. Gral. Bernardo O'Higgins,524,27.462,52.4,0.691,Medio,-33.977000000000004,-70.709,6,Mostazal
+6111,Olivar,,Cachapoal,Lib. Gral. Bernardo O'Higgins,45,14.624,324.9,0.661,Medio,-34.214000000000006,-70.819,6,Olivar
+6112,Peumo,,Cachapoal,Lib. Gral. Bernardo O'Higgins,153.1,14.952,97.7,0.674,Medio,-34.389,-71.171,6,Peumo
+6113,Pichidegua,,Cachapoal,Lib. Gral. Bernardo O'Higgins,320,20.743,64.8,0.652,Medio,-34.357,-71.28699999999999,6,Pichidegua
+6114,Quinta de Tilcoco,,Cachapoal,Lib. Gral. Bernardo O'Higgins,93,13.877,149.2,0.678,Medio,-34.357,-70.96900000000001,6,Quinta de Tilcoco
+6115,Rengo,,Cachapoal,Lib. Gral. Bernardo O'Higgins,755,63.71,84.3,0.68,Medio,-34.402,-70.856,6,Rengo
+6116,Requínoa,,Cachapoal,Lib. Gral. Bernardo O'Higgins,673,30.371,45.1,0.668,Medio,-34.283,-70.806,6,Requinoa
+6117,San Vicente,,Cachapoal,Lib. Gral. Bernardo O'Higgins,497.8,50.617,101.6,0.694,Medio,-34.083000000000006,-71.75,6,San Vicente
+6201,Pichilemu,,Cardenal Caro,Lib. Gral. Bernardo O'Higgins,749.1,17.882,23.8,0.677,Medio,-34.402,-72.009,6,Pichilemu
+6202,La Estrella,,Cardenal Caro,Lib. Gral. Bernardo O'Higgins,435,3.114,7.15,0.696,Medio,-34.2,-71.667,6,La Estrella
+6203,Litueche,,Cardenal Caro,Lib. Gral. Bernardo O'Higgins,619,6.765,10.9,0.645,Medio,-34.119,-71.72800000000001,6,Litueche
+6204,Marchihue,,Cardenal Caro,Lib. Gral. Bernardo O'Higgins,660,7.632,11.5,0.67,Medio,-34.4,-71.633,6,Marchihue
+6205,Navidad,,Cardenal Caro,Lib. Gral. Bernardo O'Higgins,300,6.904,23,0.651,Medio,-33.95,-71.833,6,Navidad
+6206,Paredones,,Cardenal Caro,Lib. Gral. Bernardo O'Higgins,562,6.349,11.2,0.628,Medio,-34.661,-71.894,6,Paredones
+6301,San Fernando,,Colchagua,Lib. Gral. Bernardo O'Higgins,2.441,78.642,32.2,0.725,Alto,-34.584,-70.987,6,San Fernando
+6302,Chépica,,Colchagua,Lib. Gral. Bernardo O'Higgins,503,15.925,31.6,0.637,Medio,-34.733000000000004,-71.283,6,Chepica
+6303,Chimbarongo,,Colchagua,Lib. Gral. Bernardo O'Higgins,498,37.696,75.6,0.674,Medio,-34.708000000000006,-71.042,6,Chimbarongo
+6304,Lolol,,Colchagua,Lib. Gral. Bernardo O'Higgins,597,7.289,12.2,0.628,Medio,-34.731,-71.63600000000001,6,Lolol
+6305,Nancagua,,Colchagua,Lib. Gral. Bernardo O'Higgins,111,19.141,172.4,0.665,Medio,-34.649,-71.203,6,Nancagua
+6306,Palmilla,,Colchagua,Lib. Gral. Bernardo O'Higgins,237,13.299,56.1,0.676,Medio,-34.604,-71.35799999999999,6,Palmilla
+6307,Peralillo,,Colchagua,Lib. Gral. Bernardo O'Higgins,282.6,11.848,41.8,0.653,Medio,-34.483000000000004,-71.483,6,Peralillo
+6308,Placilla,,Colchagua,Lib. Gral. Bernardo O'Higgins,146.9,9.164,62.3,0.621,Medio,-34.633,-71.11699999999999,6,Placilla
+6309,Pumanque,,Colchagua,Lib. Gral. Bernardo O'Higgins,441,3.531,8,0.635,Medio,-34.605000000000004,-71.644,6,Pumanque
+6310,Santa Cruz,,Colchagua,Lib. Gral. Bernardo O'Higgins,419.5,41.096,97.8,0.719,Alto,-34.631,-71.359,6,Santa Cruz
+7101,Talca,,Talca,Maule,232,236.724,1.016,0.731,Alto,-35.422999999999995,-71.65700000000001,7,Talca
+7102,Constitución,,Talca,Maule,1.344,50.348,37.4,0.715,Alto,-35.339000000000006,-72.414,7,Constitucion
+7103,Curepto,,Talca,Maule,"1.073,8",9.426,8.77,0.644,Medio,-35.083000000000006,-72.017,7,Curepto
+7104,Empedrado,,Talca,Maule,565,4.206,7.44,0.637,Medio,-35.591,-72.273,7,Empedrado
+7105,Maule,,Talca,Maule,190,60.0,315.7,0.681,Medio,-35.516,-71.572,7,Maule
+7106,Pelarco,,Talca,Maule,332,9.083,27.3,0.653,Medio,-35.378,-71.44500000000001,7,Pelarco
+7107,Pencahue,,Talca,Maule,956.8,8.601,8.98,0.649,Medio,-35.391,-71.8,7,Pencahue
+7108,Río Claro,,Talca,Maule,431,14.753,34.2,0.671,Medio,-35.217,-71.25,7,Rio Claro
+7109,San Clemente,,Talca,Maule,4.504,46.292,10.2,0.659,Medio,-35.534,-71.486,7,San Clemente
+7110,San Rafael,,Talca,Maule,263.5,9.959,17.9,0.629,Medio,-35.317,-71.533,7,San Rafael
+7201,Cauquenes,,Cauquenes,Maule,2.216,50.441,19.9,0.656,Medio,-35.964000000000006,-72.317,7,Cauquenes
+7202,Chanco,,Cauquenes,Maule,530,9.331,17.6,0.612,Medio,-35.729,-72.53,7,Chanco
+7203,Pelluhue,,Cauquenes,Maule,371,8.092,21.8,0.694,Medio,-35.814,-72.574,7,Pelluhue
+7301,Curicó,,Curicó,Maule,1.328,149.626,123.2,0.71,Alto,-34.976,-71.224,7,Curico
+7302,Hualañé,,Curicó,Maule,629,10.222,16.2,0.631,Medio,-34.983000000000004,-71.817,7,Hualane
+7303,Licantén,,Curicó,Maule,273,6.989,25.6,0.705,Alto,-34.983000000000004,-72.0,7,Licanten
+7304,Molina,,Curicó,Maule,1.552,49.8,32,0.663,Medio,-35.09,-71.279,7,Molina
+7305,Rauco,,Curicó,Maule,309,11.248,36.4,0.659,Medio,-34.928999999999995,-71.31099999999999,7,Rauco
+7306,Romeral,,Curicó,Maule,1.597,16.17,10.1,0.668,Medio,-34.967,-71.133,7,Romeral
+7307,Sagrada Familia,,Curicó,Maule,548.8,19.469,35.4,0.672,Medio,-35.0,-71.383,7,Sagrada Familia
+7308,Teno,,Curicó,Maule,618.4,30.85,49.9,0.648,Medio,-34.873,-71.162,7,Teno
+7309,Vichuquén,,Curicó,Maule,426,4.381,10.2,0.678,Medio,-34.823,-72.035,7,Vichuquen
+7401,Linares,,Linares,Maule,1.466,101.073,68.9,0.71,Alto,-35.85,-71.585,7,Linares
+7402,Colbún,,Linares,Maule,"2.899,9",22.565,7.78,0.638,Medio,-35.7,-71.417,7,Colbun
+7403,Longaví,,Linares,Maule,1.454,32.81,22.5,0.626,Medio,-35.966,-71.682,7,Longavi
+7404,Parral,,Linares,Maule,1.638,44.544,27.1,0.656,Medio,-36.147,-71.822,7,Parral
+7405,Retiro,,Linares,Maule,827,21.071,25.4,0.649,Medio,-36.046,-71.759,7,Retiro
+7406,San Javier,,Linares,Maule,1.313,49.451,37.6,0.654,Medio,-35.05,-71.467,7,San Javier
+7407,Villa Alegre,,Linares,Maule,190,17.512,92.1,0.648,Medio,-35.665,-71.742,7,Villa Alegre
+7408,Yerbas Buenas,,Linares,Maule,262,19.2,73.2,0.64,Medio,-35.75,-71.583,7,Yerbas Buenas
+16101,Chillán,,Diguillín,Ñuble,511.2,198.624,388.6,0.714,Alto,-36.601,-72.109,16,Chillan
+16102,Bulnes,,Diguillín,Ñuble,425.4,22.607,53.1,0.626,Medio,-36.739000000000004,-72.292,16,Bulnes
+16103,Chillán Viejo,,Diguillín,Ñuble,291.8,33.827,115.8,0.732,Alto,-36.633,-72.14,16,Chillan Viejo
+16104,El Carmen,,Diguillín,Ñuble,664.3,12.334,18.5,0.611,Medio,-36.9,-72.033,16,El Carmen
+16105,Pemuco,,Diguillín,Ñuble,562.7,8.639,15.3,0.631,Medio,-36.978,-72.091,16,Pemuco
+16106,Pinto,,Diguillín,Ñuble,1.164,11.88,10.2,0.618,Medio,-36.7,-71.9,16,Pinto
+16107,Quillón,,Diguillín,Ñuble,423,18.777,44.3,0.59,Medio,-36.738,-72.46900000000001,16,Quillon
+16108,San Ignacio,,Diguillín,Ñuble,363.6,16.624,45.6,0.618,Medio,-36.8,-72.033,16,San Ignacio
+16109,Yungay,,Diguillín,Ñuble,823.5,18.596,22.5,0.669,Medio,-37.10445,-71.93081111111111,16,Yungay
+16201,Quirihue,,Itata,Ñuble,589,12.192,20.6,0.594,Medio,-36.281,-72.545,16,Quirihue
+16202,Cobquecura,,Itata,Ñuble,570.3,5.275,9.25,0.633,Medio,-36.133,-72.783,16,Cobquecura
+16203,Coelemu,,Itata,Ñuble,342.3,16.845,49.2,0.611,Medio,-36.485,-72.694,16,Coelemu
+16204,Ninhue,,Itata,Ñuble,401.2,5.414,13.5,0.569,Bajo medio,-36.400999999999996,-72.397,16,Ninhue
+16205,Portezuelo,,Itata,Ñuble,282.3,4.94,17.5,0.599,Medio,-36.533,-72.433,16,Portezuelo
+16206,Ránquil,,Itata,Ñuble,248.3,6.261,25.2,0.586,Bajo alto,-36.65,-72.55,16,Ranquil
+16207,Treguaco,,Itata,Ñuble,313.1,5.696,18.1,0.562,Bajo medio,-36.428999999999995,-72.665,16,Treguaco
+16301,San Carlos,,Punilla,Ñuble,874,56.252,64.3,0.653,Medio,-36.422,-71.959,16,San Carlos
+16302,Coihueco,,Punilla,Ñuble,"1.776,6",28.375,15.9,0.639,Medio,-35.783,-72.433,16,Coihueco
+16303,Ñiquén,,Punilla,Ñuble,493.1,11.567,23.4,0.629,Medio,-36.287,-71.899,16,Niquen
+16304,San Fabián,,Punilla,Ñuble,"1.568,3",4.654,2.96,0.618,Medio,-36.553999999999995,-71.54899999999999,16,San Fabian
+16305,San Nicolás,,Punilla,Ñuble,490.5,12.172,24.7,0.625,Medio,-36.883,-72.483,16,San Nicolas
+8101,Concepción,,Concepción,Biobío,221.6,238.092,"1.072,4",0.757,Alto,-36.815,-73.029,8,Concepcion
+8102,Coronel,,Concepción,Biobío,279.4,125.829,451,0.682,Medio,-36.982,-73.15700000000001,8,Coronel
+8103,Chiguayante,,Concepción,Biobío,71.5,91.18,"1.266,3",0.764,Alto,-36.909,-73.028,8,Chiguayante
+8104,Florida,,Concepción,Biobío,608.6,11.841,19.4,0.604,Medio,-36.821000000000005,-72.662,8,Florida
+8105,Hualqui,,Concepción,Biobío,530.5,26.201,49.3,0.666,Medio,-36.967,-72.933,8,Hualqui
+8106,Lota,,Concepción,Biobío,135.8,45.75,336.3,0.643,Medio,-37.089000000000006,-73.155,8,Lota
+8107,Penco,,Concepción,Biobío,107.6,49.865,461.7,0.689,Medio,-36.742000000000004,-72.998,8,Penco
+8108,San Pedro de La Paz,,Concepción,Biobío,112.5,145.906,"1.291,2",0.787,Alto,-36.864000000000004,-73.10799999999999,8,San Pedro de La Paz
+8109,Santa Juana,,Concepción,Biobío,731.2,14.779,20.2,0.626,Medio,-37.17933333333333,-72.93533333333333,8,Santa Juana
+8110,Talcahuano,,Concepción,Biobío,92.3,158.345,"1.721,1",0.731,Alto,-36.736000000000004,-73.10499999999999,8,Talcahuano
+8111,Tomé,,Concepción,Biobío,494.5,58.729,118.6,0.668,Medio,-36.624,-72.95,8,Tome
+8112,Hualpén,,Concepción,Biobío,53.5,97.273,"1.802,3",712.0,Medio,-36.789,-73.11,8,Hualpen
+8201,Lebu,,Arauco,Biobío,561.4,27.1,48.3,0.633,Medio,-37.606,-73.643,8,Lebu
+8202,Arauco,,Arauco,Biobío,956.1,38.679,40.4,0.704,Alto,-37.257,-73.28399999999999,8,Arauco
+8203,Cañete,,Arauco,Biobío,"1.089,2",37.003,33.9,0.641,Medio,-37.80127777777778,-73.39616666666667,8,Canete
+8204,Contulmo,,Arauco,Biobío,638.8,6.33,9.90,0.603,Medio,-38.005,-73.22500000000001,8,Contulmo
+8205,Curanilahue,,Arauco,Biobío,994.3,33.892,34,0.643,Medio,-37.472,-73.348,8,Curanilahue
+8206,Los Álamos,,Arauco,Biobío,599.1,22.524,37.6,0.645,Medio,-37.621,-73.456,8,Los Alamos
+8207,Tirúa,,Arauco,Biobío,624.4,11.019,17.6,0.584,Bajo alto,-38.339000000000006,-73.484,8,Tirua
+8301,Los Ángeles,,Biobío,Biobío,"1.748,2",218.515,125.0,0.696,Medio,-36.943999999999996,-72.351,8,Los Angeles
+8302,Antuco,,Biobío,Biobío,"1.884,1",4.306,2.28,0.662,Medio,-37.327000000000005,-71.67800000000001,8,Antuco
+8303,Cabrero,,Biobío,Biobío,639.8,30.725,48,0.635,Medio,-37.039,-72.399,8,Cabrero
+8304,Laja,,Biobío,Biobío,339.8,23.873,70.2,0.665,Medio,-37.266999999999996,-72.7,8,Laja
+8305,Mulchén,,Biobío,Biobío,"1.925,3",31.041,16.1,0.639,Medio,-37.715,-72.239,8,Mulchen
+8306,Nacimiento,,Biobío,Biobío,934.9,27.944,29.8,0.656,Medio,-37.501,-72.676,8,Nacimiento
+8307,Negrete,,Biobío,Biobío,156.5,10.429,66.4,0.629,Medio,-37.583000000000006,-72.517,8,Negrete
+8308,Quilaco,,Biobío,Biobío,"1.123,7",4.179,3.71,0.635,Medio,-37.68,-72.007,8,Quilaco
+8309,Quilleco,,Biobío,Biobío,"1.121,8",10.032,8.94,0.641,Medio,-37.467,-71.967,8,Quilleco
+8310,San Rosendo,,Biobío,Biobío,92.4,3.611,39.2,0.647,Medio,-37.258,-72.71600000000001,8,San Rosendo
+8311,Santa Bárbara,,Biobío,Biobío,"1.254,9",14.592,11.6,0.637,Medio,-37.663,-72.018,8,Santa Barbara
+8312,Tucapel,,Biobío,Biobío,914.9,15.205,16.6,0.655,Medio,-37.633,-73.333,8,Tucapel
+8313,Yumbel,,Biobío,Biobío,727,22.132,30.4,0.597,Bajo alto,-37.096000000000004,-72.556,8,Yumbel
+8314,Alto Biobío,,Biobío,Biobío,"2.124,6",6.775,3.18,,Medio,-38.619,-71.32433333333333,8,Alto Biobio
+9101,Temuco,,Cautín,La Araucanía,464,302.931,652.8,0.763,Alto,-38.727000000000004,-72.59899999999999,9,Temuco
+9102,Carahue,,Cautín,La Araucanía,"1.340,6",25.486,19,0.604,Medio,-38.707,-73.16000000000001,9,Carahue
+9103,Cunco,,Cautín,La Araucanía,"1.906,5",18.055,9.46,0.659,Medio,-38.93,-72.027,9,Cunco
+9104,Curarrehue,,Cautín,La Araucanía,"1.170,7",7.802,6.66,0.603,Medio,-39.359,-71.588,9,Curarrehue
+9105,Freire,,Cautín,La Araucanía,935.2,25.446,27.2,0.614,Medio,-38.954,-72.622,9,Freire
+9106,Galvarino,,Cautín,La Araucanía,568.2,12.633,22.2,0.611,Medio,-38.4,-72.783,9,Galvarino
+9107,Gorbea,,Cautín,La Araucanía,694.5,15.148,21.7,0.644,Medio,-39.095,-72.67200000000001,9,Gorbea
+9108,Lautaro,,Cautín,La Araucanía,901.1,40.746,45.2,0.669,Medio,-38.528999999999996,-72.427,9,Lautaro
+9109,Loncoche,,Cautín,La Araucanía,976.8,24.739,25.3,0.652,Medio,-39.354,-72.628,9,Loncoche
+9110,Melipeuco,,Cautín,La Araucanía,"1.107,3",6.265,5.65,0.629,Medio,-38.843,-71.687,9,Melipeuco
+9111,Nueva Imperial,,Cautín,La Araucanía,732.5,33.777,46,0.629,Medio,-38.745,-72.95,9,Nueva Imperial
+9112,Padre Las Casas,,Cautín,La Araucanía,400.7,82.11,204.7,0.662,Medio,-38.766,-72.59299999999999,9,Padre Las Casas
+9113,Perquenco,,Cautín,La Araucanía,330.7,7.223,21.8,0.63,Medio,-38.416999999999994,-72.383,9,Perquenco
+9114,Pitrufquén,,Cautín,La Araucanía,580.7,26.096,44.9,0.663,Medio,-38.983000000000004,-72.643,9,Pitrufquen
+9115,Pucón,,Cautín,La Araucanía,"1.248,5",29.782,23.8,0.767,Alto,-39.282,-71.95400000000001,9,Pucon
+9116,Saavedra,,Cautín,La Araucanía,400.8,12.793,31.9,0.574,Bajo medio,-38.783,-73.4,9,Saavedra
+9117,Teodoro Schmidt,,Cautín,La Araucanía,649.9,15.786,24.2,0.607,Medio,-38.967,-73.05,9,Teodoro Schmidt
+9118,Toltén,,Cautín,La Araucanía,860.4,10.055,11.6,0.617,Medio,-39.217,-73.217,9,Tolten
+9119,Vilcún,,Cautín,La Araucanía,"1.420,9",30.766,21.6,0.643,Medio,-38.65,-72.233,9,Vilcun
+9120,Villarrica,,Cautín,La Araucanía,"1.291,1",59.103,45.7,0.698,Medio,-39.28,-72.218,9,Villarrica
+9121,Cholchol,,Cautín,La Araucanía,427.9,12.341,28.8,,Alto,-38.6,-72.85,9,Cholchol
+9201,Angol,,Malleco,La Araucanía,"1.194,4",56.058,46.9,0.707,Alto,-37.803,-72.702,9,Angol
+9202,Collipulli,,Malleco,La Araucanía,"1.295,9",26.148,20.1,0.633,Medio,-37.953,-72.432,9,Collipulli
+9203,Curacautín,,Malleco,La Araucanía,1.664,18.178,10.9,0.657,Medio,-38.431999999999995,-71.89,9,Curacautin
+9204,Ercilla,,Malleco,La Araucanía,499.7,8.458,16.9,0.609,Medio,-38.05,-72.383,9,Ercilla
+9205,Lonquimay,,Malleco,La Araucanía,"3.914,2",11.049,2.82,0.629,Medio,-38.433,-71.233,9,Lonquimay
+9206,Los Sauces,,Malleco,La Araucanía,849.8,7.517,8.84,0.602,Medio,-37.967,-72.833,9,Los Sauces
+9207,Lumaco,,Malleco,La Araucanía,1.119,10.05,8.98,0.603,Medio,-38.163,-72.90400000000001,9,Lumaco
+9208,Purén,,Malleco,La Araucanía,464.9,12.188,26.2,0.594,Medio,-38.022,-73.07,9,Puren
+9209,Renaico,,Malleco,La Araucanía,267.4,10.833,40.4,0.615,Medio,-37.666999999999994,-72.583,9,Renaico
+9210,Traiguén,,Malleco,La Araucanía,908,19.314,21.2,0.657,Medio,-38.248,-72.67500000000001,9,Traiguen
+9211,Victoria,,Malleco,La Araucanía,1.256,35.467,28.2,0.686,Medio,-38.230000000000004,-72.34299999999999,9,Victoria
+14101,Valdivia,,Valdivia,Los Ríos,1.016,176.774,173.9,0.754,Alto,-39.8,-73.233,14,Valdivia
+14102,Corral,,Valdivia,Los Ríos,767,5.447,7.10,0.658,Medio,-39.867,-73.433,14,Corral
+14103,Lanco,,Valdivia,Los Ríos,532.4,17.652,33.1,0.648,Medio,-39.446999999999996,-72.772,14,Lanco
+14104,Los Lagos,,Valdivia,Los Ríos,"1.791,2",20.518,11.4,0.658,Medio,-41.919999999999995,-72.14200000000001,14,Los Lagos
+14105,Máfil,,Valdivia,Los Ríos,583,7.389,12.6,0.655,Medio,-39.65,-72.95,14,Mafil
+14106,Mariquina,,Valdivia,Los Ríos,"1.320,5",23.35,17.6,0.653,Medio,-40.133,-72.333,14,Mariquina
+14107,Paillaco,,Valdivia,Los Ríos,896,20.798,23.2,0.647,Medio,-40.068000000000005,-72.883,14,Paillaco
+14108,Panguipulli,,Valdivia,Los Ríos,3.292,35.991,10.9,0.627,Medio,-39.642,-72.33999999999999,14,Panguipulli
+14201,La Unión,,Ranco,Los Ríos,2.137,39.538,18.5,0.687,Medio,-40.292,-73.088,14,La Union
+14202,Futrono,,Ranco,Los Ríos,"2.267,5",15.261,6.72,0.637,Medio,-40.131,-72.396,14,Futrono
+14203,Lago Ranco,,Ranco,Los Ríos,"1.763,3",10.292,5.83,0.606,Medio,-40.317,-72.5,14,Lago Ranco
+14204,Río Bueno,,Ranco,Los Ríos,"2.211,7",32.925,14.8,0.624,Medio,-40.338,-72.95700000000001,14,Rio Bueno
+10101,Puerto Montt,,Llanquihue,Los Lagos,1.673,269.398,147.0,0.718,Alto,-41.454,-72.993,10,Puerto Montt
+10102,Calbuco,,Llanquihue,Los Lagos,590.8,36.744,62.1,0.642,Medio,-41.758,-73.15100000000001,10,Calbuco
+10103,Cochamó,,Llanquihue,Los Lagos,"3.910,8",4.006,1.02,0.69,Medio,-41.5,-72.317,10,Cochamo
+10104,Fresia,,Llanquihue,Los Lagos,"1.278,1",12.656,9.90,0.657,Medio,-41.153,-73.42,10,Fresia
+10105,Frutillar,,Llanquihue,Los Lagos,831.4,20.223,24.3,0.669,Medio,-41.117,-73.1,10,Frutillar
+10106,Los Muermos,,Llanquihue,Los Lagos,"1.245,8",17.817,14.2,0.648,Medio,-41.391,-73.465,10,Los Muermos
+10107,Llanquihue,,Llanquihue,Los Lagos,420.8,18.621,44.2,0.695,Medio,-41.266,-73.012,10,Llanquihue
+10108,Maullín,,Llanquihue,Los Lagos,860.8,14.894,17.2,0.691,Medio,-41.618,-73.598,10,Maullin
+10109,Puerto Varas,,Llanquihue,Los Lagos,"4.064,9",48.62,11.9,0.748,Alto,-41.323,-72.97,10,Puerto Varas
+10201,Castro,,Chiloé,Los Lagos,472.5,47.607,100.6,0.72,Alto,-42.478,-73.779,10,Castro
+10202,Ancud,,Chiloé,Los Lagos,"1.752,4",42.458,24.2,0.705,Alto,-41.877,-73.814,10,Ancud
+10203,Chonchi,,Chiloé,Los Lagos,"1.362,1",16.013,11.7,0.641,Medio,-42.626,-73.781,10,Chonchi
+10204,Curaco de Vélez,,Chiloé,Los Lagos,80,4.066,50.8,0.702,Alto,-42.434,-73.582,10,Curaco de Velez
+10205,Dalcahue,,Chiloé,Los Lagos,"1.239,4",15.069,12.1,0.69,Medio,-42.374,-73.65100000000001,10,Dalcahue
+10206,Puqueldón,,Chiloé,Los Lagos,97.3,4.201,43.3,0.628,Medio,-42.604,-73.684,10,Puqueldon
+10207,Queilén,,Chiloé,Los Lagos,332.9,5.543,16.6,0.646,Medio,-42.874,-73.47,10,Queilen
+10208,Quellón,,Chiloé,Los Lagos,3.244,29.309,9.03,0.67,Medio,-43.121,-73.60799999999999,10,Quellon
+10209,Quemchi,,Chiloé,Los Lagos,440.3,8.783,19.9,0.656,Medio,-42.142,-73.47800000000001,10,Quemchi
+10210,Quinchao,,Chiloé,Los Lagos,160.7,8.298,51.5,0.648,Medio,-42.479,-73.497,10,Quinchao
+10301,Osorno,,Osorno,Los Lagos,951,173.41,182.3,0.7,Alto,-40.574000000000005,-73.12599999999999,10,Osorno
+10302,Puerto Octay,,Osorno,Los Lagos,"1.795,7",9.192,5.11,0.679,Medio,-40.967,-72.9,10,Puerto Octay
+10303,Purranque,,Osorno,Los Lagos,"1.458,8",21.08,14.4,0.627,Medio,-40.909,-73.17500000000001,10,Purranque
+10304,Puyehue,,Osorno,Los Lagos,"1.597,9",11.787,7.37,0.675,Medio,-40.717,-72.321,10,Puyehue
+10305,Río Negro,,Osorno,Los Lagos,"1.265,7",14.275,11.2,0.633,Medio,-41.967,-72.45,10,Rio Negro
+10306,San Juan de la Costa,,Osorno,Los Lagos,1.517,7.639,5.03,0.51,Bajo,-40.501,-73.39200000000001,10,San Juan de la Costa
+10307,San Pablo,,Osorno,Los Lagos,637.3,10.553,16.5,0.625,Medio,-40.4,-73.017,10,San Pablo
+10401,Chaitén,,Palena,Los Lagos,"8.470,5",5.02,0.59,0.704,Alto,-42.899,-72.667,10,Chaiten
+10402,Futaleufú,,Palena,Los Lagos,1.280,2.806,2.19,0.665,Medio,-43.168,-71.848,10,Futaleufu
+10403,Hualaihué,,Palena,Los Lagos,"2.787,7",9.525,3.41,0.659,Medio,-41.992000000000004,-72.667,10,Hualaihue
+10404,Palena,,Palena,Los Lagos,"2.763,7",1.827,0.66,0.667,Medio,-43.623,-71.804,10,Palena
+11101,Coyhaique,,Coyhaique,Aysén del Gral. C. Ibáñez del Campo,"7.290,2",61.21,8.39,0.751,Alto,-45.564,-72.065,11,Coyhaique
+11102,Lago Verde,,Coyhaique,Aysén del Gral. C. Ibáñez del Campo,"5.422,3",920.0,0.16,0.637,Medio,-44.219,-71.839,11,Lago Verde
+11201,Aysén,,Aysén,Aysén del Gral. C. Ibáñez del Campo,"29.796,4",25.002,0.83,0.674,Medio,-45.412,-72.69800000000001,11,Aysen
+11202,Cisnes,,Aysén,Aysén del Gral. C. Ibáñez del Campo,16.093,5.828,0.36,0.725,Alto,-44.751,-72.697,11,Cisnes
+11203,Guaitecas,,Aysén,Aysén del Gral. C. Ibáñez del Campo,620.6,1.599,2.57,0.654,Medio,-43.884,-73.95,11,Guaitecas
+11301,Cochrane,,Capitán Prat,Aysén del Gral. C. Ibáñez del Campo,"8.599,5",3.685,0.42,0.668,Medio,-47.266999999999996,-72.55,11,Cochrane
+11302,O'Higgins,,Capitán Prat,Aysén del Gral. C. Ibáñez del Campo,"8.182,5",661.0,0.08,0.572,Bajo medio,-48.8,-73.183,11,O'Higgins
+11303,Tortel,,Capitán Prat,Aysén del Gral. C. Ibáñez del Campo,"19.710,6",572.0,0.03,0.655,Medio,-47.781,-73.512,11,Tortel
+11401,Chile Chico,,General Carrera,Aysén del Gral. C. Ibáñez del Campo,"5.737,1",5.121,0.89,0.707,Alto,-46.55,-71.733,11,Chile Chico
+11402,Río Ibáñez,,General Carrera,Aysén del Gral. C. Ibáñez del Campo,"5.997,2",2.699,0.45,0.654,Medio,-46.255,-71.95,11,Rio Ibanez
+12101,Punta Arenas,,Magallanes,Magallanes y Antártica Chilena,"17.846,3",141.984,7.95,0.748,Alto,-53.147999999999996,-70.90700000000001,12,Punta Arenas
+12102,Laguna Blanca,,Magallanes,Magallanes y Antártica Chilena,"3.695,6",264.0,0.07,0.785,Alto,-52.266999999999996,-71.183,12,Laguna Blanca
+12103,Río Verde,,Magallanes,Magallanes y Antártica Chilena,17.248,211.0,0.01,0.784,Alto,-52.628,-71.477,12,Rio Verde
+12104,San Gregorio,,Magallanes,Magallanes y Antártica Chilena,"6.883,7",681.0,0.09,0.823,Muy alto,-52.567,-70.067,12,San Gregorio
+12201,Cabo de Hornos,,Antártica Chilena,Magallanes y Antártica Chilena,"15.578,7",1.983,0.13,0.806,Muy alto,-54.946999999999996,-67.607,12,Cabo de Hornos
+12202,Antártica,,Antártica Chilena,Magallanes y Antártica Chilena,"1.250.257,6",137.0,0.0001,,Medio,-75.0,-71.5,12,Antartica
+12301,Porvenir,,Tierra del Fuego,Magallanes y Antártica Chilena,"9.707,4",7.323,0.75,0.731,Alto,-53.297999999999995,-70.385,12,Porvenir
+12302,Primavera,,Tierra del Fuego,Magallanes y Antártica Chilena,"4.253,4",694.0,0.16,0.774,Alto,-52.886,-69.353,12,Primavera
+12303,Timaukel,,Tierra del Fuego,Magallanes y Antártica Chilena,"10.758,9",282.0,0.02,0.717,Alto,-53.672,-69.71000000000001,12,Timaukel
+12401,Natales,,Última Esperanza,Magallanes y Antártica Chilena,"49.924,1",23.782,0.47,0.699,Alto,-51.733000000000004,-72.517,12,Natales
+12402,Torres del Paine,,Última Esperanza,Magallanes y Antártica Chilena,6.630,1.021,0.15,0.73,Alto,-50.982,-72.499,12,Torres del Paine
+13101,Santiago,,Santiago,Metropolitana de Santiago,23.2,503.147,"21.875,9",0.807,Muy alto,-33.43722222222222,-70.65722222222223,13,Santiago
+13102,Cerrillos,,Santiago,Metropolitana de Santiago,21,88.956,4.236,0.743,Alto,-33.5,-70.71666666666667,13,Cerrillos
+13103,Cerro Navia,,Santiago,Metropolitana de Santiago,11,142.465,"12.951,3",0.683,Medio,-33.422,-70.735,13,Cerro Navia
+13104,Conchalí,,Santiago,Metropolitana de Santiago,10.7,139.195,"12.654,0",0.707,Alto,-33.38,-70.67500000000001,13,Conchali
+13105,El Bosque,,Santiago,Metropolitana de Santiago,14.2,172.0,"12.285,7",0.711,Alto,-33.567,-70.67500000000001,13,El Bosque
+13106,Estación Central,,Santiago,Metropolitana de Santiago,15,206.792,"13.786,1",0.735,Alto,-33.459,-70.699,13,Estacion Central
+13107,Huechuraba,,Santiago,Metropolitana de Santiago,44.8,112.528,"2.500,6",0.737,Alto,-33.368,-70.634,13,Huechuraba
+13108,Independencia,,Santiago,Metropolitana de Santiago,7,142.065,20.295,0.709,Alto,-33.413,-70.66600000000001,13,Independencia
+13109,La Cisterna,,Santiago,Metropolitana de Santiago,10,100.434,"10.043,4",0.775,Alto,-33.528999999999996,-70.66300000000001,13,La Cisterna
+13110,La Florida,,Santiago,Metropolitana de Santiago,70.2,402.433,"5.749,0",0.804,Muy alto,-33.525,-70.538,13,La Florida
+13111,La Granja,,Santiago,Metropolitana de Santiago,10,122.557,"12.255,7",0.689,Medio,-33.53333333333333,-70.625,13,La Granja
+13112,La Pintana,,Santiago,Metropolitana de Santiago,30.6,189.335,"6.107,5",0.679,Medio,-33.583000000000006,-70.634,13,La Pintana
+13113,La Reina,,Santiago,Metropolitana de Santiago,23,100.252,"4.358,7",0.883,Muy alto,-33.443,-70.532,13,La Reina
+13114,Las Condes,,Santiago,Metropolitana de Santiago,99,330.759,3.341,0.933,Muy alto,-33.416666666666664,-70.58333333333333,13,Las Condes
+13115,Lo Barnechea,,Santiago,Metropolitana de Santiago,1.024,124.076,121.1,0.912,Muy alto,-33.35,-70.51666666666667,13,Lo Barnechea
+13116,Lo Espejo,,Santiago,Metropolitana de Santiago,7,103.865,"14.837,8",0.657,Medio,-33.522,-70.687,13,Lo Espejo
+13117,Lo Prado,,Santiago,Metropolitana de Santiago,7,104.403,"14.914,7",0.715,Alto,-33.44499999999999,-70.726,13,Lo Prado
+13118,Macul,,Santiago,Metropolitana de Santiago,12.9,134.635,"10.356,5",0.806,Muy alto,-33.487,-70.604,13,Macul
+13119,Maipú,,Santiago,Metropolitana de Santiago,135.5,578.605,"4.254,4",0.902,Muy alto,-33.516666666666666,-70.76666666666667,13,Maipu
+13120,Ñuñoa,,Santiago,Metropolitana de Santiago,16.9,250.192,"14.717,1",0.86,Muy alto,-33.454,-70.604,13,Nunoa
+13121,Pedro Aguirre Cerda,,Santiago,Metropolitana de Santiago,10,107.803,"10.780,3",0.708,Alto,-33.46633333333334,-70.63366666666667,13,Pedro Aguirre Cerda
+13122,Peñalolén,,Santiago,Metropolitana de Santiago,54,266.798,"4.940,7",0.743,Alto,-33.48618888888889,-70.53333333333333,13,Penalolen
+13123,Providencia,,Santiago,Metropolitana de Santiago,14.3,157.749,"11.267,7",0.911,Muy alto,-33.434999999999995,-70.616,13,Providencia
+13124,Pudahuel,,Santiago,Metropolitana de Santiago,197,253.139,"1.284,9",0.735,Alto,-33.43333333333333,-70.71666666666667,13,Pudahuel
+13125,Quilicura,,Santiago,Metropolitana de Santiago,58,254.694,"4.391,2",0.782,Alto,-33.361000000000004,-70.729,13,Quilicura
+13126,Quinta Normal,,Santiago,Metropolitana de Santiago,13,136.368,"10.489,8",0.723,Alto,-33.427,-70.699,13,Quinta Normal
+13127,Recoleta,,Santiago,Metropolitana de Santiago,16,190.07,"11.879,3",0.697,Alto,-33.406,-70.64,13,Recoleta
+13128,Renca,,Santiago,Metropolitana de Santiago,24,160.847,"6.993,3",0.709,Alto,-33.397999999999996,-70.723,13,Renca
+13129,San Joaquín,,Santiago,Metropolitana de Santiago,9.7,103.485,"10.348,5",0.719,Alto,-33.491,-70.628,13,San Joaquin
+13130,San Miguel,,Santiago,Metropolitana de Santiago,10.0,133.059,"13.305,9",0.765,Alto,-33.48583333333333,-70.64944444444446,13,San Miguel
+13131,San Ramón,,Santiago,Metropolitana de Santiago,7,86.51,"12.358,5",0.679,Medio,-33.53333333333333,-70.64166666666668,13,San Ramon
+13132,Vitacura,,Santiago,Metropolitana de Santiago,28.3,96.774,"3.456,2",0.949,Muy alto,-33.4,-70.6,13,Vitacura
+13201,Puente Alto,,Cordillera,Metropolitana de Santiago,88,645.909,"7.339,8",0.773,Alto,-33.616,-70.57,13,Puente Alto
+13202,Pirque,,Cordillera,Metropolitana de Santiago,445.3,30.433,68.3,0.807,Muy alto,-33.65,-70.564,13,Pirque
+13203,San José de Maipo,,Cordillera,Metropolitana de Santiago,"4.994,8",18.644,3.74,0.759,Alto,-33.644,-70.353,13,San Jose de Maipo
+13301,Colina,,Chacabuco,Metropolitana de Santiago,971.2,180.353,1857,0.726,Alto,-33.193999999999996,-70.668,13,Colina
+13302,Lampa,,Chacabuco,Metropolitana de Santiago,452,126.898,2807,0.697,Medio,-33.286,-70.878,13,Lampa
+13303,Til Til,,Chacabuco,Metropolitana de Santiago,653,21.477,32.8,0.709,Alto,-33.085,-70.92500000000001,13,Til Til
+13401,San Bernardo,,Maipo,Metropolitana de Santiago,155,334.836,"2.160,2",0.712,Alto,-33.582,-70.687,13,San Bernardo
+13402,Buin,,Maipo,Metropolitana de Santiago,214,109.641,5123,0.731,Alto,-33.728,-70.739,13,Buin
+13403,Calera de Tango,,Maipo,Metropolitana de Santiago,73.3,28.525,390.7,0.792,Alto,-33.628,-70.785,13,Calera de Tango
+13404,Paine,,Maipo,Metropolitana de Santiago,820,82.766,100.9,0.718,Alto,-33.812,-70.723,13,Paine
+13501,Melipilla,,Melipilla,Metropolitana de Santiago,1.345,141.612,105.2,0.735,Alto,-33.689,-71.208,13,Melipilla
+13502,Alhué,,Melipilla,Metropolitana de Santiago,845,7.405,8.76,0.7,Alto,-34.033,-71.1,13,Alhue
+13503,Curacaví,,Melipilla,Metropolitana de Santiago,693,36.43,52.5,0.71,Alto,-33.399,-71.137,13,Curacavi
+13504,María Pinto,,Melipilla,Metropolitana de Santiago,393.5,14.926,37.8,0.698,Alto,-33.515,-71.119,13,Maria Pinto
+13505,San Pedro,,Melipilla,Metropolitana de Santiago,788,11.953,15.1,0.701,Alto,-33.9,-71.467,13,San Pedro
+13601,Talagante,,Talagante,Metropolitana de Santiago,126,81.838,649.5,0.749,Alto,-33.666999999999994,-70.93100000000001,13,Talagante
+13602,El Monte,,Talagante,Metropolitana de Santiago,118,40.014,339.1,0.688,Medio,-33.684,-71.017,13,El Monte
+13603,Isla de Maipo,,Talagante,Metropolitana de Santiago,189,40.171,212.5,0.724,Alto,-33.754,-70.88600000000001,13,Isla de Maipo
+13604,Padre Hurtado,,Talagante,Metropolitana de Santiago,80.8,74.188,915.9,0.728,Alto,-33.576,-70.8,13,Padre Hurtado
+13605,Peñaflor,,Talagante,Metropolitana de Santiago,69,101.058,"1.464,6",0.753,Alto,-33.60627777777778,-70.87652222222222,13,Penaflor
