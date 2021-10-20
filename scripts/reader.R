@@ -51,13 +51,15 @@ ans[db==1, list(N=.N), by='Nro. Región']
 ansg <- ans[ , list(per=`-1`/(`-1` + `1`)), by=c("db", "group", "Comuna", "Nro. Región")]
 ansg <- merge(ansg, comunas[, c("Comuna", "Latitud")], by="Comuna")
 setorder(ansg, Latitud)
+db_ <- 2
 
-n <- sum(ansg$db == 1)
+
+n <- sum(ansg$db == db_)
 n_ <- ceiling(sqrt(n))
-pl_ <- matrix(unlist(ansg[db==1, 'per']), nrow=n_, byrow=F)
+pl_ <- matrix(unlist(ansg[db==db_, 'per']), nrow=n_, ncol=n_, byrow=F)
 pl_[(n + 1):(n_^2)] <- NA
-pl_[1, 1] <- .99
-pl_[n_, n_] <- .01
+# pl_[1, 1] <- .99
+# pl_[n_, n_] <- .01
 
 mcolor <- c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")
 image(pl_, breaks=0:10/10, col=mcolor, useRaster=T, ylim=c(1, 0), axes=F)
