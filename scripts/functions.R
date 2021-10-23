@@ -123,10 +123,13 @@ ids_mesa <- function(blist) {
 #' @export
 #'
 #' @examples
-rastPlot <- function(df, outname, vertical=F, ratio_=15) {
+rastPlot <- function(df, outname, vertical=F, ratio_=15, 
+                     paleta=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")) {
   n <- nrow(df)
   cols <- round(sqrt(n/10))
   rows <- ceiling(n/cols)
+  npaleta <- length(paleta)
+  
   pl_ <- matrix(NA, nrow=cols, ncol=rows, byrow=F)
   pl_[1:n] <- unlist(df[, 'per'])
   
@@ -138,8 +141,6 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15) {
   setorder(com_cut, Reg_cod, -lat)
   com_cut[, Nc:=cumsum(N)/sum(N)]
   
-  
-  mcolor <- c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")
   if (vertical) {
     ax <- 2; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- pl_; width <- cols*ratio_; height <- rows*ratio_; com_las <- 1
   } else {
@@ -148,7 +149,7 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15) {
   
   png(outname, width=width, height=height)
   par(mar=c(4, 4, 4, 4))
-  image(pl__, breaks=0:10/10, col=mcolor, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
+  image(pl__, breaks=0:npaleta/npaleta, col=paleta, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
   # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
   mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
         at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)

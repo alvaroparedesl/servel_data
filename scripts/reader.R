@@ -1,6 +1,7 @@
 library(data.table)
 library(readxl)
 library(igraph)
+library(RColorBrewer)
 
 source('scripts/functions.R')
 
@@ -59,9 +60,11 @@ ansg <- merge(ansg, comunas[, c("Comuna", "Latitud")], by="Comuna")
 setorder(ansg, Reg_cod, -Latitud)
 ratio_ <- 15
 vertical <- T
+paleta1 <- brewer.pal(10, 'RdBu')
+paleta2 <- brewer.pal(9, 'Greens')
 
 for (db_ in 1:3) {
-  rastPlot(ansg[db==db_], sprintf('eleccion_%s.png', db_), vertical, ratio_)  
+  rastPlot(ansg[db==db_], sprintf('eleccion_%s.png', db_), vertical, ratio_, paleta1)  
 }
 
 # ----
@@ -70,7 +73,7 @@ ansv <- merge(ansv, comunas[, c("Comuna", "Latitud")], by="Comuna")
 setorder(ansv, Reg_cod, -Latitud)
 
 for (db_ in 1:3) {
-  rastPlot(ansv[db==db_], sprintf('eleccion_%s_n.png', db_), vertical, ratio_)  
+  rastPlot(ansv[db==db_], sprintf('eleccion_%s_n.png', db_), vertical, ratio_, paleta2)  
 }
 
 # ----------- Mesas por región
