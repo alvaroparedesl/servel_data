@@ -111,3 +111,54 @@ ids_mesa <- function(blist) {
   return(ans)
 }
 
+
+#' Generar un mapa, estilo raster, con cada agrupación de mesas como un pixel.
+#'
+#' @param df 
+#' @param outname 
+#' @param vertical 
+#' @param ratio_ 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+rastPlot <- function(df, outname, vertical=F, ratio_=15) {
+  n <- nrow(df)
+  cols <- round(sqrt(n/10))
+  rows <- ceiling(n/cols)
+  pl_ <- matrix(NA, nrow=cols, ncol=rows, byrow=F)
+  pl_[1:n] <- unlist(df[, 'per'])
+  
+  
+  reg_cut <- df[, list(N=.N, lat=mean(Latitud)), by=c("Nro. Región")]
+  setorder(reg_cut, `Nro. Región`)
+  reg_cut[, Nc:=cumsum(N)/sum(N)]
+  com_cut <- df[, list(N=.N, lat=mean(Latitud)), by=c("Nro. Región", "Comuna")]
+  setorder(com_cut, `Nro. Región`, -lat)
+  com_cut[, Nc:=cumsum(N)/sum(N)]
+  
+  
+  mcolor <- c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")
+  if (vertical) {
+    ax <- 2; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- pl_; width <- cols*ratio_; height <- rows*ratio_; com_las <- 1
+  } else {
+    ax <- 1; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- t(apply(pl_, 2, rev)); width <- rows*ratio_; height <- cols*ratio_; com_las <- 2
+  }
+  
+  png(outname, width=width, height=height)
+  par(mar=c(4, 4, 4, 4))
+  image(pl__, breaks=0:10/10, col=mcolor, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
+  # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$`Nro. Región`, las=1, cex.axis=2, main="Región")
+  mtext(reg_cut$`Nro. Región`, side=ax, line=1, outer=F, cex=2, las=1,
+        at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
+  mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
+        at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
+  if (vertical) {
+    abline(h=round(reg_cut$Nc * rows)/rows, lwd=3)
+  } else {
+    abline(v=round(reg_cut$Nc * rows)/rows, lwd=3)
+  }
+  
+  dev.off()
+}
