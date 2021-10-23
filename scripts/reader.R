@@ -9,7 +9,10 @@ DICTIO <- read_excel_allsheets('scripts/dict.xlsx')
 reg_orden <- c(15, 1:5, 13, 6:7, 16, 8:9, 14, 10:12)
 comunas <- fread('scripts/comunas.csv')
 comunas[, Comuna:=tolower(nom_com)]
-# TODO: usar las regiones de las comunas para asignar región, en el agregado total
+# TODO: juntar gráficos, cambiar color al de porcentaje votantes
+# TODO: calcular pendiente de cambio y cambio absoluto con puntaje Z.
+# TODO: mapa 3D shiny relieve the 1 + 2 (perc izquierda + porc votación como altura)
+# TODO: serie tiempo con Chile, regiones/comunas eje X, eje Y la tendencia, y el área número votantes [área chart] = https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 
 # Archivos
 e2017_1v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
@@ -34,24 +37,26 @@ all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Regió
 ans <- dcast(all_, 
              `Nro. Región` + Comuna + group + db + electores ~ tendencia, value.var=c("N"), fun.aggregate=sum)
 ans[, Comuna:=tolower(iconv(Comuna, from='UTF-8', to = 'ASCII//TRANSLIT'))]
-ans[, `Nro. Región`:=factor(`Nro. Región`, levels=reg_orden)]
 
 com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
                         c('aisen', 'calera', "marchigue", "ohiggins", "llaillay", "cabo de hornos(ex-navarino)", "tiltil", "trehuaco"))
 ans[Comuna %in% names(com_renames), Comuna:=com_renames[Comuna]]
+ans <- merge(ans, comunas[, c("Reg_cod", "Comuna", "Latitud")], by="Comuna")
+ans[, Reg_cod:=factor(Reg_cod, levels=reg_orden)]
+ans[, `Nro. Región`:=NULL]
 # 
 # setdiff(unique(ans$Comuna), unique(comunas$Comuna))
 # setdiff(unique(comunas$Comuna), unique(ans$Comuna))
 # 
 # ans[group == 22903]
 # ans[db==1, list(N=.N), by='Comuna']
-# ans[db==1, list(N=.N), by='Nro. Región']
+# ans[db==1, list(N=.N), by='Reg_cod']
 
 
 #------- plot?
-ansg <- ans[ , list(per=`-1`/(`-1` + `1`)), by=c("db", "group", "Comuna", "Nro. Región")]
+ansg <- ans[ , list(per=`-1`/(`-1` + `1`)), by=c("db", "group", "Comuna", "Reg_cod")]
 ansg <- merge(ansg, comunas[, c("Comuna", "Latitud")], by="Comuna")
-setorder(ansg, `Nro. Región`, -Latitud)
+setorder(ansg, Reg_cod, -Latitud)
 ratio_ <- 15
 vertical <- T
 
@@ -59,13 +64,14 @@ for (db_ in 1:3) {
   rastPlot(ansg[db==db_], sprintf('eleccion_%s.png', db_), vertical, ratio_)  
 }
 
-ansv <- ans[ , list(per=sum(.SD) / electores), by=c("db", "group", "Comuna", "Nro. Región"), .SDcols=c("NA", "-1", "0", "1")]
+# ----
+ansv <- ans[ , list(per=sum(.SD) / electores), by=c("db", "group", "Comuna", "Reg_cod"), .SDcols=c("NA", "-1", "0", "1")]
 ansv <- merge(ansv, comunas[, c("Comuna", "Latitud")], by="Comuna")
-setorder(ansv, `Nro. Región`, -Latitud)
+setorder(ansv, Reg_cod, -Latitud)
 
 for (db_ in 1:3) {
   rastPlot(ansv[db==db_], sprintf('eleccion_%s_n.png', db_), vertical, ratio_)  
 }
 
 # ----------- Mesas por región
-ansg[db==db_, list(N=length(unique(group))), by=c("Nro. Región")]
+ansg[db==db_, list(N=length(unique(group))), by=c("Reg_cod")]

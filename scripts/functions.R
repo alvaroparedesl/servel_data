@@ -131,11 +131,11 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15) {
   pl_[1:n] <- unlist(df[, 'per'])
   
   
-  reg_cut <- df[, list(N=.N, lat=mean(Latitud)), by=c("Nro. Región")]
-  setorder(reg_cut, `Nro. Región`)
+  reg_cut <- df[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod")]
+  setorder(reg_cut, Reg_cod)
   reg_cut[, Nc:=cumsum(N)/sum(N)]
-  com_cut <- df[, list(N=.N, lat=mean(Latitud)), by=c("Nro. Región", "Comuna")]
-  setorder(com_cut, `Nro. Región`, -lat)
+  com_cut <- df[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod", "Comuna")]
+  setorder(com_cut, Reg_cod, -lat)
   com_cut[, Nc:=cumsum(N)/sum(N)]
   
   
@@ -149,8 +149,8 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15) {
   png(outname, width=width, height=height)
   par(mar=c(4, 4, 4, 4))
   image(pl__, breaks=0:10/10, col=mcolor, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
-  # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$`Nro. Región`, las=1, cex.axis=2, main="Región")
-  mtext(reg_cut$`Nro. Región`, side=ax, line=1, outer=F, cex=2, las=1,
+  # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
+  mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
         at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
   mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
         at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
