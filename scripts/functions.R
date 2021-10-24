@@ -118,6 +118,7 @@ ids_mesa <- function(blist) {
 #' @param outname 
 #' @param vertical 
 #' @param ratio_ 
+#' @param paleta un vector con la paleta de colores a usar
 #'
 #' @return
 #' @export
@@ -154,6 +155,61 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15,
   mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
         at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
   mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
+        at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
+  if (vertical) {
+    abline(h=round(reg_cut$Nc * rows)/rows, lwd=3)
+  } else {
+    abline(v=round(reg_cut$Nc * rows)/rows, lwd=3)
+  }
+  
+  dev.off()
+}
+
+rastPlot2 <- function(df1, df2, outname, vertical=F, ratio_=15, 
+                      paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
+                      paleta2=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")) {
+  n <- nrow(df1)
+  cols <- round(sqrt(n/10))
+  rows <- ceiling(n/cols)
+  npaleta1 <- length(paleta1)
+  npaleta2 <- length(paleta2)
+  
+  pl_2 <- pl_1 <- matrix(NA, nrow=cols, ncol=rows, byrow=F)
+  pl_1[1:n] <- unlist(df1[, 'per'])
+  pl_2[1:n] <- unlist(df2[, 'per'])
+  
+  reg_cut <- df1[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod")]
+  setorder(reg_cut, Reg_cod)
+  reg_cut[, Nc:=cumsum(N)/sum(N)]
+  com_cut <- df1[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod", "Comuna")]
+  setorder(com_cut, Reg_cod, -lat)
+  com_cut[, Nc:=cumsum(N)/sum(N)]
+  
+  if (vertical) {
+    ax <- 2; ylim <- c(1, 0); xlim <- c(0, 1); width <- cols*ratio_*2; height <- rows*ratio_; com_las <- 1
+    pl__1 <- pl_1
+    pl__2 <- pl_2
+  } else {
+    ax <- 1; ylim <- c(1, 0); xlim <- c(0, 1); width <- rows*ratio_; height <- cols*ratio_*2; com_las <- 2
+    pl__1 <- t(apply(pl_1, 2, rev))
+    pl__2 <- t(apply(pl_2, 2, rev))
+  }
+  
+  png(outname, width=width, height=height)
+  par(mar=c(4, 6, 4, 6))
+  par(mfcol=c(1, 2))
+  
+  image(pl__1, breaks=0:npaleta1/npaleta1, col=paleta1, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
+  mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=4, las=1,
+        at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
+  if (vertical) {
+    abline(h=round(reg_cut$Nc * rows)/rows, lwd=3)
+  } else {
+    abline(v=round(reg_cut$Nc * rows)/rows, lwd=3)
+  }
+  
+  image(pl__2, breaks=0:npaleta2/npaleta2, col=paleta2, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
+  mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=1, las=com_las,
         at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
   if (vertical) {
     abline(h=round(reg_cut$Nc * rows)/rows, lwd=3)

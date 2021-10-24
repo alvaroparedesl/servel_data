@@ -76,5 +76,9 @@ for (db_ in 1:3) {
   rastPlot(ansv[db==db_], sprintf('eleccion_%s_n.png', db_), vertical, ratio_, paleta2)  
 }
 
+
+db_ <- 2
+rastPlot2(ansg[db==db_], ansv[db==db_], sprintf('eleccion_%s_both.png', db_), vertical, ratio_, paleta1, paleta2)
+
 # ----------- Mesas por región
 ansg[db==db_, list(N=length(unique(group))), by=c("Reg_cod")]
