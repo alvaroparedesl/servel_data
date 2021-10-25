@@ -14,7 +14,7 @@ DICTIO <- read_excel_allsheets('scripts/dict.xlsx')
 reg_orden <- c(15, 1:5, 13, 6:7, 16, 8:9, 14, 10:12)
 comunas <- fread('scripts/comunas.csv')
 comunas[, Comuna:=tolower(nom_com)]
-# TODO: calcular pendiente de cambio y cambio absoluto con puntaje Z.
+# TODO parcial: calcular pendiente de cambio y cambio absoluto con puntaje Z.
 # TODO: mapa 3D shiny relieve the 1 + 2 (perc izquierda + porc votación como altura)
 # TODO: serie tiempo con Chile, regiones/comunas eje X, eje Y la tendencia, y el área número votantes [área chart] = https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 
@@ -72,8 +72,8 @@ ansv <- merge(ansv, comunas[, c("Comuna", "Latitud")], by="Comuna")
 setorder(ansv, Reg_cod, -Latitud)
 
 # Pendiente de cambio izquierda vs derecha
-cast_ = dcast(ans[db %in% c(1, 2), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
-form <- sprintf('(`-1_%2$s` - `-1_%1$s`) / (`1_%2$s` - `1_%1$s`)', 1, 2)
+cast_ = dcast(ans[db %in% c(2, 3), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
+form <- sprintf('(`-1_%2$s` - `-1_%1$s`) / (`1_%2$s` - `1_%1$s`)', 2, 3)
 ansp <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
 ansp <- merge(ansp, comunas[, c("Comuna", "Latitud")], by="Comuna")
 setorder(ansp, Reg_cod, -Latitud)
@@ -85,7 +85,7 @@ paleta1 <- brewer.pal(10, 'RdBu')
 paleta2 <- brewer.pal(9, 'Greens')
 
 for (db_ in 1:3) {
-  m_ <- rastPlot(ansg[db==db_], sprintf('eleccion_%s.png', db_), vertical, ratio_, paleta1)  
+  m_ <- rastPlot(ansg[db==db_], sprintf('eleccion_%s.png', db_), vertical, ratio_, paleta1)
 }
 
 # ----
@@ -95,11 +95,11 @@ for (db_ in 1:3) {
 
 
 for (db_ in 1:3) {
-  rastPlotDual(ansg[db==db_], ansv[db==db_], sprintf('eleccion_%s_both.png', db_), vertical, ratio_, paleta1, paleta2)
+  m_ <- rastPlotDual(ansg[db==db_], ansv[db==db_], sprintf('eleccion_%s_both.png', db_), vertical, ratio_, paleta1, paleta2)
 }
 
 
-m_ <- rastPlot(ansp, sprintf('eleccion_%s_p.png', '12'), vertical, ratio_, rev(paleta1), breaks=-5:5)
+m_ <- rastPlot(ansp, sprintf('eleccion_%s_p.png', '23'), vertical, ratio_, rev(paleta1), breaks=-5:5)
 
 #--- plots 3d??
 (m_*10) |> sphere_shade(texture = "imhof1") |>
