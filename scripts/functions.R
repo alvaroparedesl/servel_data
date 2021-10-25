@@ -119,13 +119,15 @@ ids_mesa <- function(blist) {
 #' @param vertical 
 #' @param ratio_ 
 #' @param paleta un vector con la paleta de colores a usar
+#' @param breaks
 #'
 #' @return
 #' @export
 #'
 #' @examples
 rastPlot <- function(df, outname, vertical=F, ratio_=15, 
-                     paleta=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")) {
+                     paleta=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
+                     breaks=0:npaleta/npaleta) {
   n <- nrow(df)
   cols <- round(sqrt(n/10))
   rows <- ceiling(n/cols)
@@ -150,7 +152,7 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15,
   
   png(outname, width=width, height=height)
   par(mar=c(4, 4, 4, 4))
-  image(pl__, breaks=0:npaleta/npaleta, col=paleta, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
+  image(pl__, breaks=breaks, col=paleta, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
   # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
   mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
         at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
@@ -163,11 +165,37 @@ rastPlot <- function(df, outname, vertical=F, ratio_=15,
   }
   
   dev.off()
+  
+  return(pl_)
 }
 
-rastPlot2 <- function(df1, df2, outname, vertical=F, ratio_=15, 
-                      paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
-                      paleta2=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")) {
+.rastPlot <- function(...){
+  if (vertical) {
+    ax <- 2; ylim <- c(1, 0); xlim <- c(0, 1); width <- cols*ratio_*2; height <- rows*ratio_; com_las <- 1
+    pl__1 <- pl_1
+    pl__2 <- pl_2
+  } else {
+    ax <- 1; ylim <- c(1, 0); xlim <- c(0, 1); width <- rows*ratio_; height <- cols*ratio_*2; com_las <- 2
+    pl__1 <- t(apply(pl_1, 2, rev))
+    pl__2 <- t(apply(pl_2, 2, rev))
+  }
+  
+  image(pl__, breaks=breaks, col=paleta, useRaster=F, ylim=ylim, xlim=xlim, axes=F)
+  # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
+  mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
+        at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
+  mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
+        at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
+  if (vertical) {
+    abline(h=round(reg_cut$Nc * rows)/rows, lwd=3)
+  } else {
+    abline(v=round(reg_cut$Nc * rows)/rows, lwd=3)
+  }
+}
+
+rastPlotdual <- function(df1, df2, outname, vertical=F, ratio_=15, 
+                         paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
+                         paleta2=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061")) {
   n <- nrow(df1)
   cols <- round(sqrt(n/10))
   rows <- ceiling(n/cols)
