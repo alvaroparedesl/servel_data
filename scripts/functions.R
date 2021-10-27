@@ -125,51 +125,39 @@ ids_mesa <- function(blist) {
 #' @export
 #'
 #' @examples
-rastPlot <- function(df1, outname, vertical=F, ratio_=15, 
-                     paleta=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
-                     breaks_=0:length(paleta)/length(paleta)) {
+rastPlot <- function(df1, df2=NULL, outname, vertical=F, ratio_=15, 
+                     paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
+                     paleta2=c("#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#41AB5D", "#238B45", "#006D2C", "#00441B"),
+                     breaks1=0:length(paleta1)/length(paleta1),
+                     breaks2=0:length(paleta2)/length(paleta2)) {
   
   n <- nrow(df1)
   wh <- .computeHeightWidth(n=n, ratio=ratio_, vertical)
   width <- wh[['width']]; height <- wh[['height']]; cols=wh[['cols']]; rows=wh[['rows']]
+  parmar <- if (is.null(df2)) {c(4, 5, 4, 5)} else {c(4, 6, 4, 6)}
+  height_ <- ifelse(is.null(df2), height, height/2)
   
-  png(outname, width=width, height=height)
-  par(mar=c(4, 5, 4, 5))
+  png(outname, width=width, height=height_)
+  if (!is.null(df2)){
+    if (vertical) {
+      par(mfcol=c(1, 2))
+    } else {
+      par(mfcol=c(2, 1))
+    }
+  }
+  par(mar=parmar) 
 
-  out <- .rastPlot(df1)
-  
-  dev.off()
-  
-  return(out)
-}
-
-
-rastPlotDual <- function(df1, df2, outname, vertical=F, ratio_=15, 
-                         paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
-                         paleta2=c("#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#41AB5D", "#238B45", "#006D2C", "#00441B"),
-                         breaks1=0:length(paleta1)/length(paleta1),
-                         breaks2=0:length(paleta2)/length(paleta2)) {
-  
-  n <- nrow(df1)
-  wh <- .computeHeightWidth(n=n, ratio=ratio_, vertical)
-  width <- wh[['width']]; height <- wh[['height']]; cols=wh[['cols']]; rows=wh[['rows']]
-  
-  png(outname, width=width, height=height/2)
-  par(mar=c(4, 6, 4, 6))
-  if (vertical) {
-    par(mfcol=c(1, 2))
+  out1 <- .rastPlot(df1, paleta=paleta1, breaks_=breaks1)
+  if (!is.null(df2)) {
+    out2 <- .rastPlot(df2, paleta=paleta2, breaks_=breaks2)
   } else {
-    par(mfcol=c(2, 1))
+    out2 <- NULL
   }
   
-  out1 <- .rastPlot(df1, paleta=paleta1, breaks_=breaks1)
-  out2 <- .rastPlot(df2, paleta=paleta2, breaks_=breaks2)
-  
   dev.off()
   
-  return(list(plot1=out1, plot2=out2))
+  return(list(out1=out1, out2=out2))
 }
-
 
 
 # AUX Functions

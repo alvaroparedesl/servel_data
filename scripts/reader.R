@@ -85,21 +85,39 @@ paleta1 <- brewer.pal(10, 'RdBu')
 paleta2 <- brewer.pal(9, 'Greens')
 
 for (db_ in 1:3) {
-  m_ <- rastPlot(ansg[db==db_], sprintf('eleccion_%s.png', db_), vertical, ratio_, paleta1)
+  m_ <- rastPlot(ansg[db==db_], 
+                 outname=sprintf('eleccion_%s.png', db_), 
+                 vertical=vertical, 
+                 ratio_=ratio_, 
+                 paleta1=paleta1)
 }
 
 # ----
 for (db_ in 1:3) {
-  m_ <- rastPlot(ansv[db==db_], sprintf('eleccion_%s_n.png', db_), vertical, ratio_, paleta2)  
+  m_ <- rastPlot(ansv[db==db_], 
+                 outname=sprintf('eleccion_%s_n.png', db_), 
+                 vertical=vertical, 
+                 ratio_=ratio_, 
+                 paleta1=paleta2)  
 }
 
 
 for (db_ in 1:3) {
-  m_ <- rastPlotDual(ansg[db==db_], ansv[db==db_], sprintf('eleccion_%s_both.png', db_), vertical, ratio_, paleta1, paleta2)
+  m_ <- rastPlot(ansg[db==db_], ansv[db==db_], 
+                 outname=sprintf('eleccion_%s_both.png', db_), 
+                 vertical=vertical, 
+                 ratio_=ratio_, 
+                 paleta1=paleta1, 
+                 paleta2=paleta2)
 }
 
 
-m_ <- rastPlot(ansp, sprintf('eleccion_%s_p.png', '23'), vertical, ratio_, rev(paleta1), breaks=-5:5)
+m_ <- rastPlot(ansp, 
+               outname=sprintf('eleccion_%s_p.png', '23'), 
+               vertical=vertical, 
+               ratio_=ratio_, 
+               paleta1=rev(paleta1), 
+               breaks1=-5:5)
 
 #--- plots 3d??
 (m_*10) |> sphere_shade(texture = "imhof1") |>
