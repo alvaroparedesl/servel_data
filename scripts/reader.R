@@ -109,8 +109,8 @@ m_ <- rastPlot(cindx[['diferencia_extra_izq']],
                ratio_=ratio_, 
                paleta1=paleta2, 
                paleta2=paleta2,
-               breaks1=1:10*2,
-               breaks2=1:10*2)
+               breaks1=0:9*2,
+               breaks2=0:9/9*2)
 
 
 
