@@ -42,44 +42,43 @@ ans <- tendencia_mesas(all)
 
 
 #-------- Cálculos de índices
-# elec_cols <- c("NA", "-1", "0", "1")
-elec_cols <- c("NA", "-1", "1")
+elec_cols <- c("NA", "-1", "1")   # elec_cols <- c("NA", "-1", "0", "1")
 group_cols <- c("db", "group", "Comuna", "Reg_cod")
-
 
 cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols, 
                           comparar=c('e2017_1v', 'e2021_pp'))
 
 
 
-
-
 #------- plot?
-ratio_ <- 15
+dbs <- unique(ans$db)
+dbs_name <- paste(dbs, collapse="-")
+ratio_ <- 20
 vertical <- T
 paleta1 <- brewer.pal(10, 'RdBu')
 paleta2 <- brewer.pal(9, 'Greens')
 
-for (db_ in 1:4) {
-  m_ <- rastPlot(ansg[db==db_],
-                 outname=sprintf('eleccion_%s.png', db_), 
+for (db_ in dbs) {
+  m_ <- rastPlot(cindx[['proporcion_intra_izq_der']][db==db_],
+                 outname=sprintf('proporcion_intra_izq_der_%s.png', db_), 
                  vertical=vertical, 
                  ratio_=ratio_, 
                  paleta1=paleta1)
 }
 
 # ----
-for (db_ in 1:4) {
-  m_ <- rastPlot(ansv[db==db_], 
-                 outname=sprintf('eleccion_%s_n.png', db_), 
+for (db_ in dbs) {
+  m_ <- rastPlot(cindx[['proporcion_intra_vot_hab']][db==db_], 
+                 outname=sprintf('proporcion_intra_vot_hab_%s.png', db_), 
                  vertical=vertical, 
                  ratio_=ratio_, 
                  paleta1=paleta2)  
 }
 
 # ----
-for (db_ in 1:4) {
-  m_ <- rastPlot(ansg[db==db_], ansv[db==db_], 
+for (db_ in dbs) {
+  m_ <- rastPlot(cindx[['proporcion_intra_izq_der']][db==db_], 
+                 cindx[['proporcion_intra_vot_hab']][db==db_], 
                  outname=sprintf('eleccion_%s_both.png', db_), 
                  vertical=vertical, 
                  ratio_=ratio_, 
@@ -88,23 +87,24 @@ for (db_ in 1:4) {
 }
 
 
-m_ <- rastPlot(ansp, 
-               outname=sprintf('eleccion_%s_p.png', '14'), 
+m_ <- rastPlot(cindx[['pendiente_extra_izq_der']], 
+               outname=sprintf('pendiente_extra_izq_de_%s.png', dbs_name), 
                vertical=vertical, 
                ratio_=ratio_, 
                paleta1=rev(paleta1), 
                breaks1=-5:5)
 
 
-m_ <- rastPlot(anst, 
-               outname=sprintf('eleccion_%s_t.png', '14'), 
+m_ <- rastPlot(cindx[['proporcion_extra_izq_der']], 
+               outname=sprintf('proporcion_extra_izq_der_%s.png', dbs_name), 
                vertical=vertical, 
                ratio_=ratio_, 
                paleta1=paleta1)
 
 
-m_ <- rastPlot(ansi, ansd, 
-               outname=sprintf('eleccion_%s_id.png', '14'), 
+m_ <- rastPlot(cindx[['diferencia_extra_izq']], 
+               cindx[['diferencia_extra_der']], 
+               outname=sprintf('diferencia_extra_der_%s.png', dbs_name), 
                vertical=vertical, 
                ratio_=ratio_, 
                paleta1=paleta2, 
@@ -112,12 +112,16 @@ m_ <- rastPlot(ansi, ansd,
                breaks1=1:10/10*2,
                breaks2=1:10/10*2)
 
+
+
 #--- plots 3d??
 (m_*10) |> sphere_shade(texture = "imhof1") |>
   plot_3d((m_*10), zscale = 10, fov = 0, theta = 135, zoom = 0.75, phi = 45, windowsize = c(1000, 800))
 
 qmesh <- quadmesh(m_*10)
 rgl::shade3d(qmesh)
+
+
 
 
 # ----------- Mesas por región

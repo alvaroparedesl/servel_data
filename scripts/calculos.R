@@ -21,7 +21,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
     ansg <- ans[ , list(per=`-1`/(`-1` + `1`)), by=group_cols]
     ansg <- merge(ansg, comunas[, c("Comuna", "Latitud")], by="Comuna")
     setorder(ansg, Reg_cod, -Latitud)
-    out[['proporcion_izq_der']] <- ansg
+    out[['proporcion_intra_izq_der']] <- ansg
   }
 
   # Proporción de votantes vs habilitados
