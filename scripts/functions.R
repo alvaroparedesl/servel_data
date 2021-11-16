@@ -12,18 +12,25 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
 #' Parsea excel de datos de entrada a data.frame de data.table
 #'
 #' @param path path a un archivo excel
+#' @param sheets nombre de las hojas a leer. Nulo por defecto, se lee sólo la primera.
 #'
 #' @return un data.frame de data.table en el formato apropiado
 #' @export
 #'
-prep_table <- function(path){
-  df <- readxl::read_excel(path)
+prep_table <- function(path, sheets=NULL){
+  if (is.null(sheets)) {
+    df <- readxl::read_excel(path)
+    t_ <- data.table(df)
+  } else {
+    tdf <- lapply(sheets, function(x) {
+      df <- readxl::read_excel(path, sheet=x)
+      data.table(df)
+    })
+    t_ <- rbindlist(tdf)
+  }
   
   tipo_mesa <- 'Tipo mesa'
   mesa <- "Mesa"
-  t_ <- data.table(df)
-  eval(parse(text=sprintf("t_[is.na(`%s`), `%s`:='']", tipo_mesa, tipo_mesa)))
-  t_[, mesa_:=do.call(paste0, .SD), .SDcols=c(mesa, tipo_mesa)]
   
   #-------------------------- DICTIO ---------------------------------
   #- Columnas
@@ -33,6 +40,9 @@ prep_table <- function(path){
     data.table::setnames(t_, dict_names$old, dict_names$new)
   }
   
+  eval(parse(text=sprintf("t_[is.na(`%s`), `%s`:='']", tipo_mesa, tipo_mesa)))
+  t_[, mesa_:=do.call(paste0, .SD), .SDcols=c(mesa, tipo_mesa)]
+  
   #- Renombrando  opcion
   t_[, opcion:=trimws(tolower(opcion))]
   idx_opc <- t_$opcion %in% DICTIO$valores$old
@@ -40,6 +50,8 @@ prep_table <- function(path){
     Map <- setNames(DICTIO$valores$new, DICTIO$valores$old)
     t_[idx_opc, opcion:=Map[opcion]]
   }
+  #- Añade 0 si es NA
+  t_[is.na(`Votos TRICEL`), `Votos TRICEL`:=0]
   
   #- Asignando tendencia
   idx_tend <- unlist(lapply(DICTIO$tendencia$Archivo, function(x) grepl(x, path)))
@@ -70,8 +82,8 @@ ids_mesa <- function(blist) {
   t1 <- lapply(1:length(blist),
                function(y) {
                  x <- blist[[y]]
-                 x[, db:=y]  # database group
-                 x[, id:=.GRP + db*10^5, by=c('Circ.Electoral', 'Mesas Fusionadas')]
+                 x[, db:=names(blist)[y]]  # database group
+                 x[, id:=.GRP + y*10^5, by=c('Circ.Electoral', 'Mesas Fusionadas')]
                })
   
   tt <- lapply(1:length(t1), function(n) {
@@ -112,20 +124,45 @@ ids_mesa <- function(blist) {
 }
 
 
+tendencia_mesas <- function(dt) {
+  all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
+  all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
+  
+  #--- tendencia por mesa y elección??
+  ans <- dcast(all_, 
+               `Nro. Región` + Comuna + group + db + electores ~ tendencia, 
+               value.var=c("N"), 
+               fun.aggregate=sum)
+  ans[, Comuna:=tolower(iconv(Comuna, from='UTF-8', to = 'ASCII//TRANSLIT'))]
+  
+  com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
+                          c('aisen', 'calera', "marchigue", "ohiggins", "llaillay", "cabo de hornos(ex-navarino)", "tiltil", "trehuaco"))
+  ans[Comuna %in% names(com_renames), Comuna:=com_renames[Comuna]]
+  ans <- merge(ans, comunas[, c("Reg_cod", "Comuna", "Latitud")], by="Comuna")
+  ans[, Reg_cod:=factor(Reg_cod, levels=reg_orden)]
+  ans[, `Nro. Región`:=NULL]
+}
+
+
+
 #' Generar un mapa, estilo raster, con cada agrupación de mesas como un pixel.
 #'
 #' @param df1
-#' @param outname 
+#' @param df2
+#' @param outname
+#' @param dropna
 #' @param vertical 
 #' @param ratio_ 
-#' @param paleta un vector con la paleta de colores a usar
-#' @param breaks_
+#' @param paleta1 un vector con la paleta de colores a usar
+#' @param paleta1
+#' @param breaks1
+#' @param breaks2
 #'
 #' @return
 #' @export
 #'
 #' @examples
-rastPlot <- function(df1, df2=NULL, outname, vertical=F, ratio_=15, 
+rastPlot <- function(df1, df2=NULL, outname, dropna=F, vertical=F, ratio_=15, 
                      paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
                      paleta2=c("#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#41AB5D", "#238B45", "#006D2C", "#00441B"),
                      breaks1=0:length(paleta1)/length(paleta1),
@@ -160,7 +197,21 @@ rastPlot <- function(df1, df2=NULL, outname, vertical=F, ratio_=15,
 }
 
 
-# AUX Functions
+#------- AUX Functions
+#' Genera una lista con el nombre de los objetos como nombre de cada elemento
+#'
+#' @param ... objetos para ser cohercionados a lista
+#'
+#' @return
+#' @export
+#'
+#' @examples
+nlist <- function(...) {
+  call <- sys.call()
+  setNames(list(...), as.character(call)[-1])
+}
+
+
 .computeHeightWidth <- function(n, ratio, vertical) {
   cols <- round(sqrt(n/10))
   rows <- ceiling(n/cols)
@@ -178,7 +229,9 @@ rastPlot <- function(df1, df2=NULL, outname, vertical=F, ratio_=15,
   envn <- c(as.list(env), list(...), list(mt=mt))
   with(envn, {
     pl_ <- matrix(NA, nrow=cols, ncol=rows, byrow=F)
-    pl_[1:n] <- unlist(mt[, 'per'])
+    vals <- unlist(mt[, 'per'])
+    if (dropna) vals <- c(na.omit(vals))
+    pl_[1:length(vals)] <- vals
     
     reg_cut <- mt[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod")]
     setorder(reg_cut, Reg_cod)

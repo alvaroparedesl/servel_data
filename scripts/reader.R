@@ -8,6 +8,7 @@ library(quadmesh)
 # library(ggplot2)
 
 source('scripts/functions.R')
+source('scripts/calculos.R')
 
 # Diccionario de datos, para las funciones auxiliares
 DICTIO <- read_excel_allsheets('scripts/dict.xlsx')
@@ -19,12 +20,13 @@ comunas[, Comuna:=tolower(nom_com)]
 # TODO: serie tiempo con Chile, regiones/comunas eje X, eje Y la tendencia, y el área número votantes [área chart] = https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 
 # Archivos
+e2017_pp = prep_table('data/06-Elecciones Primarias 2017/Resultados_Presidente_Primarias2017_Tricel_nacional_DEF.xlsx', sheets=sprintf('%02d', 1:15))
 e2017_1v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
 e2017_2v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_2v_DEF.xlsx')
 e2020_cp = prep_table('data/08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx')
+e2021_pp = prep_table('data/12-Primarias Presidenciales 2021/Resultados_Primarias_Presidenciales_2021_CHILE.xlsx')
 
-elecciones_lista <- list(e2017_1v, e2017_2v, e2020_cp)
-
+elecciones_lista <- nlist(e2017_pp, e2021_pp)
 
 # Columnas
 names(e2017_1v)
@@ -32,51 +34,24 @@ names(e2017_2v)
 names(e2020_cp)
 
 
+
 #---- Obtener ids agrupados entre mesas de diferentes periodos
 all <- ids_mesa(elecciones_lista)
-all_ <- all[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
-all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
 
-#--- tendencia por mesa y elección??
-ans <- dcast(all_, 
-             `Nro. Región` + Comuna + group + db + electores ~ tendencia, value.var=c("N"), fun.aggregate=sum)
-ans[, Comuna:=tolower(iconv(Comuna, from='UTF-8', to = 'ASCII//TRANSLIT'))]
+#--- Tendencias por mesa
+ans <- tendencia_mesas(all)
 
-com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
-                        c('aisen', 'calera', "marchigue", "ohiggins", "llaillay", "cabo de hornos(ex-navarino)", "tiltil", "trehuaco"))
-ans[Comuna %in% names(com_renames), Comuna:=com_renames[Comuna]]
-ans <- merge(ans, comunas[, c("Reg_cod", "Comuna", "Latitud")], by="Comuna")
-ans[, Reg_cod:=factor(Reg_cod, levels=reg_orden)]
-ans[, `Nro. Región`:=NULL]
-# 
-# setdiff(unique(ans$Comuna), unique(comunas$Comuna))
-# setdiff(unique(comunas$Comuna), unique(ans$Comuna))
-# 
-# ans[group == 22903]
-# ans[db==1, list(N=.N), by='Comuna']
-# ans[db==1, list(N=.N), by='Reg_cod']
-
-#-------- Cálculos
+#-------- Cálculos de índices
 elec_cols <- c("NA", "-1", "0", "1")
 group_cols <- c("db", "group", "Comuna", "Reg_cod")
-group_cols__db <- group_cols[-which(group_cols == 'db')]
 
-# Proporción izquierda vs derecha 
-ansg <- ans[ , list(per=`-1`/(`-1` + `1`)), by=group_cols]
-ansg <- merge(ansg, comunas[, c("Comuna", "Latitud")], by="Comuna")
-setorder(ansg, Reg_cod, -Latitud)
 
-# Proporción de votantes vs habilitados
-ansv <- ans[ , list(per=sum(.SD) / electores), by=group_cols, .SDcols=elec_cols]
-ansv <- merge(ansv, comunas[, c("Comuna", "Latitud")], by="Comuna")
-setorder(ansv, Reg_cod, -Latitud)
+cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols__db=group_cols__db, 
+                          comparar=c('e2017_1v', 'e2021_pp'))
 
-# Pendiente de cambio izquierda vs derecha
-cast_ = dcast(ans[db %in% c(2, 3), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
-form <- sprintf('(`-1_%2$s` - `-1_%1$s`) / (`1_%2$s` - `1_%1$s`)', 2, 3)
-ansp <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
-ansp <- merge(ansp, comunas[, c("Comuna", "Latitud")], by="Comuna")
-setorder(ansp, Reg_cod, -Latitud)
+
+
+
 
 #------- plot?
 ratio_ <- 15
@@ -84,8 +59,8 @@ vertical <- T
 paleta1 <- brewer.pal(10, 'RdBu')
 paleta2 <- brewer.pal(9, 'Greens')
 
-for (db_ in 1:3) {
-  m_ <- rastPlot(ansg[db==db_], 
+for (db_ in 1:4) {
+  m_ <- rastPlot(ansg[db==db_],
                  outname=sprintf('eleccion_%s.png', db_), 
                  vertical=vertical, 
                  ratio_=ratio_, 
@@ -93,7 +68,7 @@ for (db_ in 1:3) {
 }
 
 # ----
-for (db_ in 1:3) {
+for (db_ in 1:4) {
   m_ <- rastPlot(ansv[db==db_], 
                  outname=sprintf('eleccion_%s_n.png', db_), 
                  vertical=vertical, 
@@ -101,8 +76,8 @@ for (db_ in 1:3) {
                  paleta1=paleta2)  
 }
 
-
-for (db_ in 1:3) {
+# ----
+for (db_ in 1:4) {
   m_ <- rastPlot(ansg[db==db_], ansv[db==db_], 
                  outname=sprintf('eleccion_%s_both.png', db_), 
                  vertical=vertical, 
@@ -113,11 +88,28 @@ for (db_ in 1:3) {
 
 
 m_ <- rastPlot(ansp, 
-               outname=sprintf('eleccion_%s_p.png', '23'), 
+               outname=sprintf('eleccion_%s_p.png', '14'), 
                vertical=vertical, 
                ratio_=ratio_, 
                paleta1=rev(paleta1), 
                breaks1=-5:5)
+
+
+m_ <- rastPlot(anst, 
+               outname=sprintf('eleccion_%s_t.png', '14'), 
+               vertical=vertical, 
+               ratio_=ratio_, 
+               paleta1=paleta1)
+
+
+m_ <- rastPlot(ansi, ansd, 
+               outname=sprintf('eleccion_%s_id.png', '14'), 
+               vertical=vertical, 
+               ratio_=ratio_, 
+               paleta1=paleta2, 
+               paleta2=paleta2,
+               breaks1=1:10/10*2,
+               breaks2=1:10/10*2)
 
 #--- plots 3d??
 (m_*10) |> sphere_shade(texture = "imhof1") |>
@@ -134,3 +126,31 @@ setdiff(ansg[db==1]$group, ansg[db==2]$group)
 setdiff(ansg[db==1]$group, ansg[db==3]$group)
 ansg[group == 2039]
 setdiff(ansg[db==3]$group, ansg[db==1]$group)
+
+#----
+ncol(m_$out1)
+nrow(m_$out1)
+
+ansg[, split:=1:.N %/% nrow(m_$out1), by="db"]
+ansg[, split2:=1:.N %% nrow(m_$out1), by="db"]
+gg = ggplot(ansg[db==1]) +
+  geom_raster(aes(x=split, y=split2, fill=per)) +
+  scale_fill_gradientn(colours=paleta1, limits=c(0,1)) +
+  theme_void()
+
+gg
+plot_gg(gg, multicore=TRUE, height=5, width=6, scale=100)
+render_snapshot(gg)
+
+
+
+# --- Extras
+ans[group==5228]
+hist(ansp$per[ansp$Comuna=='las condes'], breaks=200, xlim=c(-5, 5))
+hist(anst$per, breaks=200, xlim=c(-5, 5))
+
+v1 <- dcast(ansg[Comuna=='las condes' & db %in% c(1, 4)], group ~ db, fun.aggregate = mean, value.var="per")
+
+v2 <- merge(v1, ansp[, c("group", "per")]) |> merge(ans[db %in% c(1,4), c("group", "-1", "1", "db")])
+setorder(v2, per)
+v2[per < 0]
