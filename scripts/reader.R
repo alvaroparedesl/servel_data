@@ -53,7 +53,7 @@ cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols,
 #------- plot?
 dbs <- unique(ans$db)
 dbs_name <- paste(dbs, collapse="-")
-ratio_ <- 20
+ratio_ <- 40
 vertical <- T
 paleta1 <- brewer.pal(10, 'RdBu')
 paleta2 <- brewer.pal(9, 'Greens')
@@ -104,13 +104,13 @@ m_ <- rastPlot(cindx[['proporcion_extra_izq_der']],
 
 m_ <- rastPlot(cindx[['diferencia_extra_izq']], 
                cindx[['diferencia_extra_der']], 
-               outname=sprintf('diferencia_extra_der_%s.png', dbs_name), 
+               outname=sprintf('diferencia_extra_izq_der_%s.png', dbs_name), 
                vertical=vertical, 
                ratio_=ratio_, 
                paleta1=paleta2, 
                paleta2=paleta2,
-               breaks1=1:10/10*2,
-               breaks2=1:10/10*2)
+               breaks1=1:10*2,
+               breaks2=1:10*2)
 
 
 

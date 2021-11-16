@@ -63,7 +63,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   ansd <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
   ansd <- merge(ansd, comunas[, c("Comuna", "Latitud")], by="Comuna")
   setorder(ansd, Reg_cod, -Latitud)
-  out[['diferencia_extra_der']] <- ansi
+  out[['diferencia_extra_der']] <- ansd
   
   class(out) <- 'cindex'
   out
