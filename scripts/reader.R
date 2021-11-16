@@ -7,8 +7,8 @@ library(quadmesh)
 # library(rayshader)
 # library(ggplot2)
 
-source('scripts/functions.R')
-source('scripts/calculos.R')
+source('scripts/functions.R', encoding="UTF-8")
+source('scripts/calculos.R', encoding="UTF-8")
 
 # Diccionario de datos, para las funciones auxiliares
 DICTIO <- read_excel_allsheets('scripts/dict.xlsx')
@@ -21,18 +21,17 @@ comunas[, Comuna:=tolower(nom_com)]
 
 # Archivos
 e2017_pp = prep_table('data/06-Elecciones Primarias 2017/Resultados_Presidente_Primarias2017_Tricel_nacional_DEF.xlsx', sheets=sprintf('%02d', 1:15))
-e2017_1v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
-e2017_2v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_2v_DEF.xlsx')
-e2020_cp = prep_table('data/08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx')
+# e2017_1v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
+# e2017_2v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_2v_DEF.xlsx')
+# e2020_cp = prep_table('data/08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx')
 e2021_pp = prep_table('data/12-Primarias Presidenciales 2021/Resultados_Primarias_Presidenciales_2021_CHILE.xlsx')
 
 elecciones_lista <- nlist(e2017_pp, e2021_pp)
 
 # Columnas
-names(e2017_1v)
-names(e2017_2v)
-names(e2020_cp)
-
+# names(e2017_1v)
+# names(e2017_2v)
+# names(e2020_cp)
 
 
 #---- Obtener ids agrupados entre mesas de diferentes periodos
@@ -41,12 +40,14 @@ all <- ids_mesa(elecciones_lista)
 #--- Tendencias por mesa
 ans <- tendencia_mesas(all)
 
+
 #-------- Cálculos de índices
-elec_cols <- c("NA", "-1", "0", "1")
+# elec_cols <- c("NA", "-1", "0", "1")
+elec_cols <- c("NA", "-1", "1")
 group_cols <- c("db", "group", "Comuna", "Reg_cod")
 
 
-cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols__db=group_cols__db, 
+cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols, 
                           comparar=c('e2017_1v', 'e2021_pp'))
 
 

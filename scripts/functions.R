@@ -125,14 +125,25 @@ ids_mesa <- function(blist) {
 
 
 tendencia_mesas <- function(dt) {
-  all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
-  all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
+  if ('Electores' %in% names(dt)) {
+    all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
+    all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
+    #--- tendencia por mesa y elección??
+    ans <- dcast(all_, 
+                 `Nro. Región` + Comuna + group + db + electores ~ tendencia, 
+                 value.var=c("N"), 
+                 fun.aggregate=sum)
+  } else {
+    all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'tendencia')]
+    #--- tendencia por mesa y elección??
+    ans <- dcast(all_, 
+                 `Nro. Región` + Comuna + group + db ~ tendencia, 
+                 value.var=c("N"), 
+                 fun.aggregate=sum)
+  }
   
-  #--- tendencia por mesa y elección??
-  ans <- dcast(all_, 
-               `Nro. Región` + Comuna + group + db + electores ~ tendencia, 
-               value.var=c("N"), 
-               fun.aggregate=sum)
+  
+
   ans[, Comuna:=tolower(iconv(Comuna, from='UTF-8', to = 'ASCII//TRANSLIT'))]
   
   com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
