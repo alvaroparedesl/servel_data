@@ -173,14 +173,14 @@ tendencia_mesas <- function(dt) {
 #' @export
 #'
 #' @examples
-rastPlot <- function(df1, df2=NULL, outname, dropna=F, vertical=F, ratio_=15, 
+rastPlot <- function(df1, df2=NULL, outname, dropna=F, vertical=F, res_=15, ratio_=10,
                      paleta1=c("#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"),
                      paleta2=c("#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#41AB5D", "#238B45", "#006D2C", "#00441B"),
                      breaks1=0:length(paleta1)/length(paleta1),
                      breaks2=0:length(paleta2)/length(paleta2)) {
   
   n <- nrow(df1)
-  wh <- .computeHeightWidth(n=n, ratio=ratio_, vertical)
+  wh <- .computeHeightWidth(n=n, ratio=ratio_, res=res_, vertical)
   width <- wh[['width']]; height <- wh[['height']]; cols=wh[['cols']]; rows=wh[['rows']]
   parmar <- if (is.null(df2)) {c(4, 5, 4, 5)} else {c(4, 6, 4, 6)}
   height_ <- ifelse(is.null(df2), height, height/2)
@@ -223,14 +223,14 @@ nlist <- function(...) {
 }
 
 
-.computeHeightWidth <- function(n, ratio, vertical) {
-  cols <- round(sqrt(n/10))
+.computeHeightWidth <- function(n, ratio=10, res, vertical) {
+  cols <- round(sqrt(n/ratio))
   rows <- ceiling(n/cols)
   
   if (vertical) {
-    width <- cols*ratio; height <- rows*ratio
+    width <- cols*res; height <- rows*res
   } else {
-    width <- rows*ratio; height <- cols*ratio
+    width <- rows*res; height <- cols*res
   }
   
   return(list(width=width, height=height, cols=cols, rows=rows))
@@ -239,19 +239,27 @@ nlist <- function(...) {
 .rastPlot <- function(mt, env = parent.frame(), ...){
   envn <- c(as.list(env), list(...), list(mt=mt))
   with(envn, {
-    pl_ <- matrix(NA, nrow=cols, ncol=rows, byrow=F)
-    vals <- unlist(mt[, 'per'])
-    if (dropna) vals <- c(na.omit(vals))
-    pl_[1:length(vals)] <- vals
+    setorder(mt, Reg_cod, -Latitud)
+    n_comuna_reg <- mt[, list(N = .N %/% cols + 1), by=c("Reg_cod", "Comuna", "Latitud")]
+    n_comuna_reg[, cN:=cumsum(N)]
+    n_comuna_reg[, pos:=(shift(cN, fill=max(cN), type='lead')- cN)/2 + cN - 1]
     
-    reg_cut <- mt[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod")]
-    setorder(reg_cut, Reg_cod)
-    reg_cut[, Nc:=cumsum(N)/sum(N)]
-    com_cut <- mt[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod", "Comuna")]
-    setorder(com_cut, Reg_cod, -lat)
-    com_cut[, Nc:=cumsum(N)/sum(N)]
+    mm <- lapply(n_comuna_reg$Comuna, function(x){
+      row_ <- n_comuna_reg[Comuna == x]$N
+      mout <- matrix(NA, nrow=row_, ncol=cols, byrow=T)
+      values <- unlist(mt[Comuna==x]$per)
+      mout[1:length(values)] <- values
+      mout
+    })
+    pl_ <- do.call('rbind', mm)
     
-    if (vertical) {
+    reg_cut <- n_comuna_reg[, list(pos=pos[.N]), by="Reg_cod"]
+    reg_cut[, Nc:=cumsum(pos)/sum(pos)]
+    
+    com_cut <- n_comuna_reg[, list(pos=pos[.N]), by="Comuna"]
+    com_cut[, Nc:=cumsum(pos)/sum(pos)]
+    
+    if (!vertical) {
       ax <- 2; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- pl_; com_las <- 1
     } else {
       ax <- 1; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- t(apply(pl_, 2, rev)); com_las <- 2

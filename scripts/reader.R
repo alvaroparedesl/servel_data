@@ -4,8 +4,15 @@ library(igraph)
 library(RColorBrewer)
 library(rayshader)
 library(quadmesh)
+# library(sysfonts)
+library(showtext)
 # library(rayshader)
 # library(ggplot2)
+
+font_add_google(name='Archivo') #, family='Roboto')
+showtext_auto()
+par(family='Archivo')  # default = ''
+
 
 source('scripts/functions.R', encoding="UTF-8")
 source('scripts/calculos.R', encoding="UTF-8")
@@ -53,9 +60,10 @@ cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols,
 #------- plot?
 dbs <- unique(ans$db)
 dbs_name <- paste(dbs, collapse="-")
-ratio_ <- 20
+res <- 20
+ratio <- 10
 vertical <- T
-paleta1 <- brewer.pal(10, 'RdBu')
+paleta1 <- rev(brewer.pal(10, 'RdBu'))
 paleta2 <- brewer.pal(9, 'Greens')
 
 for (db_ in dbs) {
@@ -113,45 +121,62 @@ m_ <- rastPlot(cindx[['diferencia_extra_izq']],
                breaks2=0:9/9*2)
 
 
-plot(NA, xlab="", ylab="", axes=F,
-     xlim=range(cindx$magnitud_angulo$xdif_log, na.rm=T),
-     ylim=range(cindx$magnitud_angulo$ydif_log, na.rm=T))
+quads <- function(colours=c("blue","red","green","yellow")){
+    limits = par()$usr
+    rect(0,0,limits[2],limits[4],col=colours[1])
+    rect(0,0,limits[1],limits[4],col=colours[2])
+    rect(0,0,limits[1],limits[3],col=colours[3])
+    rect(0,0,limits[2],limits[3],col=colours[4])
+}
+ccol <- c(brewer.pal(4, 'Purples'), 
+          brewer.pal(4, 'Blues'),
+          brewer.pal(4, 'Greens'),
+          brewer.pal(4, 'Reds'))
+
+
+xlim_ <- max(abs(quantile(cindx$magnitud_angulo$xdif_log, c(.005, .995), na.rm=T)))
+ylim_ <- max(abs(quantile(cindx$magnitud_angulo$ydif_log, c(.005, .995), na.rm=T)))
+plot(NA, xlab="", ylab="", axes=F, main='Primarias presidenciales: 2017 vs 2021',
+     xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_)
+     # xlim=range(cindx$magnitud_angulo$xdif_log, na.rm=T),
+     # ylim=range(cindx$magnitud_angulo$ydif_log, na.rm=T)
+     )
+quads(ccol[c(10, 14, 2, 6)])
 ticks <- c(c(1, 2, 4, 6, 8)*10, c(1, 2, 4, 6, 8)*100, c(1, 2, 4, 6, 8)*1000)
 ticks_log <- log10(ticks)
 ticks_where <- c(-rev(ticks_log), 0, ticks_log)
 ticks_labels <- c(-rev(ticks), 0, ticks)
 abline(h=ticks_where, 
        v=ticks_where, 
-       col=rgb(.8, .8, .8))
+       col=rgb(.95, .95, .95, .8))
 abline(h=0, v=0, col="darkgreen")
 par(new=T)
 with(cindx$magnitud_angulo, #[Comuna=='las condes'], 
      plot(xdif_log, ydif_log, xaxt="n", yaxt="n",
-          # xlim=c(-4, 4), ylim=c(-4, 4),
-          col=rgb(0, 0, 0, .1), 
+          xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_),
+          col=rgb(0, 0, 0, .2), 
           pch=16,
           xlab='Nº Votos Derecha',
           ylab='Nº Votos Izquierda'
           )
 )
-axis(1, ticks_where, ticks_labels, las=1)
-axis(2, ticks_where, ticks_labels, las=1)
+axis(1, ticks_where, ticks_labels, las=1, cex.axis=.7)
+axis(2, ticks_where, ticks_labels, las=1, cex.axis=.7)
 
+
+
+##-------------------------------------
 
 mang <- cindx$magnitud_angulo
 mang[, color:=cut(angle, c(-181, -90, 0, 90, 180), labels=1:4)]  # labels=c('--', '-+', '++', '+-')
 mang[, intensidad:=cut(magnitud, quantile(magnitud, na.rm=T), labels=1:4)]
 mang[, per:=as.numeric(color)*10 + as.numeric(intensidad)]
 ccuts <- c(rep(1:4*10, each=4) + rep(1:4, 4) -.5, 45)
-ccol <- c(brewer.pal(4, 'BuPu'), 
-          brewer.pal(4, 'Reds'),
-          brewer.pal(4, 'Greens'),
-          brewer.pal(4, 'Blues'))
 
 m_ <- rastPlot(cindx$magnitud_angulo, 
                outname=sprintf('angulo_magnitud_%s.png', dbs_name), 
                vertical=vertical, 
-               ratio_=ratio_, 
+               ratio_=ratio, res_=res,
                paleta1=ccol, 
                breaks1=ccuts)
 
