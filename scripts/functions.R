@@ -75,6 +75,8 @@ prep_table <- function(path, sheets=NULL){
 #' @export
 #'
 #' @examples
+# required(igraph)
+
 ids_mesa <- function(blist) {
   
   cols_fil <- c('Circ.Electoral', 'Local', 'Mesa', 'Tipo mesa', 'Mesas Fusionadas')
