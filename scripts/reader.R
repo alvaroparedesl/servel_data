@@ -53,7 +53,7 @@ cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols,
 #------- plot?
 dbs <- unique(ans$db)
 dbs_name <- paste(dbs, collapse="-")
-ratio_ <- 40
+ratio_ <- 20
 vertical <- T
 paleta1 <- brewer.pal(10, 'RdBu')
 paleta2 <- brewer.pal(9, 'Greens')
@@ -113,6 +113,48 @@ m_ <- rastPlot(cindx[['diferencia_extra_izq']],
                breaks2=0:9/9*2)
 
 
+plot(NA, xlab="", ylab="", axes=F,
+     xlim=range(cindx$magnitud_angulo$xdif_log, na.rm=T),
+     ylim=range(cindx$magnitud_angulo$ydif_log, na.rm=T))
+ticks <- c(c(1, 2, 4, 6, 8)*10, c(1, 2, 4, 6, 8)*100, c(1, 2, 4, 6, 8)*1000)
+ticks_log <- log10(ticks)
+ticks_where <- c(-rev(ticks_log), 0, ticks_log)
+ticks_labels <- c(-rev(ticks), 0, ticks)
+abline(h=ticks_where, 
+       v=ticks_where, 
+       col=rgb(.8, .8, .8))
+abline(h=0, v=0, col="darkgreen")
+par(new=T)
+with(cindx$magnitud_angulo, #[Comuna=='las condes'], 
+     plot(xdif_log, ydif_log, xaxt="n", yaxt="n",
+          # xlim=c(-4, 4), ylim=c(-4, 4),
+          col=rgb(0, 0, 0, .1), 
+          pch=16,
+          xlab='Nº Votos Derecha',
+          ylab='Nº Votos Izquierda'
+          )
+)
+axis(1, ticks_where, ticks_labels, las=1)
+axis(2, ticks_where, ticks_labels, las=1)
+
+
+mang <- cindx$magnitud_angulo
+mang[, color:=cut(angle, c(-181, -90, 0, 90, 180), labels=1:4)]  # labels=c('--', '-+', '++', '+-')
+mang[, intensidad:=cut(magnitud, quantile(magnitud, na.rm=T), labels=1:4)]
+mang[, per:=as.numeric(color)*10 + as.numeric(intensidad)]
+ccuts <- c(rep(1:4*10, each=4) + rep(1:4, 4) -.5, 45)
+ccol <- c(brewer.pal(4, 'BuPu'), 
+          brewer.pal(4, 'Reds'),
+          brewer.pal(4, 'Greens'),
+          brewer.pal(4, 'Blues'))
+
+m_ <- rastPlot(cindx$magnitud_angulo, 
+               outname=sprintf('angulo_magnitud_%s.png', dbs_name), 
+               vertical=vertical, 
+               ratio_=ratio_, 
+               paleta1=ccol, 
+               breaks1=ccuts)
+
 
 #--- plots 3d??
 (m_*10) |> sphere_shade(texture = "imhof1") |>
@@ -159,3 +201,30 @@ v1 <- dcast(ansg[Comuna=='las condes' & db %in% c(1, 4)], group ~ db, fun.aggreg
 v2 <- merge(v1, ansp[, c("group", "per")]) |> merge(ans[db %in% c(1,4), c("group", "-1", "1", "db")])
 setorder(v2, per)
 v2[per < 0]
+
+
+
+#---- Dummy data
+
+dummy <- data.table(x=c(rep(100, 6), c(110, 90, 80, 90, 110, 120)), 
+                    y=c(rep(100, 6), c(90, 110, 90, 80, 120, 110)),
+                    caso=rep(LETTERS[1:6], 2),
+                    tiempo=rep(c("t1", "t2"), each=6)
+)
+
+with(dummy[caso=='A'], plot(x, y, col=c("red", "blue"), pch=16))
+# dummy[, c("xn", "yn"):=list(x-min(x), y-min(y)), by='caso']
+dummy[, c("xn", "yn"):=list(x-x[1], y-y[1]), by='caso']
+dum <- dummy[, list(xdif=xn[2] - xn[1],
+                    ydif=yn[2] - yn[1]),
+             by='caso']
+dum[, slope:=ydif/xdif]
+dum[, magnitud:=sqrt(xdif^2 + ydif^2)]
+dum[, angle:=atan2(ydif, xdif)*180/pi]
+
+with(dummy, plot(NA, xlim=range(xn), ylim=range(yn), xlab='-1 (izquierda)', ylab='1 (derecha)'))
+abline(h=0, v=0)
+for (i in unique(dummy$caso)) {
+  with(dummy[caso==i], points(xn, yn, col=c("red", "blue"), pch=16))
+  with(dummy[caso==i], text(xn[2], yn[2], i))
+}

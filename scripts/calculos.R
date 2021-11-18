@@ -65,6 +65,21 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   setorder(ansd, Reg_cod, -Latitud)
   out[['diferencia_extra_der']] <- ansd
   
+  
+  # Angulo y magnitud
+  am <- ans[, list(xdif=`1`[2] - `1`[1],
+                   ydif=`-1`[2] - `-1`[1]),
+            by=c('Reg_cod', 'Comuna', 'group')]
+  am[, slope:=ydif/xdif]
+  am[, magnitud:=sqrt(xdif^2 + ydif^2)]
+  am[, angle:=atan2(ydif, xdif)*180/pi]
+  am[, xdif_log := ifelse(xdif < 0, -1, 1) * ifelse(log10(abs(xdif) + .1) == -1, 0, log10(abs(xdif) + .01) )]
+  am[, ydif_log := ifelse(ydif < 0, -1, 1) * ifelse(log10(abs(ydif) + .1) == -1, 0, log10(abs(ydif) + .01) )]
+  am <- merge(am, comunas[, c("Comuna", "Latitud")], by="Comuna")
+  setorder(ansd, Reg_cod, -Latitud)
+  out[['magnitud_angulo']] <- am
+  
+  
   class(out) <- 'cindex'
   out
 }
