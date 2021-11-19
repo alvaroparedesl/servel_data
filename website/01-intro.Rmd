@@ -1,11 +1,40 @@
-# Hello bookdown 
+# Introducción
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+## Motivación
 
-## A section
+Durante el último tiempo, hemos observado un creciente interés por conversar y debatir sobre los cambios y eventos que ha experimentado la participación electoral en Chile. Los crecientes cambios de diferencias, calidad de oferta electoral y la participación de los más jóvenes se han vuelto temas de alta relevancia a nivel nacional, por lo que cada vez existe un mayor interés en encontrar mecanismos para poder conocer mejor su funcionamiento.
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+En este contexto, nos hemos propuesto presentar información a través de diversas formas de visualización con el fin de poder aportar y mejorar la discusión y debate en torno a estos temas. A través de la visualización y presentación de nuevas formas de análisis buscamos establecer alternativas que puedan fomentar el desarrollo de propuestas y otras formas de discusión del fenómeno electoral. 
 
-### An unnumbered section {-}
+## Problemática
 
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+bla bla
+
+### Metodología
+
+#### Definición de *Izquierda* y *Derecha*
+
+Tenemos un supuesto grande, pero hay que partir por ahí. Esta diferenciación es un tanto arbitraria, pero tratamos de hacerla de manera consistente en el tiempo.
+
+¿Debemos ser tan *Blanco y Negro*? Por el momento sí, ya que facilita los análisis. 
+
+
+#### El problema de la consistencia de cada mesa y su agrupamiento
+
+Que más quisiera un analista que tener cada mesa de manera individualizada y ver en el tiempo como varían... pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa *"física"*, puede estar compuesta de varias mesas "*teóricas*". Por ejemplo, para una elección en particular, la mesa `M31` puede estar compuesta de las mesas `M31`, `M32` y `M41`. Y para la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
+
+La lógica de agrupación de mesas del SERVEL la desconocemos, así como también el porqué no son siempre las mismas agrupaciones y porqué pueden ir cambiando en el tiempo. 
+
+Finalmente, hay que considerar que también se agregan nuevas mesas al sistema, y cuando se compara en el tiempo, a veces nos quedamos sin la referencia anterior.
+
+
+#### Otras consideraciones
+
+
+1. Comparar eventos similares: se privilegio el comparar eventos de similares características, como primarias con otras primarias, parlamentarias y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información
+
+
+
+::: {.infobox .caution data-latex="{caution}"}
+Este artículo fue redactado el 2021-11-20 y su última modificación fue en `r Sys.Date()`.
+:::

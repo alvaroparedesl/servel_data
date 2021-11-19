@@ -1,13 +1,4 @@
-bookdown::gitbook:
-  css: style.css
-  config:
-    toc:
-      before: |
-        <li><a href="./">Análisis Elecciones</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    # edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
-    # download: ["pdf", "epub"]
+
 # bookdown::pdf_book:
 #   includes:
 #     in_header: preamble.tex
@@ -15,3 +6,40 @@ bookdown::gitbook:
 #   citation_package: natbib
 #   keep_tex: yes
 # bookdown::epub_book: default
+bookdown::gitbook:
+  css: style.css
+  split_by: section+number
+  config:
+    toc:
+      before: |
+        <li><a href="./">Análisis Elecciones</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+      # edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+      # download: ["pdf", "epub"]        
+      collapse: subsection
+      scroll_highlight: true
+    toolbar:
+      position: fixed
+    edit : null
+    download: null
+    search:
+      engine: lunr # or fuse
+      # options to control/tune search engine behavior (for
+      # fuse.js, refer to https://fusejs.io/api/options.html)
+      options: null
+    fontsettings:
+      theme: white
+      family: serif
+      size: 2
+    sharing:
+      facebook: true
+      github: false
+      twitter: true
+      linkedin: true
+      weibo: false
+      instapaper: false
+      vk: false
+      whatsapp: true
+      all: ['facebook', 'twitter', 'linkedin', 'weibo', 'instapaper']
+    info: true
