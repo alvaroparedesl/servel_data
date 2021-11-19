@@ -28,6 +28,25 @@ La lógica de agrupación de mesas del SERVEL la desconocemos, así como tambié
 Finalmente, hay que considerar que también se agregan nuevas mesas al sistema, y cuando se compara en el tiempo, a veces nos quedamos sin la referencia anterior.
 
 
+### Gráficas
+
+A través de una recodificación política hemos clasificado en dos alternativas de participación (Eje Izquierda-Derecha) el comportamiento de cada mesa, adquiriendo un color azul en caso de obtener una mayor proporción de votos la coalición de derecha y rojo en el caso de la izquierda.
+
+#### Nube de puntos
+
+#### ADN
+
+A través de este gráfico se visualiza de manera general cada uno de los vocales de votación que se encuentran en cada una de las comunas del país. Cada cuadrado corresponde a una mesa electoral - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
+
+#### Lollipop
+
+En contraste a los gráficos presentados anteriormente, a continuación presentaremos otros gráficos más enfocados en la presentación de información a nivel agregado con el fin de contrastar y comparar los resultados electorales a nivel comunal y regional.
+
+
+Por lo mismo a través de este gráfico pretendemos presentar algunas comunas de interés y un indicador para observar su variación o tendencia en relación a una elección u otra. 
+
+
+
 #### Otras consideraciones
 
 

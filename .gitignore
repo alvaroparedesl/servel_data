@@ -39,5 +39,5 @@ vignettes/*.pdf
 .Renviron
 
 # Rbookdown
-_*
-!website/_*
+!_*
+website/_*
