@@ -121,57 +121,19 @@ m_ <- rastPlot(cindx[['diferencia_extra_izq']],
                breaks2=0:9/9*2)
 
 
-quads <- function(colours=c("blue","red","green","yellow")){
-    limits = par()$usr
-    rect(0,0,limits[2],limits[4],col=colours[1])
-    rect(0,0,limits[1],limits[4],col=colours[2])
-    rect(0,0,limits[1],limits[3],col=colours[3])
-    rect(0,0,limits[2],limits[3],col=colours[4])
-}
 ccol <- c(brewer.pal(4, 'Purples'), 
           brewer.pal(4, 'Blues'),
           brewer.pal(4, 'Greens'),
           brewer.pal(4, 'Reds'))
 
 
-xlim_ <- max(abs(quantile(cindx$magnitud_angulo$xdif_log, c(.005, .995), na.rm=T)))
-ylim_ <- max(abs(quantile(cindx$magnitud_angulo$ydif_log, c(.005, .995), na.rm=T)))
-plot(NA, xlab="", ylab="", axes=F, main='Primarias presidenciales: 2017 vs 2021',
-     xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_)
-     # xlim=range(cindx$magnitud_angulo$xdif_log, na.rm=T),
-     # ylim=range(cindx$magnitud_angulo$ydif_log, na.rm=T)
-     )
-quads(ccol[c(10, 14, 2, 6)])
-ticks <- c(c(1, 2, 4, 6, 8)*10, c(1, 2, 4, 6, 8)*100, c(1, 2, 4, 6, 8)*1000)
-ticks_log <- log10(ticks)
-ticks_where <- c(-rev(ticks_log), 0, ticks_log)
-ticks_labels <- c(-rev(ticks), 0, ticks)
-abline(h=ticks_where, 
-       v=ticks_where, 
-       col=rgb(.95, .95, .95, .8))
-abline(h=0, v=0, col="darkgreen")
-par(new=T)
-with(cindx$magnitud_angulo, #[Comuna=='las condes'], 
-     plot(xdif_log, ydif_log, xaxt="n", yaxt="n",
-          xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_),
-          col=rgb(0, 0, 0, .2), 
-          pch=16,
-          xlab='Nº Votos Derecha',
-          ylab='Nº Votos Izquierda'
-          )
-)
-axis(1, ticks_where, ticks_labels, las=1, cex.axis=.7)
-axis(2, ticks_where, ticks_labels, las=1, cex.axis=.7)
-
-
-
-##-------------------------------------
-
 mang <- cindx$magnitud_angulo
 mang[, color:=cut(angle, c(-181, -90, 0, 90, 180), labels=1:4)]  # labels=c('--', '-+', '++', '+-')
-mang[, intensidad:=cut(magnitud, quantile(magnitud, na.rm=T), labels=1:4)]
+intensity_cutpoints <- round(quantile(mang$magnitud, na.rm=T))
+mang[, intensidad:=cut(magnitud, intensity_cutpoints, labels=1:4)]
 mang[, per:=as.numeric(color)*10 + as.numeric(intensidad)]
-ccuts <- c(rep(1:4*10, each=4) + rep(1:4, 4) -.5, 45)
+cvals <- rep(1:4*10, each=4) + rep(1:4, 4) 
+ccuts <- c(cvals -.5, 45)
 
 m_ <- rastPlot(cindx$magnitud_angulo, 
                outname=sprintf('angulo_magnitud_%s.png', dbs_name), 
@@ -179,6 +141,40 @@ m_ <- rastPlot(cindx$magnitud_angulo,
                ratio_=ratio, res_=res,
                paleta1=ccol, 
                breaks1=ccuts)
+
+or_mar <- par("mar")
+par(mar=c(4, 1, 1, 10))
+leyenda <- (matrix(cvals, nrow=4))
+image(leyenda, useRaster=F, axes=F, breaks=ccuts, col=ccol)
+mtext('Magnitud cambio (N)', 1, 2, cex=1.5)
+labels_ <- c("Izquierda+ | Derecha-", "Izquierda+ | Derecha+", "Izquierda | Derecha+", "Izquierda- | Derecha-")
+inlabels <- sprintf('(%s - %s]', intesity_cutpoints[-length(intensity_cutpoints)], intesity_cutpoints[-1])
+axis(4, 0:3/3, las=1, labels_, col="white")
+text(rep(0:3/3, 4), rep(0:3/3, each=4), labels=rep(inlabels, 4))
+par(mar=or_mar)
+
+
+##------------------------------------
+mts <- lapply(c(14, 24, 34, 44), function(x) {
+  mt <- matrix(x, nrow=4, ncol=4)
+  mt[1:3, 1:3] <- x-1
+  mt[1:2, 1:2] <- x-2
+  mt[1, 1] <- x-3
+  mt
+})
+rotate <- function(x) t(apply(x, 2, rev))
+
+ley <- rbind(cbind(rotate(rotate(mts[[4]])), rotate(rotate(rotate(mts[[3]])))), 
+             cbind(rotate(mts[[1]]), mts[[2]]) )
+
+
+##-------------------------------------
+
+pointPlot(cindx,
+          back_colors = ccol[c(10, 14, 2, 6)],
+          main_title = 'Primarias presidenciales: 2017 vs 2021')
+
+
 
 
 #--- plots 3d??

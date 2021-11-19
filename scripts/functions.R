@@ -240,26 +240,27 @@ nlist <- function(...) {
   envn <- c(as.list(env), list(...), list(mt=mt))
   with(envn, {
     setorder(mt, Reg_cod, -Latitud)
-    n_comuna_reg <- mt[, list(N = .N %/% cols + 1), by=c("Reg_cod", "Comuna", "Latitud")]
-    n_comuna_reg[, cN:=cumsum(N)]
-    n_comuna_reg[, pos:=(shift(cN, fill=max(cN), type='lead')- cN)/2 + cN - 1]
+    # n_comuna_reg <- mt[, list(N = .N %/% cols + 1), by=c("Reg_cod", "Comuna", "Latitud")]
+    n_comuna_reg <- mt[, list(N = .N), by=c("Reg_cod", "Comuna", "Latitud")]
+    # n_comuna_reg[, N:=cumsum(N)]
+    # n_comuna_reg[, pos:=(shift(cN, fill=max(cN), type='lead')- cN)/2 + cN - 1]
     
-    mm <- lapply(n_comuna_reg$Comuna, function(x){
-      row_ <- n_comuna_reg[Comuna == x]$N
-      mout <- matrix(NA, nrow=row_, ncol=cols, byrow=T)
-      values <- unlist(mt[Comuna==x]$per)
-      mout[1:length(values)] <- values
-      mout
-    })
-    pl_ <- do.call('rbind', mm)
+    pl_ <- matrix(NA, nrow=cols, ncol=rows, byrow=F)
+    vals <- unlist(mt[, 'per'])
+    pl_[1:length(vals)] <- vals
     
-    reg_cut <- n_comuna_reg[, list(pos=pos[.N]), by="Reg_cod"]
-    reg_cut[, Nc:=cumsum(pos)/sum(pos)]
+    reg_cut <- mt[, list(N=.N, lat=mean(Latitud)), by=c("Reg_cod")]
+    setorder(reg_cut, Reg_cod)
+    reg_cut[, Nr:=cumsum(N)/sum(N)]
+    reg_cut[, Nrd:=Nr - shift(Nr, fill=0)]
+    reg_cut[, Nrp:=shift(Nr, fill=0)]
     
-    com_cut <- n_comuna_reg[, list(pos=pos[.N]), by="Comuna"]
-    com_cut[, Nc:=cumsum(pos)/sum(pos)]
-    
-    if (!vertical) {
+    n_comuna_reg[, Nc_:=cumsum(N)/sum(N), by='Reg_cod']
+    com_cut <- merge(n_comuna_reg, reg_cut[, c("Reg_cod", "Nrd", "Nrp")], sort=F)
+    com_cut[, Nc:=Nrd*Nc_ + Nrp]
+  
+  
+    if (vertical) {
       ax <- 2; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- pl_; com_las <- 1
     } else {
       ax <- 1; ylim <- c(1, 0); xlim <- c(0, 1); pl__ <- t(apply(pl_, 2, rev)); com_las <- 2
@@ -268,14 +269,57 @@ nlist <- function(...) {
     image(pl__, useRaster=F, ylim=ylim, xlim=xlim, axes=F, breaks=breaks_, col=paleta)
     # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
     mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
-          at = (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2)
+          at = (c(0, reg_cut$Nr[-nrow(reg_cut)]) + reg_cut$Nr) / 2)
     mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
           at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
     if (vertical) {
-      abline(h=round(reg_cut$Nc * rows)/rows, lwd=3)
+      abline(h=round(reg_cut$Nr * rows)/rows, lwd=3)
     } else {
-      abline(v=round(reg_cut$Nc * rows)/rows, lwd=3)
+      abline(v=round(reg_cut$Nr * rows)/rows, lwd=3)
     }
     return(pl_)
   })
+}
+
+
+pointPlot <- function(df,
+                      back_colors=c("#BAE4B3", "#FCAE91", "#CBC9E2", "#BDD7E7"),
+                      main_title=''
+                      ) {
+  quads <- function(colours=c("blue","red","green","yellow")){
+    limits = par()$usr
+    rect(0,0,limits[2],limits[4],col=colours[1])
+    rect(0,0,limits[1],limits[4],col=colours[2])
+    rect(0,0,limits[1],limits[3],col=colours[3])
+    rect(0,0,limits[2],limits[3],col=colours[4])
+  }
+  xlim_ <- max(abs(quantile(df$magnitud_angulo$xdif_log, c(.005, .995), na.rm=T)))
+  ylim_ <- max(abs(quantile(df$magnitud_angulo$ydif_log, c(.005, .995), na.rm=T)))
+  plot(NA, xlab="", ylab="", axes=F, main=main_title,
+       xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_)
+       # xlim=range(df$magnitud_angulo$xdif_log, na.rm=T),
+       # ylim=range(df$magnitud_angulo$ydif_log, na.rm=T)
+  )
+  quads(back_colors)
+  ticks <- c(c(1, 2, 4, 6, 8)*10, c(1, 2, 4, 6, 8)*100, c(1, 2, 4, 6, 8)*1000)
+  ticks_log <- log10(ticks)
+  ticks_where <- c(-rev(ticks_log), 0, ticks_log)
+  ticks_labels <- c(-rev(ticks), 0, ticks)
+  abline(h=ticks_where, 
+         v=ticks_where, 
+         col=rgb(.95, .95, .95, .8))
+  abline(h=0, v=0, col="darkgreen")
+  par(new=T)
+  with(df$magnitud_angulo, #[Comuna=='las condes'], 
+       plot(xdif_log, ydif_log, xaxt="n", yaxt="n",
+            xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_),
+            col=rgb(0, 0, 0, .2), 
+            pch=16,
+            xlab='Nº Votos Derecha',
+            ylab='Nº Votos Izquierda'
+       )
+  )
+  axis(1, ticks_where, ticks_labels, las=1, cex.axis=.7)
+  axis(2, ticks_where, ticks_labels, las=1, cex.axis=.7)
+  
 }
