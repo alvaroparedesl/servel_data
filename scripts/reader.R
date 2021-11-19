@@ -142,6 +142,7 @@ m_ <- rastPlot(cindx$magnitud_angulo,
                paleta1=ccol, 
                breaks1=ccuts)
 
+# Leyenda
 or_mar <- par("mar")
 par(mar=c(4, 1, 1, 10))
 leyenda <- (matrix(cvals, nrow=4))
@@ -166,7 +167,10 @@ rotate <- function(x) t(apply(x, 2, rev))
 
 ley <- rbind(cbind(rotate(rotate(mts[[4]])), rotate(rotate(rotate(mts[[3]])))), 
              cbind(rotate(mts[[1]]), mts[[2]]) )
-
+image(rotate(ley), useRaster=F, axes=T, breaks=ccuts, col=ccol)
+axisTickx <- 0.5:7/7
+abline(h=.5, v=.5, lwd=2)
+abline(h=axisTickx, v=axisTickx, lwd=1, col=rgb(0, 0, 0, .3))
 
 ##-------------------------------------
 
