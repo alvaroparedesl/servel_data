@@ -59,7 +59,24 @@ cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols,
 
 
 
-#------- plot?
+#------- plot
+
+ccol <- c(brewer.pal(4, 'Purples'), 
+          brewer.pal(4, 'Blues'),
+          brewer.pal(4, 'Greens'),
+          brewer.pal(4, 'Reds'))
+
+
+mang <- cindx$magnitud_angulo
+mang[, color:=cut(angle, c(-181, -90, 0, 90, 180), labels=1:4)]  # labels=c('--', '-+', '++', '+-')
+intensity_cutpoints <- round(quantile(mang$magnitud, na.rm=T))
+mang[, intensidad:=cut(magnitud, intensity_cutpoints, labels=1:4)]
+mang[, per:=as.numeric(color)*10 + as.numeric(intensidad)]
+cvals <- rep(1:4*10, each=4) + rep(1:4, 4) 
+ccuts <- c(cvals -.5, 45)
+
+
+
 dbs <- unique(ans$db)
 dbs_name <- paste(dbs, collapse="-")
 res <- 20
@@ -68,13 +85,16 @@ vertical <- T
 paleta1 <- rev(brewer.pal(10, 'RdBu'))
 paleta2 <- brewer.pal(9, 'Greens')
 
+
+##-------------------------------------
+
 png(sprintf('%s/nube_puntos_%s.png', root, dbs_name), width=1200, height=800)
 pointPlot(cindx,
           back_colors = ccol[c(10, 14, 2, 6)],
           main_title = 'Primarias presidenciales: 2017 vs 2021')
 dev.off()
 
-##-------------------------------------
+
 
 for (db_ in dbs) {
   m_ <- rastPlot(cindx[['proporcion_intra_izq_der']][db==db_],
@@ -130,20 +150,6 @@ m_ <- rastPlot(cindx[['diferencia_extra_izq']],
                breaks1=0:9*2,
                breaks2=0:9/9*2)
 
-
-ccol <- c(brewer.pal(4, 'Purples'), 
-          brewer.pal(4, 'Blues'),
-          brewer.pal(4, 'Greens'),
-          brewer.pal(4, 'Reds'))
-
-
-mang <- cindx$magnitud_angulo
-mang[, color:=cut(angle, c(-181, -90, 0, 90, 180), labels=1:4)]  # labels=c('--', '-+', '++', '+-')
-intensity_cutpoints <- round(quantile(mang$magnitud, na.rm=T))
-mang[, intensidad:=cut(magnitud, intensity_cutpoints, labels=1:4)]
-mang[, per:=as.numeric(color)*10 + as.numeric(intensidad)]
-cvals <- rep(1:4*10, each=4) + rep(1:4, 4) 
-ccuts <- c(cvals -.5, 45)
 
 m_ <- rastPlot(cindx$magnitud_angulo, 
                outname=sprintf('angulo_magnitud_%s.png', dbs_name), 
