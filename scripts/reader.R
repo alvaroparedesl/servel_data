@@ -152,7 +152,7 @@ m_ <- rastPlot(cindx[['diferencia_extra_izq']],
 
 
 m_ <- rastPlot(cindx$magnitud_angulo, 
-               outname=sprintf('angulo_magnitud_%s.png', dbs_name), 
+               outname=sprintf('%s/angulo_magnitud_%s.png', root, dbs_name), 
                vertical=vertical, 
                ratio_=ratio, res_=res,
                paleta1=ccol, 
