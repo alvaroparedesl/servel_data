@@ -182,7 +182,7 @@ axisTickx <- 0.5:7/7
 abline(h=.5, v=.5, lwd=2)
 abline(h=axisTickx, v=axisTickx, lwd=1, col=rgb(0, 0, 0, .3))
 
-
+##-------------------------------------
 
 
 #--- plots 3d??

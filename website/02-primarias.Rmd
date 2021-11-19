@@ -1,0 +1,25 @@
+# Primarias Presidenciales
+
+Contextos diferentes, elecciones diferentes. Entre el 2017 y 2021 sucedieron varias cosas que hicieron cambiar el escenario político y los actores imperantes... aunque no tanto. 
+
+Comparar ambas primaras nos ofrece un *appetizer* de lo que se vienen en las elcciones presidenciales de 2021, en un ambiente más convulcionado y aparentemente polarizado.
+
+## Año 2017
+
+## Año 2021
+
+## 2017 vs 2021
+
+En términos generales, podemos apreciar 
+
+
+```{r, echo=FALSE}
+knitr::include_graphics('images/plots/nube_puntos_e2017_pp-e2021_pp.png')
+```
+
+
+
+
+::: {.infobox .caution data-latex="{caution}"}
+Este artículo fue redactado el 2021-11-20 y su última modificación fue en `r Sys.Date()`.
+:::
