@@ -9,7 +9,7 @@ library(showtext)
 # library(rayshader)
 # library(ggplot2)
 
-font_add_google(name='Archivo') #, family='Roboto')
+# font_add_google(name='Archivo') #, family='Roboto')
 showtext_auto()
 par(family='Archivo')  # default = ''
 
