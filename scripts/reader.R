@@ -78,18 +78,18 @@ dev.off()
 
 for (db_ in dbs) {
   m_ <- rastPlot(cindx[['proporcion_intra_izq_der']][db==db_],
-                 outname=sprintf('proporcion_intra_izq_der_%s.png', db_), 
+                 outname=sprintf('%s/proporcion_intra_izq_der_%s.png', root, db_), 
                  vertical=vertical, 
-                 ratio_=ratio_, 
+                 ratio_=ratio, res_=res,
                  paleta1=paleta1)
 }
 
 # ----
 for (db_ in dbs) {
   m_ <- rastPlot(cindx[['proporcion_intra_vot_hab']][db==db_], 
-                 outname=sprintf('proporcion_intra_vot_hab_%s.png', db_), 
+                 outname=sprintf('%s/proporcion_intra_vot_hab_%s.png', root, db_), 
                  vertical=vertical, 
-                 ratio_=ratio_, 
+                 ratio_=ratio, res_=res,
                  paleta1=paleta2)  
 }
 
@@ -97,34 +97,34 @@ for (db_ in dbs) {
 for (db_ in dbs) {
   m_ <- rastPlot(cindx[['proporcion_intra_izq_der']][db==db_], 
                  cindx[['proporcion_intra_vot_hab']][db==db_], 
-                 outname=sprintf('eleccion_%s_both.png', db_), 
+                 outname=sprintf('%s/proporcion_intra_izq_der__vot_hab_%s.png', root, db_), 
                  vertical=vertical, 
-                 ratio_=ratio_, 
+                 ratio_=ratio, res_=res,
                  paleta1=paleta1, 
                  paleta2=paleta2)
 }
 
 
 m_ <- rastPlot(cindx[['pendiente_extra_izq_der']], 
-               outname=sprintf('pendiente_extra_izq_de_%s.png', dbs_name), 
+               outname=sprintf('%s/pendiente_extra_izq_der_%s.png', root, dbs_name), 
                vertical=vertical, 
-               ratio_=ratio_, 
+               ratio_=ratio, res_=res,
                paleta1=rev(paleta1), 
                breaks1=-5:5)
 
 
 m_ <- rastPlot(cindx[['proporcion_extra_izq_der']], 
-               outname=sprintf('proporcion_extra_izq_der_%s.png', dbs_name), 
+               outname=sprintf('%s/proporcion_extra_izq_der_%s.png', root, dbs_name), 
                vertical=vertical, 
-               ratio_=ratio_, 
+               ratio_=ratio, res_=res,
                paleta1=paleta1)
 
 
 m_ <- rastPlot(cindx[['diferencia_extra_izq']], 
                cindx[['diferencia_extra_der']], 
-               outname=sprintf('diferencia_extra_izq_der_%s.png', dbs_name), 
+               outname=sprintf('%s/diferencia_extra_izq__der%s.png', root, dbs_name), 
                vertical=vertical, 
-               ratio_=ratio_, 
+               ratio_=ratio, res_=res,
                paleta1=paleta2, 
                paleta2=paleta2,
                breaks1=0:9*2,
