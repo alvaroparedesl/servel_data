@@ -17,6 +17,8 @@ par(family='Archivo')  # default = ''
 source('scripts/functions.R', encoding="UTF-8")
 source('scripts/calculos.R', encoding="UTF-8")
 
+root = 'website/images/plots'
+
 # Diccionario de datos, para las funciones auxiliares
 DICTIO <- read_excel_allsheets('scripts/dict.xlsx')
 reg_orden <- c(15, 1:5, 13, 6:7, 16, 8:9, 14, 10:12)
@@ -65,6 +67,14 @@ ratio <- 10
 vertical <- T
 paleta1 <- rev(brewer.pal(10, 'RdBu'))
 paleta2 <- brewer.pal(9, 'Greens')
+
+png(sprintf('%s/nube_puntos_%s.png', root, dbs_name), width=1200, height=800)
+pointPlot(cindx,
+          back_colors = ccol[c(10, 14, 2, 6)],
+          main_title = 'Primarias presidenciales: 2017 vs 2021')
+dev.off()
+
+##-------------------------------------
 
 for (db_ in dbs) {
   m_ <- rastPlot(cindx[['proporcion_intra_izq_der']][db==db_],
@@ -142,6 +152,7 @@ m_ <- rastPlot(cindx$magnitud_angulo,
                paleta1=ccol, 
                breaks1=ccuts)
 
+# Leyenda
 or_mar <- par("mar")
 par(mar=c(4, 1, 1, 10))
 leyenda <- (matrix(cvals, nrow=4))
@@ -166,13 +177,10 @@ rotate <- function(x) t(apply(x, 2, rev))
 
 ley <- rbind(cbind(rotate(rotate(mts[[4]])), rotate(rotate(rotate(mts[[3]])))), 
              cbind(rotate(mts[[1]]), mts[[2]]) )
-
-
-##-------------------------------------
-
-pointPlot(cindx,
-          back_colors = ccol[c(10, 14, 2, 6)],
-          main_title = 'Primarias presidenciales: 2017 vs 2021')
+image(rotate(ley), useRaster=F, axes=T, breaks=ccuts, col=ccol)
+axisTickx <- 0.5:7/7
+abline(h=.5, v=.5, lwd=2)
+abline(h=axisTickx, v=axisTickx, lwd=1, col=rgb(0, 0, 0, .3))
 
 
 
