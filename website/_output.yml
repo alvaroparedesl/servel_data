@@ -7,6 +7,8 @@
 #   keep_tex: yes
 # bookdown::epub_book: default
 bookdown::gitbook:
+  includes: 
+    in_header: [google_analytics.html]
   css: style.css
   split_by: section+number
   config:
