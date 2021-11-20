@@ -1,0 +1,1 @@
+aws s3 sync website/_book/. s3://analisislegislativo --profile myaws --acl public-read
