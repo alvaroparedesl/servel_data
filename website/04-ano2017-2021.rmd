@@ -23,6 +23,8 @@ knitr::include_graphics('images/plots/nube_puntos_e2017_pp-e2021_pp.png')
 ## Primarias: ADN de la elección
 
 
+
+
 :::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 
 ::: {}
