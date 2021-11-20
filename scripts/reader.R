@@ -165,7 +165,7 @@ leyenda <- (matrix(cvals, nrow=4))
 image(leyenda, useRaster=F, axes=F, breaks=ccuts, col=ccol)
 mtext('Magnitud cambio (N)', 1, 2, cex=1.5)
 labels_ <- c("Izquierda+ | Derecha-", "Izquierda+ | Derecha+", "Izquierda | Derecha+", "Izquierda- | Derecha-")
-inlabels <- sprintf('(%s - %s]', intesity_cutpoints[-length(intensity_cutpoints)], intesity_cutpoints[-1])
+inlabels <- sprintf('(%s - %s]', intensity_cutpoints[-length(intensity_cutpoints)], intensity_cutpoints[-1])
 axis(4, 0:3/3, las=1, labels_, col="white")
 text(rep(0:3/3, 4), rep(0:3/3, each=4), labels=rep(inlabels, 4))
 par(mar=or_mar)
@@ -183,11 +183,21 @@ rotate <- function(x) t(apply(x, 2, rev))
 
 ley <- rbind(cbind(rotate(rotate(mts[[4]])), rotate(rotate(rotate(mts[[3]])))), 
              cbind(rotate(mts[[1]]), mts[[2]]) )
-image(rotate(ley), useRaster=F, axes=T, breaks=ccuts, col=ccol)
+par(mar=c(6, 6, 6, 6))
+image(rotate(ley), useRaster=F, axes=F, breaks=ccuts, col=ccol)
 axisTickx <- 0.5:7/7
 abline(h=.5, v=.5, lwd=2)
 abline(h=axisTickx, v=axisTickx, lwd=1, col=rgb(0, 0, 0, .3))
-
+axisticks_ <- c(-axisTickx[1], axisTickx, 1 + axisTickx[1])
+mtext('Magnitud de cambio en el Nº de Votos', 1, 2.5)
+mtext('Magnitud de cambio en el Nº de Votos', 2, 4)
+axis(1, axisticks_, c(-1*rev(intensity_cutpoints[-1]), 0, intensity_cutpoints[-1]))
+axis(2, axisticks_, c(-1*rev(intensity_cutpoints[-1]), 0, intensity_cutpoints[-1]), las=2)
+mtext('Izquierda- | Derecha-', 1, -1, at=0.1, col='white')
+mtext('Izquierda- | Derecha+', 1, -1, at=.9, col='white')
+mtext('Izquierda+ | Derecha-', 3, -1, at=0.1, col='white')
+mtext('Izquierda+ | Derecha+', 3, -1, at=.9, col='white')
+par(mar=or_mar)
 ##-------------------------------------
 
 
