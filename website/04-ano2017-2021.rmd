@@ -1,11 +1,19 @@
 # 2017 vs 2021
 
-asdkadqojweoqjewoq
+Contextos diferentes, elecciones diferentes. Entre el 2017 y 2021 sucedieron varias cosas que hicieron cambiar el escenario político y los actores imperantes... aunque no tanto. 
 
 ## Primarias: Participación
 
 En términos generales, podemos apreciar 
 
+## Dispersograma
+
+Una manera de poder visibilizar los cambios que ha tenido los votantes a través de los diferentes procesos electorales, es a través de la cuantificación de tendencias de mesas estacionarias. 
+
+En este gráfico podemos observar:
+
+- Según segmento el la magnitud y dirección con cuál la mesa aumentó o disminuyó su número de votos en algún segmento político.
+- El comportamiento general o tendencia de todas las mesas del país, observando tendencias a nivel nacional.
 
 ```{r, echo=FALSE}
 knitr::include_graphics('images/plots/nube_puntos_e2017_pp-e2021_pp.png')
