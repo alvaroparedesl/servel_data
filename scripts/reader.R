@@ -183,7 +183,9 @@ rotate <- function(x) t(apply(x, 2, rev))
 
 ley <- rbind(cbind(rotate(rotate(mts[[4]])), rotate(rotate(rotate(mts[[3]])))), 
              cbind(rotate(mts[[1]]), mts[[2]]) )
-par(mar=c(6, 6, 6, 6))
+
+png(sprintf('%s/angulo_magnitud_leyenda_%s.png', root, dbs_name), width=1200, height=800)
+par(mar=c(6, 6, 2, 2))
 image(rotate(ley), useRaster=F, axes=F, breaks=ccuts, col=ccol)
 axisTickx <- 0.5:7/7
 abline(h=.5, v=.5, lwd=2)
@@ -197,6 +199,7 @@ mtext('Izquierda- | Derecha-', 1, -1, at=0.1, col='white')
 mtext('Izquierda- | Derecha+', 1, -1, at=.9, col='white')
 mtext('Izquierda+ | Derecha-', 3, -1, at=0.1, col='white')
 mtext('Izquierda+ | Derecha+', 3, -1, at=.9, col='white')
+dev.off()
 par(mar=or_mar)
 ##-------------------------------------
 
