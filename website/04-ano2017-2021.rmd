@@ -1,0 +1,50 @@
+# 2017 vs 2021
+
+
+Contextos diferentes, elecciones diferentes. Entre el 2017 y 2021 sucedieron varias cosas que hicieron cambiar el escenario político y los actores imperantes... aunque no tanto. 
+
+## Dispersograma
+
+
+Una manera de poder visibilizar los cambios que ha tenido los votantes a través de los diferentes procesos electorales, es a través de la cuantificación de tendencias de mesas estacionarias. 
+
+En este gráfico podemos observar:
+
+- Según segmento el la magnitud y dirección con cuál la mesa aumentó o disminuyó su número de votos en algún segmento político.
+- El comportamiento general o tendencia de todas las mesas del país, observando tendencias a nivel nacional.
+
+```{r, echo=FALSE}
+knitr::include_graphics('images/plots/nube_puntos_e2017_pp-e2021_pp.png')
+```
+
+
+### ADN de la elección
+
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+
+::: {}
+<!-- Lado izquierdo -->
+```{r, echo=FALSE}
+knitr::include_graphics('images/plots/angulo_magnitud_e2017_pp-e2021_pp.png')
+```
+:::
+
+::: {}
+<!-- Lado derecho -->
+El ADN de esta elección comparativa muestra que...
+El ADN de esta elección comparativa muestra que...
+El ADN de esta elección comparativa muestra que...
+El ADN de esta elección comparativa muestra que...
+
+Los intervalos de colores, corresponden a los cuantiles de la magnitud total calculada.
+
+:::
+
+::::
+
+
+
+::: {.infobox .caution data-latex="{caution}"}
+Este artículo fue redactado el 2021-11-20 y su última modificación fue en `r Sys.Date()`.
+:::
