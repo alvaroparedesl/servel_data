@@ -2,17 +2,34 @@
 
 ## Motivación
 
-Durante el último tiempo, hemos observado un creciente interés por conversar y debatir sobre los cambios y eventos que ha experimentado la participación electoral en Chile. Los crecientes cambios de diferencias, calidad de oferta electoral y la participación de los más jóvenes se han vuelto temas de alta relevancia a nivel nacional, por lo que cada vez existe un mayor interés en encontrar mecanismos para poder conocer mejor su funcionamiento.
+Durante el último tiempo, hemos observado un creciente interés por conversar y debatir sobre los cambios y eventos que ha experimentado la participación electoral en Chile. Los cambios en la participación, la nuevas agrupaciones y conglomerados que establecen nuevos escenarios electorales y la composición y posible predición de los electores se han vuelto temas de alta relevancia a nivel nacional, por lo que cada vez existe un mayor interés en encontrar mecanismos para poder conocer mejor su funcionamiento.
 
 En este contexto, nos hemos propuesto presentar información a través de diversas formas de visualización con el fin de poder aportar y mejorar la discusión y debate en torno a estos temas. A través de la visualización y presentación de nuevas formas de análisis buscamos establecer alternativas que puedan fomentar el desarrollo de propuestas y otras formas de discusión del fenómeno electoral. 
 
-## Problemática
+A través de la manipulación de datos y evidencia buscamos enriquecer la discusión pública entregando información que pueda ser interpretada de manera sencilla que fomente la discusión basada en evidencia empírica. 
 
-bla bla
+Para lograr este objetivo hemos establecido dos aspectos que consideramos relevantes: 
+
+Por un lado, la utilización de **metodología basada en evidencia**, estableciendo rigurisidad en la elaboración de información. Por lo que nuestros análisis e interpretaciones estarán enfocadas en la interpretación considerando los posibles beneficios y problemas que pueden generarse a través de la decisión de técnicas y mecanismos de interpretación de datos.
+
+Por otro lado, para la elaboración de un adecuada evaluación e interpretación de datos, creemos que es necesario poder establecer **transparencia** del proceso a través de la presentación en conjunto de los resultados, información acerca del proceso de análisis, referencias utilizadas y explicaciones del proceso de tal modo que se pueda comprender el desarrollo y el procedimiento que lleva a cada una de estas conclusiones.
+
+
+## Objetivos
+
+En esta ocasión, nuestro objetivo contrastar la participación electoral de los votantes en cada conglomerado político. Las elecciones primarias del año 2017 y 2021 se han presentado como un escenario ideal para comparar la participación electoral en torno a dos ofertas electorales similares (pese a que han ambos han sufrido importantes cambios durante el últimpo tiempo). 
+
+Si bien no es posible obtener inferencias o explicaciones causales que podrían explicar la preferencia de los votantes, la visualización de los cambios de tendencias pueden presentar una oportunidad única de discusión sobre los escenarios políticos que está enfrentando el país y la evaluación de aspectos contextuales que pueden afectar el desarrollo de cada uno de estos procesos.
 
 ### Metodología
 
+Para poder evaluar las posibles diferencias en las preferencias electorales, lo primero que obtuvimos fue la información electoral de ambos comicios de la página oficial del servicio electoral. Una vez obetenidos nos tuvimos que enfrentar a los siguientes escenarios.
+
+
 #### Definición de *Izquierda* y *Derecha*
+
+Con el fin de poder distinguir si existen alguna fluctuación en las tendencias políticas de los votantes, hemos 
+
 
 Tenemos un supuesto grande, pero hay que partir por ahí. Esta diferenciación es un tanto arbitraria, pero tratamos de hacerla de manera consistente en el tiempo.
 
