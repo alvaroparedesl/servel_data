@@ -69,26 +69,25 @@ A continuación presentamos diversos gráficos en las cuáles hemos mostrado est
 
 A través de esta gráfico hemos buscado retratar a través de una nube de puntos una tendencia de las fluctuaciones que han tenido las Mesas Estacionarias entre un proceso a otro. Cada punto que se observa en el gráfico corresponde a una Mesa Estacionaria y su ubicación indica su situación en relación a la votación anterior.
 
-
 #### ADN
 
-A través de este gráfico se visualiza de manera general cada uno de los vocales de votación que se encuentran en cada una de las comunas del país. Cada cuadrado corresponde a una mesa electoral - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
+A través de este gráfico se visualiza de manera general cada uno de los vocales de votación que se encuentran en cada una de las comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Cada cuadrado representa una mesa estacionaria - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
 
 #### Lollipop
 
-En contraste a los gráficos presentados anteriormente, a continuación presentaremos otros gráficos más enfocados en la presentación de información a nivel agregado con el fin de contrastar y comparar los resultados electorales a nivel comunal y regional.
+En contraste a los gráficos presentados anteriormente y considerando la gran cantidad de Mesas Estacionarias a nivel regional y comunal, presentaremos gráficos más acotados que busquen enfocar la información a sectores y elementos que consideremos relevantes de explorar. 
 
+Por lo mismo, a través de estos gráfico pretendemos presentar algunas comunas o sectores de interés, en conjunto a sus variaciones o tendencias en relación a la elección u otra.
 
-Por lo mismo a través de este gráfico pretendemos presentar algunas comunas de interés y un indicador para observar su variación o tendencia en relación a una elección u otra. 
+#### Dumbbell
 
+De la misma forma que en los gráficos de tendencias señalados anteriormente, también se quiso explorar la comparación de tendencias de ciertos sectores en dos elecciones diferentes, por lo que a través de estos gráficos buscaremos identificar la cantidad de votos de cada sector con el fin de poder identificar la fluctuación en contraste con otras comunas o sectores de interés.
 
 
 #### Otras consideraciones
 
 
-1. Comparar eventos similares: se privilegio el comparar eventos de similares características, como primarias con otras primarias, parlamentarias y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información
-
-
+1. Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, parlamentarias y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
 
 ::: {.infobox .caution data-latex="{caution}"}
 Este artículo fue redactado el 2021-11-20 y su última modificación fue en `r Sys.Date()`.
