@@ -59,9 +59,16 @@ A modo de ejemplo, tal cómo se presenta en la tabla anterior tenemos un esquema
 
 ### Gráficas
 
-A través de una recodificación política hemos clasificado en dos alternativas de participación (Eje Izquierda-Derecha) el comportamiento de cada mesa, adquiriendo un color azul en caso de obtener una mayor proporción de votos la coalición de derecha y rojo en el caso de la izquierda.
+Para poder presentar la información obtenida, hemos generado una serie de visualizaciones que permitirán poder presentar la información obtenida de manera más sencilla. 
 
-#### Nube de puntos
+A partir de la recodificación de conglomerados descrita anteriormente, hemos clasificado en dos alternativas de participación (Eje Izquierda-Derecha) el comportamiento de cada mesa, adquiriendo un color azul en caso de obtener una mayor proporción de votos la coalición de derecha y rojo en el caso de la izquierda.
+
+A continuación presentamos diversos gráficos en las cuáles hemos mostrado estos cambios.
+
+#### Dispersograma
+
+A través de esta gráfico hemos buscado retratar a través de una nube de puntos una tendencia de las fluctuaciones que han tenido las Mesas Estacionarias entre un proceso a otro. Cada punto que se observa en el gráfico corresponde a una Mesa Estacionaria y su ubicación indica su situación en relación a la votación anterior.
+
 
 #### ADN
 
