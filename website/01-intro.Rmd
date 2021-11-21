@@ -28,21 +28,33 @@ Para poder evaluar las posibles diferencias en las preferencias electorales, lo 
 
 #### Definición de *Izquierda* y *Derecha*
 
-Con el fin de poder distinguir si existen alguna fluctuación en las tendencias políticas de los votantes, hemos 
+Con el fin de poder distinguir si existen alguna fluctuación en las tendencias políticas de los votantes, nuestro primer desafío consistió en la elaboración de criterio para poder separar las preferencias políticas de los votantes a partir de sus sufragios. Para esto utilizaremos como supuesto que el voto implicará una preferencia por una opción política. Esta no necesarimente implicará que sea una tendencia permanente, sino al contrario, es la opción que una persona optó dado el contexto electoral de ese momento.
 
-
-Tenemos un supuesto grande, pero hay que partir por ahí. Esta diferenciación es un tanto arbitraria, pero tratamos de hacerla de manera consistente en el tiempo.
+Considerando lo anterior, estableceremos distinguiremos las preferencias del Frente Amplio y Apruebo Dignidad quedarán agrupadas bajo la categoría "izquierda" mientras que las opciones de Chile Vamos y Chile Podemos Más como "derecha". Esta decisión no se encuentra exenta de problemas, ya que es un supuesto grande considerando que algunas alternativas pueden ser catalogadas fuera de esta dicotomía. Sin embargo,
 
 ¿Debemos ser tan *Blanco y Negro*? Por el momento sí, ya que facilita los análisis. 
+
+¿Cuál es el beneficio de utilizar una diferencia tan arbitraria? Al ser una categorización sencilla, nos permite poder mantenerla de manera consistente en el tiempo. De la misma forma, esta separación nos permite establecer en grandes rasgos diferencias en las preferencias de votación, permitiendo identificar si sector electoral mantiene su tendencia historíca o el escenario político implicó una mayor participación en otra dirección.
+
+Es importante clarificar que esta clasificación tienen un interés investigativo, por lo que en esta ocasión no consideraremos otros aspectos relevantes relacionadas a las diferencias políticas dentro de los conglomerados.
 
 
 #### El problema de la consistencia de cada mesa y su agrupamiento
 
-Que más quisiera un analista que tener cada mesa de manera individualizada y ver en el tiempo como varían... pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa *"física"*, puede estar compuesta de varias mesas "*teóricas*". Por ejemplo, para una elección en particular, la mesa `M31` puede estar compuesta de las mesas `M31`, `M32` y `M41`. Y para la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
+Una vez establecida las clasificaciones de los votos, nuestro siguiente elemento a considerar es las comparación de ambas elecciones. Que más quisiera un analista que tener cada mesa de manera individualizada, ubicada en el mismo lugar y ver en el tiempo como varían, pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa *"física"*, puede estar compuesta de varias mesas "*teóricas*". Por ejemplo, para una elección en particular, la mesa `M31` puede estar compuesta de las mesas `M31`, `M32` y `M41`. En la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
 
-La lógica de agrupación de mesas del SERVEL la desconocemos, así como también el porqué no son siempre las mismas agrupaciones y porqué pueden ir cambiando en el tiempo. 
+Las razones para fusionar o dividir que hay detrás de la agrupación de mesas del SERVEL la desconocemos, por lo que tampoco podemos conocer con anterioridad si estos criterios se mantendrán o cambiarán en una futura elección. Junto a lo anterior, hay que considerar que también se agregan nuevas mesas al sistema, y cuando se compara en el tiempo, a veces nos quedamos sin la referencia anterior.
 
-Finalmente, hay que considerar que también se agregan nuevas mesas al sistema, y cuando se compara en el tiempo, a veces nos quedamos sin la referencia anterior.
+El escenario descrito anteriormente, nos plantea un desafío interesante ya que esta situación nos conllevará a tener que establecer un clasificación de mesas que nos permita establecer un escenario común en ambos tiempos. Para poder resolver este escenario hemos definido una agrupación de mesas como **Mesa Estacionas (ME)** las cuáles consisten en una agrupación de meses que contemplan un subconjunto de mesas que se encuentren  una agrupación de mesas que contempla una combinació n de todas las mesas que fueron combinadas entre el periodo 2017 y 2021, generando de esta forma una mesa que integra todas las posibles combinaciones, permitiendo comparar el comportamiento de todas a nivel general de estas mesas en ambos momentos. 
+
+|Mesa 2017|Mesa 2021| ME|
+|:--:|:--:|:--:|
+|1-2|1|-|
+|-|-|1-2-3-4|
+|3|2-3-4|-|
+|4|-|-|
+
+A modo de ejemplo, tal cómo se presenta en la tabla anterior tenemos un esquema de agrupación hipotética de las mesas del año 2017 y el año 2021. Como es posible ver en el año 2017 las mesas 1-2 fueron fusionadas, mientras que en el año 2021 la mesa 1 se mantuvo separada y la mesa 2 fue fusionada con la mesa 3 y 4. En este sentido, no es posible establecer ninguna comparación de manera aislada de la mesa 1 ya que en un año se mantuvo de manera independiente, pero en otro año esta se mantuvo unida a otra mesa por lo que sus resultados no son posibles de separar. Por la misma razón la **Mesa Estacionaria** conformada por las mesas 1,2,3 y 4 permitirá hacer una comparación contemplando todas las mesas y sus relaciones de forma de poder comparar un similar número de electores en ambos eventos.
 
 
 ### Gráficas
