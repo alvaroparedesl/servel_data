@@ -1,8 +1,9 @@
 # Año 2021
 
-Las primarias electorales del 2021 estuvieron marcadas por un escenario similar en la izquierda donde el conglomerado de la nueva mayoría después de algunas negociaciones fallidas, generando que en esta ocasión el Frente Amplio volviera a establecer una primaria con la incorporación del partido Comunista.
+Las primarias electorales del 2021 estuvieron marcadas por un escenario similar al visto en el año 2017, en el que el sector de centro-izquierda no pudo agruparse dentro de una primaria común, lo que generó que el Frente Amplio en conjunto con el Partido dignidad generan una nueva plataforma política (Apruebo Dignidad) en la cuál participaron sus dos candidatos: Gabriel Boric y Daniel Jadue.
 
-Mientras que en la derecha, llevó cuatro candidatos, tres identificados con un partido político y un independendiente. 
+Mientras que en el caso de la derecha, llevó cuatro candidatos, tres identificados con un partido político y la incorporación de un independendiente. Entre los candidatos se encuentran: Ignacio Briones, Mario Desbordes, Joaquín Lavín y Sebastían Sichel. 
+
 
 
 ::: {.infobox .caution data-latex="{caution}"}

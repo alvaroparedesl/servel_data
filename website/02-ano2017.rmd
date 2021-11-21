@@ -34,3 +34,5 @@ A la derecha podemos observar un gráfico que presenta un similar esquema con la
 ::: {.infobox .caution data-latex="{caution}"}
 Este artículo fue redactado el 2021-11-20 y su última modificación fue en `r Sys.Date()`.
 :::
+
+

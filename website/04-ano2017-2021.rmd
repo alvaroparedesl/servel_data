@@ -16,7 +16,6 @@ En este gráfico podemos observar:
 knitr::include_graphics('images/plots/nube_puntos_e2017_pp-e2021_pp.png')
 ```
 
-
 ## Primarias: ADN de la elección
 
 Bla bla....
