@@ -15,8 +15,8 @@ bookdown::gitbook:
     toc:
       before: |
         <li><a href="./">Análisis Elecciones</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+      # after: |
+      #   <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
       # edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
       # download: ["pdf", "epub"]        
       collapse: subsection

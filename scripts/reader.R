@@ -85,6 +85,10 @@ vertical <- T
 paleta1 <- rev(brewer.pal(10, 'RdBu'))
 paleta2 <- brewer.pal(9, 'Greens')
 
+c_ <- 0:length(paleta1)/length(paleta1)
+plot(c_, c_, col=paleta1, pch=16, cex=4)
+abline(h=c_, v=c_)
+
 
 ##-------------------------------------
 
