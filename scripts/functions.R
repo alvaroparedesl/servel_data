@@ -284,7 +284,8 @@ nlist <- function(...) {
 
 pointPlot <- function(df,
                       back_colors=c("#BAE4B3", "#FCAE91", "#CBC9E2", "#BDD7E7"),
-                      main_title=''
+                      main_title='',
+                      log=T
                       ) {
   quads <- function(colours=c("blue","red","green","yellow")){
     limits = par()$usr
@@ -293,16 +294,31 @@ pointPlot <- function(df,
     rect(0,0,limits[1],limits[3],col=colours[3])
     rect(0,0,limits[2],limits[3],col=colours[4])
   }
-  xlim_ <- max(abs(quantile(df$magnitud_angulo$xdif_log, c(.005, .995), na.rm=T)))
-  ylim_ <- max(abs(quantile(df$magnitud_angulo$ydif_log, c(.005, .995), na.rm=T)))
+  
+  if (log) {
+    ticks <- c(c(1, 2, 4, 6, 8)*10, c(1, 2, 4, 6, 8)*100, c(1, 2, 4, 6, 8)*1000)
+    ticks_log <- log10(ticks)
+    x_ <- "xdif_log"
+    y_ <- "ydif_log"
+    xlim_ <- max(abs(quantile(df$magnitud_angulo$xdif_log, c(.005, .995), na.rm=T)))
+    ylim_ <- max(abs(quantile(df$magnitud_angulo$ydif_log, c(.005, .995), na.rm=T)))
+  } else{
+    ticks <- c(1:10 * 10)
+    ticks_log <- ticks
+    x_ <- "xdif"
+    y_ <- "ydif"
+    xlim_ <- max(abs(quantile(df$magnitud_angulo$xdif, c(.005, .995), na.rm=T)))
+    ylim_ <- max(abs(quantile(df$magnitud_angulo$ydif, c(.005, .995), na.rm=T)))
+  }
+  
   plot(NA, xlab="", ylab="", axes=F, main=main_title,
        xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_)
        # xlim=range(df$magnitud_angulo$xdif_log, na.rm=T),
        # ylim=range(df$magnitud_angulo$ydif_log, na.rm=T)
   )
   quads(back_colors)
-  ticks <- c(c(1, 2, 4, 6, 8)*10, c(1, 2, 4, 6, 8)*100, c(1, 2, 4, 6, 8)*1000)
-  ticks_log <- log10(ticks)
+
+
   ticks_where <- c(-rev(ticks_log), 0, ticks_log)
   ticks_labels <- c(-rev(ticks), 0, ticks)
   abline(h=ticks_where, 
@@ -310,14 +326,17 @@ pointPlot <- function(df,
          col=rgb(.95, .95, .95, .8))
   abline(h=0, v=0, col="darkgreen")
   par(new=T)
-  with(df$magnitud_angulo, #[Comuna=='las condes'], 
-       plot(xdif_log, ydif_log, xaxt="n", yaxt="n",
-            xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_),
-            col=rgb(0, 0, 0, .2), 
-            pch=16,
-            xlab='Nº Votos Derecha',
-            ylab='Nº Votos Izquierda'
-       )
+  if (log) {
+    
+  }
+  df$magnitud_angulo#[Comuna=='las condes'], 
+  plot(unlist(df$magnitud_angulo[, ..x_]), unlist(df$magnitud_angulo[, ..y_]), 
+       xaxt="n", yaxt="n",
+       xlim=c(-xlim_, xlim_), ylim=c(-ylim_, ylim_),
+       col=rgb(0, 0, 0, .2), 
+       pch=16,
+       xlab='Nº Votos Derecha',
+       ylab='Nº Votos Izquierda'
   )
   axis(1, ticks_where, ticks_labels, las=1, cex.axis=.7)
   axis(2, ticks_where, ticks_labels, las=1, cex.axis=.7)

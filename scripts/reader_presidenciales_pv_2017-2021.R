@@ -95,7 +95,8 @@ abline(h=c_, v=c_)
 png(sprintf('%s/nube_puntos_%s.png', root, dbs_name), width=1200, height=800)
 pointPlot(cindx,
           back_colors = ccol[c(10, 14, 2, 6)],
-          main_title = 'Presidenciales: 2017 vs 2021 (Primera vuelta)')
+          main_title = 'Presidenciales: 2017 vs 2021 (Primera vuelta)',
+          log=F)
 dev.off()
 
 
