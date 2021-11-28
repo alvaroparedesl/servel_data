@@ -41,3 +41,4 @@ vignettes/*.pdf
 # Rbookdown
 !_*
 website/_*
+~*
