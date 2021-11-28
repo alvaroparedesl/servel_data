@@ -30,12 +30,12 @@ comunas[, Comuna:=tolower(nom_com)]
 
 # Archivos
 # e2017_pp = prep_table('data/06-Elecciones Primarias 2017/Resultados_Presidente_Primarias2017_Tricel_nacional_DEF.xlsx', sheets=sprintf('%02d', 1:15))
-e2017_1v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
+e2017_pv = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
 # e2017_2v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_2v_DEF.xlsx')
 # e2020_cp = prep_table('data/08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx')
-e2021_1v = prep_table('data/13-Elecciones Presidenciales, Parlamentarias y de Cores 2021/01-presidenciales-temp.xlsx')
+e2021_pv = prep_table('data/13-Elecciones Presidenciales, Parlamentarias y de Cores 2021/01-presidenciales-temp.xlsx')
 
-elecciones_lista <- nlist(e2017_1v, e2021_1v)
+elecciones_lista <- nlist(e2017_pv, e2021_pv)
 
 # Columnas
 # names(e2017_1v)
@@ -55,7 +55,7 @@ elec_cols <- c("NA", "-1", "1")   # elec_cols <- c("NA", "-1", "0", "1")
 group_cols <- c("db", "group", "Comuna", "Reg_cod")
 
 cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols, 
-                          comparar=c('e2017_1v', 'e2021_pv'))
+                          comparar=c('e2017_pv', 'e2021_pv'))
 
 
 
