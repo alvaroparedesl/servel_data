@@ -8,12 +8,17 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  En este sitio buscamos....
-  Llevar un análisis más cuantitativo de lo que son los resultados de diferentes elecciones
+  En este sitio buscamos llevar un análisis más cuantitativo de lo que son los resultados de diferentes elecciones
 link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
 # Sobre este sitio {-}
 
-En este espacio, hemos querido....
+Este sitio surge como una forma de responder las propias inquietudes que teníamos al momento de seguir las elecciones que se realizan periódicamente a nivel nacional. Queríamos tener una visión un poco más granular sobre la forma y la manera en que los votantes se comportan. 
+
+Hay muchas análisis y mapas a nivel comunal, sabemos de algunas comunas que se comportan de manera diferente, pero no habíamos visto algo más granular, mesa a mesa. Siempre escuchamos comentarios sobre algunas mesas que son mal llamadas "predictoras", pero ¿cómo se comportan en su conjunto?. 
+
+Finalmente, este sitio también surgió para tratar de responder una de las inquietudes que deambulaba por la redes sobre las primarias presidenciales del 2021, en que se cree/creía que gente de derecha participó en la primaria de Apruebo Dignidad para evitar que Jadue fuera el candidato del bloque. ¿Es eso efectivo? ¿Hubo un movimiento de votantes?
+
+Cualquier duda, inquietud o sugerencia nos pueden contactar a [contacto@tecpar.cl](mailto:contacto@tecpar.cl).

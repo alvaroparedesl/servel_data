@@ -1,5 +1,9 @@
 # Introducción
 
+En este apartado veremos que cosas podemos encontrar en el sitio, como interpretar esta información y una breve explicación metodológica.
+
+
+
 ## Motivación
 
 Durante el último tiempo, hemos observado un creciente interés por conversar y debatir sobre los cambios y eventos que ha experimentado la participación electoral en Chile. Los cambios en la participación, la nuevas agrupaciones y conglomerados que establecen nuevos escenarios electorales y la composición y posible predición de los electores se han vuelto temas de alta relevancia a nivel nacional, por lo que cada vez existe un mayor interés en encontrar mecanismos para poder conocer mejor su funcionamiento.
@@ -30,11 +34,11 @@ Para poder evaluar las posibles diferencias en las preferencias electorales, lo 
 
 Con el fin de poder distinguir si existen alguna fluctuación en las tendencias políticas de los votantes, nuestro primer desafío consistió en la elaboración de criterio para poder separar las preferencias políticas de los votantes a partir de sus sufragios. Para esto utilizaremos como supuesto que el voto implicará una preferencia por una opción política. Esta no necesarimente implicará que sea una tendencia permanente, sino al contrario, es la opción que una persona optó dado el contexto electoral de ese momento.
 
-Considerando lo anterior, estableceremos distinguiremos las preferencias del Frente Amplio y Apruebo Dignidad quedarán agrupadas bajo la categoría "izquierda" mientras que las opciones de Chile Vamos y Chile Podemos Más como "derecha". Esta decisión no se encuentra exenta de problemas, ya que es un supuesto grande considerando que algunas alternativas pueden ser catalogadas fuera de esta dicotomía. Sin embargo,
+Considerando lo anterior, estableceremos las preferencias del Frente Amplio y Apruebo Dignidad agrupadas bajo la categoría "izquierda" mientras que las opciones de Chile Vamos y Chile Podemos Más como "derecha". Esta decisión no se encuentra exenta de problemas, ya que es un supuesto grande considerando que algunas alternativas pueden ser catalogadas fuera de esta dicotomía. Sin embargo, es una aproximación que nos permite tener una mirada un poco más general y sencilla de la realidad nacional.
 
 ¿Debemos ser tan *Blanco y Negro*? Por el momento sí, ya que facilita los análisis. 
 
-¿Cuál es el beneficio de utilizar una diferencia tan arbitraria? Al ser una categorización sencilla, nos permite poder mantenerla de manera consistente en el tiempo. De la misma forma, esta separación nos permite establecer en grandes rasgos diferencias en las preferencias de votación, permitiendo identificar si sector electoral mantiene su tendencia historíca o el escenario político implicó una mayor participación en otra dirección.
+¿Cuál es el beneficio de utilizar una diferencia tan arbitraria? Al ser una categorización sencilla, nos permite poder mantenerla de manera consistente en el tiempo. De la misma forma, esta separación nos permite establecer en grandes rasgos diferencias en las preferencias de votación, permitiendo identificar si un sector electoral mantiene su tendencia histórica o el escenario político implicó una mayor participación en otra dirección.
 
 Es importante clarificar que esta clasificación tienen un interés investigativo, por lo que en esta ocasión no consideraremos otros aspectos relevantes relacionadas a las diferencias políticas dentro de los conglomerados.
 
@@ -73,15 +77,15 @@ A través de esta gráfico hemos buscado retratar a través de una nube de punto
 
 A través de este gráfico se visualiza de manera general cada uno de los vocales de votación que se encuentran en cada una de las comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Cada cuadrado representa una mesa estacionaria - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
 
-#### Lollipop
+<!-- #### Lollipop -->
 
-En contraste a los gráficos presentados anteriormente y considerando la gran cantidad de Mesas Estacionarias a nivel regional y comunal, presentaremos gráficos más acotados que busquen enfocar la información a sectores y elementos que consideremos relevantes de explorar. 
+<!-- En contraste a los gráficos presentados anteriormente y considerando la gran cantidad de Mesas Estacionarias a nivel regional y comunal, presentaremos gráficos más acotados que busquen enfocar la información a sectores y elementos que consideremos relevantes de explorar.  -->
 
-Por lo mismo, a través de estos gráfico pretendemos presentar algunas comunas o sectores de interés, en conjunto a sus variaciones o tendencias en relación a la elección u otra.
+<!-- Por lo mismo, a través de estos gráfico pretendemos presentar algunas comunas o sectores de interés, en conjunto a sus variaciones o tendencias en relación a la elección u otra. -->
 
-#### Dumbbell
+<!-- #### Dumbbell -->
 
-De la misma forma que en los gráficos de tendencias señalados anteriormente, también se quiso explorar la comparación de tendencias de ciertos sectores en dos elecciones diferentes, por lo que a través de estos gráficos buscaremos identificar la cantidad de votos de cada sector con el fin de poder identificar la fluctuación en contraste con otras comunas o sectores de interés.
+<!-- De la misma forma que en los gráficos de tendencias señalados anteriormente, también se quiso explorar la comparación de tendencias de ciertos sectores en dos elecciones diferentes, por lo que a través de estos gráficos buscaremos identificar la cantidad de votos de cada sector con el fin de poder identificar la fluctuación en contraste con otras comunas o sectores de interés. -->
 
 
 #### Otras consideraciones
@@ -89,6 +93,10 @@ De la misma forma que en los gráficos de tendencias señalados anteriormente, t
 
 1. Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, parlamentarias y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
 
-::: {.infobox .caution data-latex="{caution}"}
+
+
+::: {.infobox data-latex=""}
+
 Este artículo fue redactado el 2021-11-20 y su última modificación fue en `r Sys.Date()`.
+
 :::

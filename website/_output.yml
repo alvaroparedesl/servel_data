@@ -14,7 +14,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Análisis Elecciones</a></li>
+        <li><a href="./">Análisis Electoral</a></li>
       # after: |
       #   <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
       # edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
