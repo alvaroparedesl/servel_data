@@ -25,12 +25,12 @@ En esta ocasión, nuestro objetivo contrastar la participación electoral de los
 
 Si bien no es posible obtener inferencias o explicaciones causales que podrían explicar la preferencia de los votantes, la visualización de los cambios de tendencias pueden presentar una oportunidad única de discusión sobre los escenarios políticos que está enfrentando el país y la evaluación de aspectos contextuales que pueden afectar el desarrollo de cada uno de estos procesos.
 
-### Metodología
+## Metodología
 
 Para poder evaluar las posibles diferencias en las preferencias electorales, lo primero que obtuvimos fue la información electoral de ambos comicios de la página oficial del servicio electoral. Una vez obetenidos nos tuvimos que enfrentar a los siguientes escenarios.
 
 
-#### Definición de *Izquierda* y *Derecha*
+### Definición de *Izquierda* y *Derecha*
 
 Con el fin de poder distinguir si existen alguna fluctuación en las tendencias políticas de los votantes, nuestro primer desafío consistió en la elaboración de criterio para poder separar las preferencias políticas de los votantes a partir de sus sufragios. Para esto utilizaremos como supuesto que el voto implicará una preferencia por una opción política. Esta no necesarimente implicará que sea una tendencia permanente, sino al contrario, es la opción que una persona optó dado el contexto electoral de ese momento.
 
@@ -42,14 +42,16 @@ Considerando lo anterior, estableceremos las preferencias del Frente Amplio y Ap
 
 Es importante clarificar que esta clasificación tienen un interés investigativo, por lo que en esta ocasión no consideraremos otros aspectos relevantes relacionadas a las diferencias políticas dentro de los conglomerados.
 
+En algunos casos un cierto tipo de votación no puede ser asignado a izquierda ni derecha. Tal es el caso de los independientes fuera de pacto, o el caso de Parisi. Votos blancos y nulos no entran tampoco en consideración.
 
-#### El problema de la consistencia de cada mesa y su agrupamiento
 
-Una vez establecida las clasificaciones de los votos, nuestro siguiente elemento a considerar es las comparación de ambas elecciones. Que más quisiera un analista que tener cada mesa de manera individualizada, ubicada en el mismo lugar y ver en el tiempo como varían, pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa *"física"*, puede estar compuesta de varias mesas "*teóricas*". Por ejemplo, para una elección en particular, la mesa `M31` puede estar compuesta de las mesas `M31`, `M32` y `M41`. En la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
+### El problema de la consistencia de cada mesa y su agrupamiento
+
+Una vez establecida las clasificaciones de los votos, nuestro siguiente elemento a considerar es las comparación entre una o varias elecciones. Que más quisiera un analista que tener cada mesa de manera individualizada, ubicada en el mismo lugar y ver en el tiempo como varían, pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa *"física"*, puede estar compuesta de varias mesas "*teóricas*". Por ejemplo, para una elección en particular, la mesa `M31` puede estar compuesta de las mesas `M31`, `M32` y `M41`. En la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
 
 Las razones para fusionar o dividir que hay detrás de la agrupación de mesas del SERVEL la desconocemos, por lo que tampoco podemos conocer con anterioridad si estos criterios se mantendrán o cambiarán en una futura elección. Junto a lo anterior, hay que considerar que también se agregan nuevas mesas al sistema, y cuando se compara en el tiempo, a veces nos quedamos sin la referencia anterior.
 
-El escenario descrito anteriormente, nos plantea un desafío interesante ya que esta situación nos conllevará a tener que establecer un clasificación de mesas que nos permita establecer un escenario común en ambos tiempos. Para poder resolver este escenario hemos definido una agrupación de mesas como **Mesa Estacionas (ME)** las cuáles consisten en una agrupación de meses que contemplan un subconjunto de mesas que se encuentren  una agrupación de mesas que contempla una combinació n de todas las mesas que fueron combinadas entre el periodo 2017 y 2021, generando de esta forma una mesa que integra todas las posibles combinaciones, permitiendo comparar el comportamiento de todas a nivel general de estas mesas en ambos momentos. 
+El escenario descrito anteriormente, nos plantea un desafío interesante ya que esta situación nos conllevará a tener que establecer un clasificación de mesas que nos permita establecer un escenario común en ambos tiempos. Para poder resolver este escenario hemos definido una agrupación de mesas como **Mesa Estacionas (ME)** las cuáles consisten en una agrupación de mesas que está compuesta por todas aquellas que son comunes en los periodos estudiados (una especie de mínimo común divisor), particularmente entre el año 2017 y 2021.
 
 |Mesa 2017|Mesa 2021| ME|
 |:--:|:--:|:--:|
@@ -58,10 +60,74 @@ El escenario descrito anteriormente, nos plantea un desafío interesante ya que 
 |3|2-3-4|-|
 |4|-|-|
 
-A modo de ejemplo, tal cómo se presenta en la tabla anterior tenemos un esquema de agrupación hipotética de las mesas del año 2017 y el año 2021. Como es posible ver en el año 2017 las mesas 1-2 fueron fusionadas, mientras que en el año 2021 la mesa 1 se mantuvo separada y la mesa 2 fue fusionada con la mesa 3 y 4. En este sentido, no es posible establecer ninguna comparación de manera aislada de la mesa 1 ya que en un año se mantuvo de manera independiente, pero en otro año esta se mantuvo unida a otra mesa por lo que sus resultados no son posibles de separar. Por la misma razón la **Mesa Estacionaria** conformada por las mesas 1,2,3 y 4 permitirá hacer una comparación contemplando todas las mesas y sus relaciones de forma de poder comparar un similar número de electores en ambos eventos.
+A modo de ejemplo, tal cómo se presenta en la tabla anterior tenemos un esquema de agrupación hipotética de las mesas del año 2017 y el año 2021. Como es posible ver en el año 2017 las mesas 1-2 fueron fusionadas, mientras que en el año 2021 la mesa 1 se mantuvo separada y la mesa 2 fue fusionada con la mesa 3 y 4. En este sentido, no es posible establecer ninguna comparación de manera aislada de la mesa 1 ya que en un año se mantuvo de manera independiente, pero en otro año esta se mantuvo unida a otra mesa por lo que sus resultados no son posibles de separar. Por la misma razón la **Mesa Estacionaria** conformada por las mesas 1, 2, 3 y 4 permitirá hacer una comparación contemplando todas las mesas y sus relaciones de forma de poder comparar un similar número de electores en ambos eventos.
 
 
-### Gráficas
+### Indicadores
+
+Ninguno de los siguientes indicadores considera los votos que no hayan sido clasificados previamente como izquierda/derecha.
+
+#### Porcentaje de votación de izquierda ($\%I_t$)
+
+El indicador principal que se calcula es el del porcentaje de votos de izquierda por sobre el total (votos de izquierda + votos de derecha), en una votación o periodo $t$.
+
+$$
+\%I_t = \frac{I_t} {I_t + D_t}
+$$
+con,
+
+  - $I_t$ = Nº de votos de izquierda en la ME, en el tiempo/elección $t$.
+  - $D_t$ = Nº de votos de derecha en la ME, en el tiempo/elección $t$.
+  
+Este indicador varía entre 0 y 1 (0 y 100%), y muestra si la población votó izquierda o derecha. Un valor inferior a 0.5 (50%) indica que dicha ME votó mayoritariamente derecha, mientas que un valor superior al 50% indicaría que votó mayoritariamente izquierda. 
+
+
+#### Tasa de cambio o pendiente ($TC$)
+
+Este indicador muestra la relación entre entre el cambio en el eje vertical (el eje izquierdo del espector político) y horizontal (el eje derecho del espectro político), entre dos elecciones diferentes ($t$ y $t+1$).
+
+$$
+TC = \frac{I_{t + 1} - I_{t} } {D_{t + 1} - D_{t} }
+$$
+con,
+
+  - $I_{t}$ = Nº de votos de izquierda en la ME, en el tiempo/elección $t$ (por ejemplo, los votos en la primaria presidencial del 2017).
+  - $I_{t + 1}$ = Nº de votos de izquierda en la ME, en el tiempo/elección $t + 1$ (por ejemplo, los votos en la primaria presidencial del 2021).
+  - $D_{t}$ = Nº de votos de derecha en la ME, en el tiempo/elección $t$ (por ejemplo, los votos en la primaria presidencial del 2017).
+  - $D_{t + 1}$ = Nº de votos de derecha en la ME, en el tiempo/elección $t + 1$ (por ejemplo, los votos en la primaria presidencial del 2021).
+  
+Este indicador varía entre $-\infty$ y $\infty$ y su interpretación no es tan sencilla, razón por la cuál se desglosa en los siguientes dos indicadores para facilitar la interpretabilidad.
+  
+
+#### Magnitud del cambio ($M$)
+
+Este indicador muestra el número de votos en términos absolutos en que se movió la ME. Visto de otra forma, la distancia euclidiana entre dos elecciones diferentes ($t$ y $t+1$).
+
+$$
+M = \sqrt{(I_{t + 1} - I_{t})^2 + (D_{t + 1} - D_{t})^2 }
+$$
+
+Su resultado varía entre $0$ y $\infty$ e indica que tantos votos se movió la ME entre elecciones.
+
+
+#### Dirección del cambio ($\alpha$)
+
+El indicador anterior indica la magnitud del cambio y este indicador $\alpha$ indica la dirección del cambio. Es decir, si se movió hacía la derecha, la izquierda, aumentaron ambos o dimisniuyeron ambos.
+
+$$
+\alpha = tan(TC)^{-1}
+$$
+
+Su resultado varía entre $0$ y $360$ grados e indica la dirección del cambio.
+
+- $0º$ a $90º$: corresponde al cuadrante $--$, izquierda y derecha perdieron votos. Se representará en tonos de color morado.
+- $90º$ a $180º$: corresponde al cuadrante $-+$, izquierda pierde votos y la derecha gana votos. Se representará en tonos de color azul.
+- $180º$ a $270º$: corresponde al cuadrante $++$, izquierda y derecha ganaron votos. Se representará en tonos de color verde.
+- $270º$ a $360º$: corresponde al cuadrante $+-$, izquierda gana votos y la derecha pierde votos. Se representará en tonos de color rojo.
+
+Teniendo $M$ y $\alpha$ se puede saber hacía y donde y en que grado/magnitud se movió una ME determinada.
+
+## Gráficas
 
 Para poder presentar la información obtenida, hemos generado una serie de visualizaciones que permitirán poder presentar la información obtenida de manera más sencilla. 
 
@@ -69,26 +135,26 @@ A partir de la recodificación de conglomerados descrita anteriormente, hemos cl
 
 A continuación presentamos diversos gráficos en las cuáles hemos mostrado estos cambios.
 
-#### Dispersograma
+### Dispersograma
 
 A través de esta gráfico hemos buscado retratar a través de una nube de puntos una tendencia de las fluctuaciones que han tenido las Mesas Estacionarias entre un proceso a otro. Cada punto que se observa en el gráfico corresponde a una Mesa Estacionaria y su ubicación indica su situación en relación a la votación anterior.
 
-#### ADN
+### ADN
 
 A través de este gráfico se visualiza de manera general cada uno de los vocales de votación que se encuentran en cada una de las comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Cada cuadrado representa una mesa estacionaria - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
 
-<!-- #### Lollipop -->
+<!-- ### Lollipop -->
 
 <!-- En contraste a los gráficos presentados anteriormente y considerando la gran cantidad de Mesas Estacionarias a nivel regional y comunal, presentaremos gráficos más acotados que busquen enfocar la información a sectores y elementos que consideremos relevantes de explorar.  -->
 
 <!-- Por lo mismo, a través de estos gráfico pretendemos presentar algunas comunas o sectores de interés, en conjunto a sus variaciones o tendencias en relación a la elección u otra. -->
 
-<!-- #### Dumbbell -->
+<!-- ### Dumbbell -->
 
 <!-- De la misma forma que en los gráficos de tendencias señalados anteriormente, también se quiso explorar la comparación de tendencias de ciertos sectores en dos elecciones diferentes, por lo que a través de estos gráficos buscaremos identificar la cantidad de votos de cada sector con el fin de poder identificar la fluctuación en contraste con otras comunas o sectores de interés. -->
 
 
-#### Otras consideraciones
+## Otras consideraciones
 
 
 1. Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, parlamentarias y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
