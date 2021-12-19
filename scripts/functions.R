@@ -198,9 +198,10 @@ rastPlot <- function(df1, df2=NULL, outname, dropna=F, vertical=F, res_=15, rati
   wh <- .computeHeightWidth(n=n, ratio=ratio_, res=res_, vertical)
   width <- wh[['width']]; height <- wh[['height']]; cols=wh[['cols']]; rows=wh[['rows']]
   parmar <- if (is.null(df2)) {c(4, 5, 4, 5)} else {c(4, 6, 4, 6)}
-  height_ <- ifelse(is.null(df2), height, height/2)
+  width_ <- ifelse(is.null(df2), width/2, width)
+  height_ <- height/2
   
-  png(outname, width=width, height=height_)
+  png(outname, width=width_, height=height_)
   if (!is.null(df2)){
     if (vertical) {
       par(mfcol=c(1, 2))
@@ -218,6 +219,7 @@ rastPlot <- function(df1, df2=NULL, outname, dropna=F, vertical=F, res_=15, rati
   }
   
   dev.off()
+  print(wh)
   
   return(list(out1=out1, out2=out2))
 }
