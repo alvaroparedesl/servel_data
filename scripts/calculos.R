@@ -29,7 +29,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
     ansv <- df[ , list(per=sum(.SD) / electores), by=group_cols, .SDcols=elec_cols]
     # ansv <- merge(ansv, comunas[, c("Comuna", "Latitud")], by="Comuna")
     setorder(ansv, Reg_cod, -Latitud)
-    out[['proporcion_intra_vot_hab']] <- ansg
+    out[['proporcion_intra_vot_hab']] <- ansv
   }
 
   # Pendiente de cambio izquierda vs derecha
@@ -46,7 +46,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   anst <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
   # anst <- merge(anst, comunas[, c("Comuna", "Latitud")], by="Comuna")
   setorder(anst, Reg_cod, -Latitud)
-  out[['proporcion_extra_izq_der']] <- ansp
+  out[['proporcion_extra_izq_der']] <- anst
   
   
   # Diferencia votaciones izq

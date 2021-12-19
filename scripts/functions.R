@@ -256,7 +256,7 @@ nlist <- function(...) {
   with(envn, {
     setorder(mt, Reg_cod, -Latitud)
     # n_comuna_reg <- mt[, list(N = .N %/% cols + 1), by=c("Reg_cod", "Comuna", "Latitud")]
-    n_comuna_reg <- mt[, list(N = .N), by=c("Reg_cod", "Comuna", "Latitud")]
+    n_comuna_reg <- mt[, list(N = .N), by=c("Reg_cod", "nom_com", "Latitud")]
     # n_comuna_reg[, N:=cumsum(N)]
     # n_comuna_reg[, pos:=(shift(cN, fill=max(cN), type='lead')- cN)/2 + cN - 1]
     
@@ -285,7 +285,7 @@ nlist <- function(...) {
     # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
     mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
           at = (c(0, reg_cut$Nr[-nrow(reg_cut)]) + reg_cut$Nr) / 2)
-    mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
+    mtext(com_cut$nom_com, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
           at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
     if (vertical) {
       abline(h=round(reg_cut$Nr * rows)/rows, lwd=3)
