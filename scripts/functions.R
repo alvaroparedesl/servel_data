@@ -11,13 +11,19 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
 
 #' Parsea excel de datos de entrada a data.frame de data.table
 #'
-#' @param path path a un archivo excel
+#' @param basedir 
+#' @param dictio diciontary of files and columns names
+#' @param election election name (to find the file inside dictio)
 #' @param sheets nombre de las hojas a leer. Nulo por defecto, se lee sólo la primera.
 #'
 #' @return un data.frame de data.table en el formato apropiado
 #' @export
 #'
-prep_table <- function(path, sheets=NULL){
+prep_table <- function(basedir, dictio, election, sheets=NULL){
+  
+  loc <- dictio[['ubicacion']][dictio[['ubicacion']]$`Elección`==election, ]
+  path <- file.path(basedir, loc[1], loc[2])
+  
   if (is.null(sheets)) {
     df <- readxl::read_excel(path)
     t_ <- data.table(df)
@@ -29,19 +35,22 @@ prep_table <- function(path, sheets=NULL){
     t_ <- rbindlist(tdf)
   }
   
-  tipo_mesa <- 'Tipo mesa'
-  mesa <- "Mesa"
-  
   #-------------------------- DICTIO ---------------------------------
   #- Columnas
-  idx_cols <- unlist(lapply(DICTIO$columnas$Archivo, function(x) grepl(x, path)))
-  if (any(idx_cols)) {
-    dict_names <- DICTIO$columnas[idx_cols, c("old", "new")]
-    data.table::setnames(t_, dict_names$old, dict_names$new)
+  idx_cols <- na.omit(dictio[['meta']][, c("Nombre", election)])
+  
+  if (nrow(idx_cols) > 0) {
+    data.table::setnames(t_, unlist(idx_cols[election]), unlist(idx_cols['Nombre']))
   }
   
-  eval(parse(text=sprintf("t_[is.na(`%s`), `%s`:='']", tipo_mesa, tipo_mesa)))
-  t_[, mesa_:=do.call(paste0, .SD), .SDcols=c(mesa, tipo_mesa)]
+  if ("mesa_nom" %in% names(t_)) {
+    t_[, mesa_nom:=as.character(mesa_nom)]
+    t_[is.na(mesa_nom), mesa_nom:='']
+    t_[, mesa_:=do.call(paste0, .SD), .SDcols=c("mesa_nom", "tipo_mesa")]
+  }
+  else {
+    t_[, mesa_:=tstrsplit(mesaf_nom, "-", keep=1)]
+  }
   
   #- Renombrando  opcion
   t_[, opcion:=trimws(tolower(opcion))]
@@ -51,17 +60,18 @@ prep_table <- function(path, sheets=NULL){
     t_[idx_opc, opcion:=Map[opcion]]
   }
   #- Añade 0 si es NA
-  t_[is.na(`Votos TRICEL`), `Votos TRICEL`:=0]
+  t_[is.na(votos), votos:=0]
   
   #- Asignando tendencia
-  idx_tend <- unlist(lapply(DICTIO$tendencia$Archivo, function(x) grepl(x, path)))
-  if (any(idx_tend)) {
-    Map <- with(DICTIO$tendencia[idx_tend, ], setNames(tendencia, tolower(trimws(opcion))))
+  idx_tend <- DICTIO$tendencia[DICTIO$tendencia == election, ]
+  idx_tend <- idx_tend[!is.na(idx_tend$Columna), ]
+  if (nrow(idx_tend) > 0) {
+    Map <- with(idx_tend, setNames(tendencia, tolower(trimws(Valor))))
     t_[, tendencia:=Map[opcion]]
   }
   
   
-  return(t_[!is.na(Mesa)])
+  return(t_[!is.na(mesa_)])
 }
 
 
@@ -77,13 +87,14 @@ prep_table <- function(path, sheets=NULL){
 #' @examples
 ids_mesa <- function(blist) {
   
-  cols_fil <- c('Circ.Electoral', 'Local', 'Mesa', 'Tipo mesa', 'Mesas Fusionadas')
+  # cols_fil <- c('Circ.Electoral', 'Local', 'Mesa', 'Tipo mesa', 'Mesas Fusionadas')
+  cols_fil <- c('circelec_nom', 'local_nom', 'mesa_', 'tipo_mesa', 'mesaf_nom')
   
   t1 <- lapply(1:length(blist),
                function(y) {
                  x <- blist[[y]]
                  x[, db:=names(blist)[y]]  # database group
-                 x[, id:=.GRP + y*10^5, by=c('Circ.Electoral', 'Mesas Fusionadas')]
+                 x[, id:=.GRP + y*10^5, by=c('circelec_nom', 'mesaf_nom')]
                })
   
   tt <- lapply(1:length(t1), function(n) {
@@ -96,13 +107,13 @@ ids_mesa <- function(blist) {
   tt_ <- rbindlist(tt, fill=TRUE)
   t1_ <- rbindlist(t1, fill=TRUE)
   # https://stackoverflow.com/questions/13773770/split-comma-separated-strings-in-a-column-into-separate-rows
-  df <- setDT(tt_)[, strsplit(as.character(`Mesas Fusionadas`), "-", fixed=TRUE), by = c("id", cols_fil)] #[, .(`Mesas Fusionadas` = V1, id)] |> as.data.frame()
+  df <- setDT(tt_)[, strsplit(as.character(mesaf_nom), "-", fixed=TRUE), by = c("id", cols_fil)] #[, .(`Mesas Fusionadas` = V1, id)] |> as.data.frame()
   setnames(df, "V1", "Mesa individual")
   
   ## Agrupando mesas
   # from: https://stackoverflow.com/questions/37216927/r-group-elements-of-a-list-that-share-at-least-one-value
   # from: https://stackoverflow.com/questions/36659114/using-two-grouping-designations-to-create-one-combined-grouping-variable
-  df[, m_code:=paste(Circ.Electoral, `Mesa individual`, sep="-")]
+  df[, m_code:=paste(circelec_nom, mesaf_nom, sep="-")]
   gmap <-  unique(stack(df[, c("id", "m_code")]))
   gmap$node = seq_len(nrow(gmap))
   
@@ -125,33 +136,37 @@ ids_mesa <- function(blist) {
 
 
 tendencia_mesas <- function(dt) {
-  if ('Electores' %in% names(dt)) {
-    all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
-    all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
+  if ('habilitados_n' %in% names(dt)) {
+    # all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
+    # all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
+    all_ <- dt[, list(N=sum(votos)), by=c('db', 'reg_cod', 'comuna_nom', 'group', 'mesa_', 'habilitados_n', 'tendencia')]
+    all_ <- all_[, list(electores=sum(habilitados_n), N=sum(N)), by=c('db', 'reg_cod', 'comuna_nom', 'group', 'tendencia')]
     #--- tendencia por mesa y elección??
     ans <- dcast(all_, 
-                 `Nro. Región` + Comuna + group + db + electores ~ tendencia, 
+                 reg_cod + comuna_nom + group + db + electores ~ tendencia, 
                  value.var=c("N"), 
                  fun.aggregate=sum)
   } else {
-    all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'tendencia')]
+    all_ <- dt[, list(N=sum(votos)), by=c('db', 'reg_cod', 'comuna_nom', 'group', 'mesa_')]
     #--- tendencia por mesa y elección??
     ans <- dcast(all_, 
-                 `Nro. Región` + Comuna + group + db ~ tendencia, 
+                 reg_cod + comuna_nom + group + db ~ tendencia, 
                  value.var=c("N"), 
                  fun.aggregate=sum)
   }
   
   
-
-  ans[, Comuna:=tolower(iconv(Comuna, from='UTF-8', to = 'ASCII//TRANSLIT'))]
+  ans[, comuna_nom:=tolower(iconv(comuna_nom, from='UTF-8', to = 'ASCII//TRANSLIT'))]
   
   com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
                           c('aisen', 'calera', "marchigue", "ohiggins", "llaillay", "cabo de hornos(ex-navarino)", "tiltil", "trehuaco"))
-  ans[Comuna %in% names(com_renames), Comuna:=com_renames[Comuna]]
-  ans <- merge(ans, comunas[, c("Reg_cod", "Comuna", "Latitud")], by="Comuna")
+  ans[comuna_nom %in% names(com_renames), comuna_nom:=com_renames[comuna_nom]]
+  
+  ans <- merge(ans, comunas[, c("Reg_cod", "Comuna", "nom_com", "Latitud")], by.x="comuna_nom", by.y="Comuna", sort=F)
   ans[, Reg_cod:=factor(Reg_cod, levels=reg_orden)]
-  ans[, `Nro. Región`:=NULL]
+  setnames(ans, "comuna_nom", "Comuna")
+  # ans[, `Nro. Región`:=NULL]
+  ans
 }
 
 

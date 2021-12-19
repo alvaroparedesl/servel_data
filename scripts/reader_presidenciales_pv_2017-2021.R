@@ -17,6 +17,7 @@ par(family='Archivo')  # default = ''
 source('scripts/functions.R', encoding="UTF-8")
 source('scripts/calculos.R', encoding="UTF-8")
 
+data_folder = 'data'
 root = 'website/images/plots'
 
 # Diccionario de datos, para las funciones auxiliares
@@ -29,18 +30,10 @@ comunas[, Comuna:=tolower(nom_com)]
 # TODO: serie tiempo con Chile, regiones/comunas eje X, eje Y la tendencia, y el área número votantes [área chart] = https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 
 # Archivos
-# e2017_pp = prep_table('data/06-Elecciones Primarias 2017/Resultados_Presidente_Primarias2017_Tricel_nacional_DEF.xlsx', sheets=sprintf('%02d', 1:15))
-e2017_pv = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_1v_DEF.xlsx')
-# e2017_2v = prep_table('data/07-Elecciones Presidencial, Parlamentarias y de Cores 2017/Resultados_Mesa_PRESIDENCIAL_Tricel_2v_DEF.xlsx')
-# e2020_cp = prep_table('data/08-Plebiscito Nacional 2020/Resultados Plebiscito Constitucion Politica 2020_DEF.xlsx')
-e2021_pv = prep_table('data/13-Elecciones Presidenciales, Parlamentarias y de Cores 2021/01-presidenciales-temp.xlsx')
+e2017_pv = prep_table(data_folder, '2017_presidencial_1v', dict = DICTIO)
+e2021_pv = prep_table(data_folder, '2021_presidencial_1v', dict = DICTIO)
 
 elecciones_lista <- nlist(e2017_pv, e2021_pv)
-
-# Columnas
-# names(e2017_1v)
-# names(e2017_2v)
-# names(e2020_cp)
 
 
 #---- Obtener ids agrupados entre mesas de diferentes periodos
@@ -52,7 +45,7 @@ ans <- tendencia_mesas(all)
 
 #-------- Cálculos de índices
 elec_cols <- c("NA", "-1", "1")   # elec_cols <- c("NA", "-1", "0", "1")
-group_cols <- c("db", "group", "Comuna", "Reg_cod")
+group_cols <- c("db", "group", "nom_com", "Reg_cod", "Latitud")
 
 cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols, 
                           comparar=c('e2017_pv', 'e2021_pv'))
@@ -86,8 +79,8 @@ paleta1 <- rev(brewer.pal(10, 'RdBu'))
 paleta2 <- brewer.pal(9, 'Greens')
 
 c_ <- 0:length(paleta1)/length(paleta1)
-plot(c_, c_, col=paleta1, pch=16, cex=4)
-abline(h=c_, v=c_)
+# plot(c_, c_, col=paleta1, pch=16, cex=4)
+# abline(h=c_, v=c_)
 
 
 ##-------------------------------------
