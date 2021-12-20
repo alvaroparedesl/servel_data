@@ -41,7 +41,9 @@ En el lado izquierdo podemos ver la tendencia de la mesa estacionaria donde los 
 
 A la derecha podemos observar el ADN que presenta un similar esquema, con la salvedad que la escala de color indica la proporción de votantes, donde los colores verdes más fuertes indican una mayor tasa de participación en contraste con los colores más claros - cercanos a blanco - los cuáles indican menores indices de participación.
 
-Como se puede apreciar, la primaria de la derecha movilizó a mucha más gente que su contraparte de izquierda, aunque la participación total fue bastante baja. Como siempre, comunas como Las condes, Lo Barnechea, Providencia
+Como se puede apreciar, la primaria de la derecha movilizó a mucha más gente que su contraparte de izquierda, aunque la participación total fue bastante baja. Como siempre, comunas como Las condes, Lo Barnechea, Vitacura presentan una alta participación y una alta votación de derecha. 
+
+No se aprecian mayores sorpresas, salvo por las Mesas en Puente Alto que tuvieron una inclinación mayor hacia la derecha que el resto, posiblemente por el candidato Ossandón (ex alcalde y senador de RN).
 
 :::
 

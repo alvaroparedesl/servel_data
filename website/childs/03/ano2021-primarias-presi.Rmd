@@ -25,13 +25,13 @@ knitr::include_graphics('images/plots/leyenda_general_adn.png')
 ::: {}
 <!-- Lado izquierdo -->
 ```{r, echo=FALSE}
-knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2021_pp.png')
+knitr::include_graphics('images/plots/proporcion_intra_izq_der_e2021_pp.png')
 ```
 :::
 
 ::: {}
 <!-- Lado derecho -->
-Lorem ipsum
+Los datos del SERVEL no venían con el número de votantes, por lo que sólo se aprecia el ADN de la elección.
 
 :::
 

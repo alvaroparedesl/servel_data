@@ -6,52 +6,50 @@ En este apartado veremos que cosas podemos encontrar en el sitio, como interpret
 
 ## Motivación
 
-Durante el último tiempo, hemos observado un creciente interés por conversar y debatir sobre los cambios y eventos que ha experimentado la participación electoral en Chile. Los cambios en la participación, la nuevas agrupaciones y conglomerados que establecen nuevos escenarios electorales y la composición y posible predición de los electores se han vuelto temas de alta relevancia a nivel nacional, por lo que cada vez existe un mayor interés en encontrar mecanismos para poder conocer mejor su funcionamiento.
+Durante el último tiempo, hemos observado un creciente interés por conversar y debatir sobre los cambios y eventos que ha experimentado la participación electoral en Chile. Los cambios en la participación, la nuevas agrupaciones y conglomerados que establecen nuevos escenarios electorales y la composición y posible predicción de los electores se han vuelto temas de alta relevancia a nivel nacional, por lo que es relevante encontrar mecanismos para poder conocer mejor su funcionamiento.
 
-En este contexto, nos hemos propuesto presentar información a través de diversas formas de visualización con el fin de poder aportar y mejorar la discusión y debate en torno a estos temas. A través de la visualización y presentación de nuevas formas de análisis buscamos establecer alternativas que puedan fomentar el desarrollo de propuestas y otras formas de discusión del fenómeno electoral. 
+En este contexto, nos hemos propuesto presentar información a través de la presentación de nuevas formas de análisis y de diversas formas de visualización, con el fin de aportar y mejorar la discusión y debate en torno a estos temas. Todo esto, para contribuir con alternativas que puedan fomentar el desarrollo de propuestas y otras formas de discusión del fenómeno electoral.
 
-A través de la manipulación de datos y evidencia buscamos enriquecer la discusión pública entregando información que pueda ser interpretada de manera sencilla que fomente la discusión basada en evidencia empírica. 
+A través de la manipulación de datos y evidencia se entregará información que pueda ser interpretada de manera sencilla que fomente la discusión basada en evidencia empírica.
+Para lograr este objetivo hemos establecido dos aspectos que consideramos relevantes:
 
-Para lograr este objetivo hemos establecido dos aspectos que consideramos relevantes: 
+Por un lado, la utilización de **metodología basada en evidencia**, estableciendo rigurosidad en la elaboración de información. Por lo que nuestros análisis estarán enfocados en la interpretación considerando los posibles beneficios y problemas que pueden generarse a través de la decisión de técnicas y mecanismos de interpretación de datos.
 
-Por un lado, la utilización de **metodología basada en evidencia**, estableciendo rigurisidad en la elaboración de información. Por lo que nuestros análisis e interpretaciones estarán enfocadas en la interpretación considerando los posibles beneficios y problemas que pueden generarse a través de la decisión de técnicas y mecanismos de interpretación de datos.
-
-Por otro lado, para la elaboración de un adecuada evaluación e interpretación de datos, creemos que es necesario poder establecer **transparencia** del proceso a través de la presentación en conjunto de los resultados, información acerca del proceso de análisis, referencias utilizadas y explicaciones del proceso de tal modo que se pueda comprender el desarrollo y el procedimiento que lleva a cada una de estas conclusiones.
-
+Por otro lado, para la elaboración de un adecuada evaluación e interpretación de datos, creemos que es necesario poder establecer **transparencia** del proceso con el fin de favorecer la comprensión del desarrollo y procedimiento que lleva a cada una de estas conclusiones. Esto, gracias a la presentación de los resultados en conjunto con la información acerca del proceso de análisis, las referencias utilizadas y explicaciones del proceso.
 
 ## Objetivos
 
-En esta ocasión, nuestro objetivo contrastar la participación electoral de los votantes en cada conglomerado político. Las elecciones primarias del año 2017 y 2021 se han presentado como un escenario ideal para comparar la participación electoral en torno a dos ofertas electorales similares (pese a que han ambos han sufrido importantes cambios durante el últimpo tiempo). 
+En esta ocasión, nuestro objetivo es contrastar la participación electoral de los votantes en cada conglomerado político. Las elecciones primarias del año 2017 y 2021 se han presentado como un escenario ideal para comparar la participación electoral en torno a dos ofertas electorales similares (pese a que ambos han sufrido importantes cambios durante el último tiempo).
 
 Si bien no es posible obtener inferencias o explicaciones causales que podrían explicar la preferencia de los votantes, la visualización de los cambios de tendencias pueden presentar una oportunidad única de discusión sobre los escenarios políticos que está enfrentando el país y la evaluación de aspectos contextuales que pueden afectar el desarrollo de cada uno de estos procesos.
 
 ## Metodología
 
-Para poder evaluar las posibles diferencias en las preferencias electorales, lo primero que obtuvimos fue la información electoral de ambos comicios de la página oficial del servicio electoral. Una vez obetenidos nos tuvimos que enfrentar a los siguientes escenarios.
+Para poder contrastar la participación electoral y evaluar las posibles diferencias en las preferencias electorales, lo primero que obtuvimos fue la información electoral de todos los comicios aquí estudiados, desde la página oficial del servicio electoral. Una vez obtenidos, tuvimos que enfrentar y definir los siguientes escenarios.
 
 
 ### Definición de *Izquierda* y *Derecha*
 
-Con el fin de poder distinguir si existen alguna fluctuación en las tendencias políticas de los votantes, nuestro primer desafío consistió en la elaboración de criterio para poder separar las preferencias políticas de los votantes a partir de sus sufragios. Para esto utilizaremos como supuesto que el voto implicará una preferencia por una opción política. Esta no necesarimente implicará que sea una tendencia permanente, sino al contrario, es la opción que una persona optó dado el contexto electoral de ese momento.
+Con el fin de poder distinguir si existe alguna fluctuación en las tendencias políticas de los votantes, nuestro primer desafío consistió en la elaboración de un criterio que permitiese separar las preferencias políticas de los votantes a partir de sus sufragios. Para esto utilizaremos como supuesto que el voto implicará una preferencia por una opción política. Esto no necesariamente implicará que sea una tendencia permanente, sino al contrario, es la opción que una persona optó dado el contexto electoral de ese momento.
 
-Considerando lo anterior, estableceremos las preferencias del Frente Amplio y Apruebo Dignidad agrupadas bajo la categoría "izquierda" mientras que las opciones de Chile Vamos y Chile Podemos Más como "derecha". Esta decisión no se encuentra exenta de problemas, ya que es un supuesto grande considerando que algunas alternativas pueden ser catalogadas fuera de esta dicotomía. Sin embargo, es una aproximación que nos permite tener una mirada un poco más general y sencilla de la realidad nacional.
+Considerando lo anterior, estableceremos las preferencias del Frente Amplio y Apruebo Dignidad agrupadas bajo la categoría “izquierda” mientras que las opciones de Chile Vamos y Chile Podemos Más como “derecha.” Esta decisión no se encuentra exenta de problemas, ya que algunas alternativas pueden ser catalogadas fuera de esta dicotomía. Sin embargo, es una aproximación que nos permite tener una mirada un poco más general y sencilla de la realidad nacional.
 
-¿Debemos ser tan *Blanco y Negro*? Por el momento sí, ya que facilita los análisis. 
+¿Debemos ser tan *Blanco y Negro*? Por el momento sí, ya que facilita los análisis.
 
 ¿Cuál es el beneficio de utilizar una diferencia tan arbitraria? Al ser una categorización sencilla, nos permite poder mantenerla de manera consistente en el tiempo. De la misma forma, esta separación nos permite establecer en grandes rasgos diferencias en las preferencias de votación, permitiendo identificar si un sector electoral mantiene su tendencia histórica o el escenario político implicó una mayor participación en otra dirección.
 
-Es importante clarificar que esta clasificación tienen un interés investigativo, por lo que en esta ocasión no consideraremos otros aspectos relevantes relacionadas a las diferencias políticas dentro de los conglomerados.
+Es importante clarificar que esta clasificación tiene un interés investigativo, por lo que en esta ocasión no consideraremos otros aspectos relevantes relacionadas a las diferencias políticas dentro de los conglomerados.
 
-En algunos casos un cierto tipo de votación no puede ser asignado a izquierda ni derecha. Tal es el caso de los independientes fuera de pacto, o el caso de Parisi. Votos blancos y nulos no entran tampoco en consideración.
+En algunos casos un cierto tipo de votación no puede ser asignado a izquierda ni derecha. Tal es el caso de los independientes fuera de pacto, o el caso del ex candidato presidencial Franco Parisi. Los votos blancos y nulos tampoco serán considerados (al no poder asignados a alguna tendencia).
 
 
 ### El problema de la consistencia de cada mesa y su agrupamiento
 
-Una vez establecida las clasificaciones de los votos, nuestro siguiente elemento a considerar es las comparación entre una o varias elecciones. Que más quisiera un analista que tener cada mesa de manera individualizada, ubicada en el mismo lugar y ver en el tiempo como varían, pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa *"física"*, puede estar compuesta de varias mesas "*teóricas*". Por ejemplo, para una elección en particular, la mesa `M31` puede estar compuesta de las mesas `M31`, `M32` y `M41`. En la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
+Una vez establecida las clasificaciones de los votos, nuestro siguiente elemento a considerar es la comparación entre una o varias elecciones. Qué más quisiera un analista que tener cada mesa de manera individualizada, ubicada en el mismo lugar y ver en el tiempo como varían, pero no es tan fácil. Dependiendo de las elecciones, las mesas se agrupan y una mesa “física”, puede estar compuesta de varias mesas “*teóricas*”. Por ejemplo, para una elección en particular, la mesa M31 puede estar compuesta de las mesas M31, M32 y M41. En la siguiente elección puede estar cada mesa individualizada, o agrupadas con otras mesas, por lo que no es posible llegar y comparar directamente.
 
-Las razones para fusionar o dividir que hay detrás de la agrupación de mesas del SERVEL la desconocemos, por lo que tampoco podemos conocer con anterioridad si estos criterios se mantendrán o cambiarán en una futura elección. Junto a lo anterior, hay que considerar que también se agregan nuevas mesas al sistema, y cuando se compara en el tiempo, a veces nos quedamos sin la referencia anterior.
+Las razones para fusionar o dividir que hay detrás de la agrupación de mesas del SERVEL la desconocemos, por lo que tampoco es posible conocer con anterioridad si estos criterios se mantendrán o cambiarán en una futura elección. Junto a lo anterior, hay que considerar que también se agregan nuevas mesas al sistema, las que cuando se comparan en el tiempo, no presentan una referencia anterior.
 
-El escenario descrito anteriormente, nos plantea un desafío interesante ya que esta situación nos conllevará a tener que establecer un clasificación de mesas que nos permita establecer un escenario común en ambos tiempos. Para poder resolver este escenario hemos definido una agrupación de mesas como **Mesa Estacionas (ME)** las cuáles consisten en una agrupación de mesas que está compuesta por todas aquellas que son comunes en los periodos estudiados (una especie de mínimo común divisor), particularmente entre el año 2017 y 2021.
+El escenario descrito anteriormente, nos plantea un desafío interesante ya que esta situación nos conllevará a tener que establecer una clasificación de mesas que nos permita establecer un escenario común en ambos tiempos. Para poder resolver este escenario hemos definido una agrupación de mesas como **Mesa Estacionaria (ME)** las cuáles consisten en una agrupación de mesas que está compuesta por todas aquellas que son comunes en los periodos estudiados (una especie de mínimo común divisor), particularmente entre el año 2017 y 2021.
 
 |Mesa 2017|Mesa 2021| ME|
 |:--:|:--:|:--:|
@@ -129,19 +127,20 @@ Teniendo $M$ y $\alpha$ se puede saber hacia y donde y en que grado/magnitud se 
 
 ## Gráficas
 
-Para poder presentar la información obtenida, hemos generado una serie de visualizaciones que permitirán poder presentar la información obtenida de manera más sencilla. 
+Para poder presentar la información obtenida de manera más sencilla, hemos generado una serie de visualizaciones.
 
-A partir de la recodificación de conglomerados descrita anteriormente, hemos clasificado en dos alternativas de participación (Eje Izquierda-Derecha) el comportamiento de cada mesa, adquiriendo un color azul en caso de obtener una mayor proporción de votos la coalición de derecha y rojo en el caso de la izquierda.
+A partir de la recodificación de conglomerados descrita anteriormente, hemos clasificado en dos alternativas de participación (Eje Izquierda-Derecha) el comportamiento de cada mesa, adquiriendo un color azul en caso de obtener una mayor proporción de votos de la coalición de derecha y un color rojo en el caso de la proporción de votos de la coalición de izquierda.
 
-A continuación presentamos diversos gráficos en las cuáles hemos mostrado estos cambios.
+A continuación, presentaremos diversos gráficos que permitirán mostrar los cambios referidos.
+
 
 ### Dispersograma
 
-A través de esta gráfico hemos buscado retratar a través de una nube de puntos una tendencia de las fluctuaciones que han tenido las Mesas Estacionarias entre un proceso a otro. Cada punto que se observa en el gráfico corresponde a una Mesa Estacionaria y su ubicación indica su situación en relación a la votación anterior.
+Con este gráfico hemos buscado retratar la tendencia de las fluctuaciones que han tenido las Mesas Estacionarias entre un proceso y otro, por medio de una nube de puntos. Cada punto que se observa en el gráfico corresponde a una Mesa Estacionaria y su ubicación indica su situación en relación a la votación anterior.
 
 ### ADN {#ADN}
 
-A través de este gráfico se visualiza de manera general cada una de las Mesas Estacionarias que se encuentran en cada una de las comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Se definió la forma alargada para asemejar a la forma geográfica de Chile continental.
+A través de este gráfico se visualiza de manera general cada una de las Mesas Estacionarias que se encuentran en las distintas comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN, la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Se definió la forma de presentación alargada para asemejar la forma geográfica de Chile continental.
 
 Cada cuadrado o píxel representa una de estas mesas - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
 
@@ -159,6 +158,14 @@ Finalmente, en el eje Y izquierdo, se anota el número de la región y en el eje
 knitr::include_graphics('images/plots/leyenda_explicacion_adn.png')
 ```
 
+La equivalencia de las regiones con su numeración, se puede apreciar en la Tabla \@ref(tab:tabla-regiones)
+
+```{r tabla-regiones, echo=FALSE}
+tab <- read.csv("../scripts/comunas.csv", encoding='UTF-8')
+temp <- unique(tab[, c('Reg_cod', 'Región')])
+# temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
+temp |> knitr::kable(row.names=F, col.names=c('Código', 'Nombre'), caption='Equivalencia de las regiones con su código regional.')
+```
 
 <!-- ### Lollipop -->
 

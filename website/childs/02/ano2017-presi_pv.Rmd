@@ -1,4 +1,4 @@
-## Primera vuelta presidencial
+## Primera vuelta presidencial {#presidenciales-2017-pv-title}
 
 Ya con la primaria definida, los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2017-presi-pv).
 
@@ -28,7 +28,9 @@ knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2017_pv
 
 ::: {}
 <!-- Lado derecho -->
-Lorem ipsum
+No es sorpresivo el conjunto de comunas del barrio alto de la Región Metropolitana. Nuevamente una clara tendencia que ya ha sido ampliamente comentada en varios medios, que incluye mayor votación y mayor participación. En ese sentido también destaca la votación con una tendencia mayor a la derecha con respecto al resto del país de la zona Sur, especialmente la Región de la Araucanía, y en menor medida, de la Región del Biobío.
+
+El resto del país votó de forma mayoritaria por los candidatos clasificados como de izquierda, en una relación que ronda el 50% al 70%.
 
 :::
 

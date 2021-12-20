@@ -1,6 +1,6 @@
 ## Segunda vuelta presidencial
 
-Ya con la primaria definida, los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2017-presi-sv).
+En primera vuelta ningún candidato alcanzó el 50% + 1 de los votos, por lo que fue necesario una segunda vuelta. Los candidatos de esta segunda parte se pueden apreciar en la Tabla \@ref(tab:tendencia-2017-presi-sv).
 
 ```{r tendencia-2017-presi-sv}
 tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
@@ -28,7 +28,9 @@ knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2017_sv
 
 ::: {}
 <!-- Lado derecho -->
-Lorem ipsum
+A diferencia de la primera vuelta presidencial (Apartado \@ref(presidenciales-2017-pv-title)), el escenario tuvo algunas diferencias interesantes. La votación de la izquierda se desinfló y giró hacia la derecha, pero sin mucha intensidad.
+
+Es bastante probable que Piñera haya tomado algunos votos de candidatos como Carolina Goic, pero sus principales bastiones siguen siendo las comunas del barrio alto. La zona sur suma una mayor fuerza a la votación de derecha comparada con la primera vuelta, aunque la participación general no presenta mayores diferencias.
 
 :::
 
