@@ -14,8 +14,10 @@ showtext_auto()
 par(family='Archivo')  # default = ''
 
 
-source('scripts/functions.R', encoding="UTF-8")
-source('scripts/calculos.R', encoding="UTF-8")
+source('scripts/funciones/functions.R', encoding="UTF-8")
+source('scripts/funciones/calculos.R', encoding="UTF-8")
+source('scripts/funciones/process.R', encoding="UTF-8")
+
 
 data_folder = 'data'
 root = 'website/images/plots'

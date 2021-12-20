@@ -18,7 +18,6 @@ source('scripts/funciones/functions.R', encoding="UTF-8")
 source('scripts/funciones/calculos.R', encoding="UTF-8")
 source('scripts/funciones/process.R', encoding="UTF-8")
 
-
 data_folder = 'data'
 root = 'website/images/plots'
 
@@ -32,13 +31,11 @@ comunas[, Comuna:=tolower(nom_com)]
 # TODO: serie tiempo con Chile, regiones/comunas eje X, eje Y la tendencia, y el área número votantes [área chart] = https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 
 # Archivos
-e2017_sv = prep_table(data_folder, '2017_presidencial_2v', dict = DICTIO)
+e2021_pv = prep_table(data_folder, '2021_presidencial_1v', dict = DICTIO)
 e2021_sv = prep_table(data_folder, '2021_presidencial_2v', dict = DICTIO)
 
-elecciones_lista <- nlist(e2017_sv, e2021_sv)
+elecciones_lista <- nlist(e2021_pv, e2021_sv)
 
 el <- procesar_electoral(elecciones_lista, DICTIO, comunas, reg_orden,
-                         nombres=c('e2017_sv', 'e2021_sv'), 
-                         nombre_nube='Presidenciales: 2017 vs 2021 (Segunda vuelta)')
-
-
+                         nombres=c('e2021_pv', 'e2021_sv'), 
+                         nombre_nube='Presidenciales 2021: Primer vuelta vs Segunda vuelta')
