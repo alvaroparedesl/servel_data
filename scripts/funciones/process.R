@@ -1,4 +1,20 @@
-procesar_electoral <- function(elecciones_lista, DICTIO, comunas, reg_orden, nombres, nombre_nube) {
+library(RColorBrewer)
+
+#' Title
+#'
+#' @param elecciones_lista 
+#' @param DICTIO 
+#' @param comunas 
+#' @param reg_orden 
+#' @param nombres 
+#' @param nombre_nube 
+#' @param cut_90 si es verdadero, los cortes de los colores se hacen en base a 0, 90, 180, 270, 360 grados. Si es Falso, se hacen en base a 45, 135, 225, 315
+#'
+#' @return
+#' @export
+#'
+#' @examples
+procesar_electoral <- function(elecciones_lista, DICTIO, comunas, reg_orden, nombres, nombre_nube, cut_90=F) {
   #---- Obtener ids agrupados entre mesas de diferentes periodos
   all <- ids_mesa(elecciones_lista)
   
@@ -25,6 +41,7 @@ procesar_electoral <- function(elecciones_lista, DICTIO, comunas, reg_orden, nom
   
   mang <- cindx$magnitud_angulo
   mang[, color:=cut(angle, c(-181, -90, 0, 90, 180), labels=1:4)]  # labels=c('--', '-+', '++', '+-')
+  # mang[, color:=cut(angle, c(-181, -135, -45, 45, 135, 180), labels=c(1:4, 1))] 
   intensity_cutpoints <- round(quantile(mang$magnitud, na.rm=T))
   mang[, intensidad:=cut(magnitud, intensity_cutpoints, labels=1:4)]
   mang[, per:=as.numeric(color)*10 + as.numeric(intensidad)]
@@ -40,19 +57,41 @@ procesar_electoral <- function(elecciones_lista, DICTIO, comunas, reg_orden, nom
   vertical <- T
   paleta1 <- rev(brewer.pal(10, 'RdBu'))
   paleta2 <- brewer.pal(9, 'Greens')
+  or_mar <- par("mar")
   
-  c_ <- 0:length(paleta1)/length(paleta1)
-  # plot(c_, c_, col=paleta1, pch=16, cex=4)
-  # abline(h=c_, v=c_)
+  
+  png(sprintf('%s/leyenda_general_adn.png', root), width=1200, height=400)
+  bks1 <- 0:length(paleta1)/length(paleta1)
+  bks2 <- 0:length(paleta2)/length(paleta2)
+  vals1 <- 0:(length(paleta1)) * 1/(length(paleta1) - 1) - 1/(length(paleta1) - 1)/2
+  vals2 <- 0:(length(paleta2)) * 1/(length(paleta2) - 1) - 1/(length(paleta2) - 1)/2
+  par(mfrow=c(2,1))
+  image(matrix(1:length(paleta1)/length(paleta1)-.05, ncol=1), col=paleta1, breaks=bks1, axes=F,
+        xlab='% de votos izquierda')
+  axis(1, vals1, sprintf("%0.0f%%", bks1*100))
+  
+  image(matrix(1:length(paleta2)/length(paleta2)-.05, ncol=1), col=paleta2, breaks=bks2, axes=F,
+        xlab='% de participación')
+  axis(1, vals2, sprintf("%0.0f%%", bks2*100))
+  par(mfrow=c(1,1))
+  dev.off()
+
   
   
   ##-------------------------------------
+  
+  png(sprintf('%s/nube_puntos_log_%s.png', root, dbs_name), width=1200, height=800)
+  pointPlot(cindx,
+            back_colors = ccol[c(10, 14, 2, 6)],
+            main_title = nombre_nube,
+            log=T)
+  dev.off()
   
   png(sprintf('%s/nube_puntos_%s.png', root, dbs_name), width=1200, height=800)
   pointPlot(cindx,
             back_colors = ccol[c(10, 14, 2, 6)],
             main_title = nombre_nube,
-            log=T)
+            log=F)
   dev.off()
   
   
@@ -120,7 +159,6 @@ procesar_electoral <- function(elecciones_lista, DICTIO, comunas, reg_orden, nom
                  breaks1=ccuts)
   
   # Leyenda
-  or_mar <- par("mar")
   ##------------------------------------
   mts <- lapply(c(14, 24, 34, 44), function(x) {
     mt <- matrix(x, nrow=4, ncol=4)

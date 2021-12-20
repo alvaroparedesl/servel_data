@@ -1,7 +1,6 @@
 library(data.table)
 library(readxl)
 library(igraph)
-library(RColorBrewer)
 library(rayshader)
 library(quadmesh)
 # library(sysfonts)
