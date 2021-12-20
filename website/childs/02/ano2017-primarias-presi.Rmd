@@ -1,0 +1,48 @@
+## Primarias presidenciales
+
+La primaria electoral del año 2017 fue un evento histórico, ya que por primera vez en el país se habían primarias organizadas directamente por el servicio electoral. El día dos de Julio de 2017 se enfrentaron cinco candidatos presidenciales representantes de dos coaliciones: Chile Vamos conformada por la Unión Democrática Independiente (UDI), Renovación Nacional (RN), Evolución Política (EVOPOLI), Partido Regionalista Independiente (PRI); y Frente Amplio, conformada por los partidos Revolución Democrática, Humanista, Liberal, Ecologista Verde, Poder Ciudadano e Igualdad.
+
+El gran ausente de esa ocasión correspondió a la agrupación de partidos gobernante, la Nueva Mayoría que decidió llevar a sus dos candidatos directamente a la primera vuelta electoral.
+
+La primera de Chile Vamos llevó tres candidatos: Sebastián Piñera, Felipe Kast y Manuel José Ossandón. En el caso del Frente Amplio estuvieron los candidatos: Beatriz Sánchez y Alberto Mayol. 
+
+Los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2017-primarias-presi).
+
+```{r tendencia-2017-primarias-presi}
+tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
+temp <- tab[which(tab['Elección'] == '2017_primarias_presidenciales'), c('Valor', "label")]
+temp$Valor <- tools::toTitleCase(tolower(temp$Valor))
+# temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
+temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption='Candidatos y su tendencia')
+```
+
+Recordando la simbología del ADN:
+
+```{r, echo=FALSE, fig.align = 'center'}
+knitr::include_graphics('images/plots/leyenda_general_adn.png')
+```
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+
+::: {}
+<!-- Lado izquierdo -->
+```{r, echo=FALSE, fig.align = 'center'}
+knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2017_pp.png')
+```
+:::
+
+::: {}
+<!-- Lado derecho -->
+Una manera de retratar los resultados de esta elección es a través de una mirada general los resultados obtenidos. A través del ADN de esta elección tenemos la primaria electoral del año 2017, donde podemos observar dos columnas de información general sobre la participación electoral en este evento. 
+
+Cada uno de estos gráficos corresponde a una escala de color el cuál representa un intervalo de la magnitud total calculada (porcentaje de votación de izquierda/derecha y la participación).
+
+En el lado izquierdo podemos ver la tendencia de la mesa estacionaria donde los colores más cercanos a rojo indican una menor participación por parte de la izquierda - Y por lo tanto una proporción mayor de votos emitidos son de derecha - mientras que colores más cercanos al azul indican mayor participación en las primarias de derecha - y por lo mismo una menor participación en las primarias de izquierda-.
+
+A la derecha podemos observar el ADN que presenta un similar esquema, con la salvedad que la escala de color indica la proporción de votantes, donde los colores verdes más fuertes indican una mayor tasa de participación en contraste con los colores más claros - cercanos a blanco - los cuáles indican menores indices de participación.
+
+Como se puede apreciar, la primaria de la derecha movilizó a mucha más gente que su contraparte de izquierda, aunque la participación total fue bastante baja. Como siempre, comunas como Las condes, Lo Barnechea, Providencia
+
+:::
+
+::::

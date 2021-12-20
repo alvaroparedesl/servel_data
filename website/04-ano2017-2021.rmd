@@ -1,14 +1,18 @@
-# 2017 vs 2021
+# Presidenciales: 2017 vs 2021
 
-Contextos diferentes, elecciones diferentes. Entre el 2017 y 2021 sucedieron varias cosas que hicieron cambiar el escenario político y los actores imperantes... aunque no tanto. 
+Contextos diferentes, elecciones diferentes. Entre el 2017 y 2021 sucedieron varias cosas que hicieron cambiar el escenario político y los actores imperantes. Partiendo por el estallido social de octubre del 2019, seguido por la pandemia de COVID19 a principios de 2020.
 
 
 
-```{r child="childs/04-ano2017-2021-primarias.Rmd", echo=FALSE}
+```{r child="childs/04/ano2017-2021-primarias.Rmd", echo=FALSE}
 ```
 
 
-```{r child="childs/04-ano2017-2021-presidenciales_pv.Rmd", echo=FALSE}
+```{r child="childs/04/ano2017-2021-presi_pv.Rmd", echo=FALSE}
+```
+
+
+```{r child="childs/04/ano2017-2021-presi_sv.Rmd", echo=FALSE}
 ```
 
 

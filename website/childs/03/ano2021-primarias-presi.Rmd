@@ -1,0 +1,38 @@
+## Primarias presidenciales
+
+Las primarias electorales del 2021 estuvieron marcadas por un escenario similar al visto en el año 2017, en el que el sector de centro-izquierda no pudo agruparse dentro de una primaria común, lo que generó que el Frente Amplio en conjunto con el Partido dignidad generan una nueva plataforma política (Apruebo Dignidad) en la cuál participaron sus dos candidatos: Gabriel Boric y Daniel Jadue.
+
+Mientras que en el caso de la derecha, llevó cuatro candidatos, tres identificados con un partido político y la incorporación de un independendiente. Entre los candidatos se encuentran: Ignacio Briones, Mario Desbordes, Joaquín Lavín y Sebastían Sichel.
+
+Los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2021-primarias-presi).
+
+```{r tendencia-2021-primarias-presi}
+tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
+temp <- tab[which(tab['Elección'] == '2021_primarias_presidenciales'), c('Valor', "label")]
+temp$Valor <- tools::toTitleCase(tolower(temp$Valor))
+# temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
+temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption='Candidatos y su tendencia')
+```
+
+Recordando la simbología del ADN:
+
+```{r, echo=FALSE, fig.align = 'center'}
+knitr::include_graphics('images/plots/leyenda_general_adn.png')
+```
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+
+::: {}
+<!-- Lado izquierdo -->
+```{r, echo=FALSE}
+knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2021_pp.png')
+```
+:::
+
+::: {}
+<!-- Lado derecho -->
+Lorem ipsum
+
+:::
+
+::::

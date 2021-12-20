@@ -1,0 +1,7 @@
+# Conclusiones
+
+En construcción
+
+::: {.infobox .caution data-latex="{caution}"}
+Este artículo fue redactado el 2021-12-19 y su última modificación fue en `r Sys.Date()`.
+:::

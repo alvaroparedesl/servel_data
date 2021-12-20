@@ -1,0 +1,35 @@
+## Primera vuelta presidencial
+
+Ya con la primaria definida, los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2017-presi-pv).
+
+```{r tendencia-2017-presi-pv}
+tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
+temp <- tab[which(tab['Elección'] == '2017_presidencial_1v'), c('Valor', "label")]
+temp$Valor <- tools::toTitleCase(tolower(temp$Valor))
+# temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
+temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption='Candidatos y su tendencia')
+```
+
+
+Recordando la simbología del ADN:
+
+```{r, echo=FALSE, fig.align = 'center'}
+knitr::include_graphics('images/plots/leyenda_general_adn.png')
+```
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+
+::: {}
+<!-- Lado izquierdo -->
+```{r, echo=FALSE}
+knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2017_pv.png')
+```
+:::
+
+::: {}
+<!-- Lado derecho -->
+Lorem ipsum
+
+:::
+
+::::

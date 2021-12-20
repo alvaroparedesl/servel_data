@@ -1,4 +1,4 @@
-## Presidenciales: Dispersograma de la participación
+## Presidenciales (1v): Dispersograma
 
 Una manera de poder visibilizar los cambios que ha tenido los votantes a través de los diferentes procesos electorales, es a través de la cuantificación de tendencias de mesas estacionarias. 
 
@@ -7,31 +7,29 @@ En este gráfico podemos observar:
 - Según segmento el la magnitud y dirección con cuál la mesa aumentó o disminuyó su número de votos en algún segmento político.
 - El comportamiento general o tendencia de todas las mesas del país, observando tendencias a nivel nacional.
 
-```{r, echo=FALSE}
-knitr::include_graphics('images/plots/nube_puntos_e2021_pv-e2017_pv.png')
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/plots/nube_puntos_e2017_pv-e2021_pv.png')
 ```
 
-## Presidenciales: ADN de la elección
+## Presidenciales (1v): ADN
 
 En construcción....
 
 ### ¿Cómo interpretar estos ADNs?
 
-```{r, echo=FALSE}
-knitr::include_graphics('images/plots/angulo_magnitud_leyenda_e2021_pv-e2017_pv.png')
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/plots/angulo_magnitud_leyenda_e2017_pv-e2021_pv.png')
 
 ```
 
 ### ADN
 
-
-
 :::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 
 ::: {}
 <!-- Lado izquierdo -->
-```{r, echo=FALSE}
-knitr::include_graphics('images/plots/angulo_magnitud_e2021_pv-e2017_pv.png')
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/plots/angulo_magnitud_e2017_pv-e2021_pv.png')
 ```
 :::
 

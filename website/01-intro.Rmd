@@ -67,7 +67,7 @@ A modo de ejemplo, tal cómo se presenta en la tabla anterior tenemos un esquema
 
 Ninguno de los siguientes indicadores considera los votos que no hayan sido clasificados previamente como izquierda/derecha.
 
-#### Porcentaje de votación de izquierda ($\%I_t$)
+#### Porcentaje de votación de izquierda ($\%I_t$) {#metodos-porcentaje-izq-der}
 
 El indicador principal que se calcula es el del porcentaje de votos de izquierda por sobre el total (votos de izquierda + votos de derecha), en una votación o periodo $t$.
 
@@ -112,20 +112,20 @@ Su resultado varía entre $0$ y $\infty$ e indica que tantos votos se movió la 
 
 #### Dirección del cambio ($\alpha$)
 
-El indicador anterior indica la magnitud del cambio y este indicador $\alpha$ indica la dirección del cambio. Es decir, si se movió hacía la derecha, la izquierda, aumentaron ambos o dimisniuyeron ambos.
+El indicador anterior muestra la magnitud del cambio y este indicador $\alpha$ señala la dirección del cambio. Es decir, si se movió hacía la derecha, la izquierda, aumentaron ambos o dimisniuyeron ambos.
 
 $$
 \alpha = tan(TC)^{-1}
 $$
 
-Su resultado varía entre $0$ y $360$ grados e indica la dirección del cambio.
+Su resultado varía entre $0$ y $360$ grados y denota la dirección del cambio.
 
 - $0º$ a $90º$: corresponde al cuadrante $--$, izquierda y derecha perdieron votos. Se representará en tonos de color morado.
 - $90º$ a $180º$: corresponde al cuadrante $-+$, izquierda pierde votos y la derecha gana votos. Se representará en tonos de color azul.
 - $180º$ a $270º$: corresponde al cuadrante $++$, izquierda y derecha ganaron votos. Se representará en tonos de color verde.
 - $270º$ a $360º$: corresponde al cuadrante $+-$, izquierda gana votos y la derecha pierde votos. Se representará en tonos de color rojo.
 
-Teniendo $M$ y $\alpha$ se puede saber hacía y donde y en que grado/magnitud se movió una ME determinada.
+Teniendo $M$ y $\alpha$ se puede saber hacia y donde y en que grado/magnitud se movió una determinada ME.
 
 ## Gráficas
 
@@ -139,9 +139,26 @@ A continuación presentamos diversos gráficos en las cuáles hemos mostrado est
 
 A través de esta gráfico hemos buscado retratar a través de una nube de puntos una tendencia de las fluctuaciones que han tenido las Mesas Estacionarias entre un proceso a otro. Cada punto que se observa en el gráfico corresponde a una Mesa Estacionaria y su ubicación indica su situación en relación a la votación anterior.
 
-### ADN
+### ADN {#ADN}
 
-A través de este gráfico se visualiza de manera general cada uno de los vocales de votación que se encuentran en cada una de las comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Cada cuadrado representa una mesa estacionaria - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
+A través de este gráfico se visualiza de manera general cada una de las Mesas Estacionarias que se encuentran en cada una de las comunas del país. Estos gráficos apilados de manera horizontal reflejan de manera similar a una secuencia de ADN la distribución y proporción de participación en cada una de las Mesas Estacionarias creadas anteriormente. Se definió la forma alargada para asemejar a la forma geográfica de Chile continental.
+
+Cada cuadrado o píxel representa una de estas mesas - que a su vez se encuentran conformadas por las mesas fusionadas en cada elección -, en donde se le asigna un color según la característica presentada.
+
+Con excepción del ADN que muestra la magnitud y dirección de cambio (que tiene su propia leyenda según las elecciones que se comparan), los colores representan el porcentaje de votación izquierda/derecha y la participación en dicha elección (Figura \@ref(fig:leyenda-general-adn)):
+
+```{r leyenda-general-adn, echo=FALSE, fig.align = 'center', fig.cap="Figura superior muestra el porcentaje de votación de izquierda vs derecha. La figura inferior muestra el porcentaje de participación (votantes/habilitados)."}
+knitr::include_graphics('images/plots/leyenda_general_adn.png')
+```
+
+Recordar que el porcentaje de votación izquierda/derecha está calculado en base a lo descrito en la sección \@ref(metodos-porcentaje-izq-der).
+
+Finalmente, en el eje Y izquierdo, se anota el número de la región y en el eje Y derecho, una aproximación de la ubicación de la comuna de dicha Mesa Estacionaria, tal y como se muestra en la Figura (\@ref(fig:leyenda-explicacion-adn)). En comunas con pocas mesas, estás podrían llegar a sobreponerse.
+
+```{r leyenda-explicacion-adn, echo=FALSE, fig.align = 'center', fig.cap="Figura explicativa de la gráfica de ADN."}
+knitr::include_graphics('images/plots/leyenda_explicacion_adn.png')
+```
+
 
 <!-- ### Lollipop -->
 
@@ -154,10 +171,11 @@ A través de este gráfico se visualiza de manera general cada uno de los vocale
 <!-- De la misma forma que en los gráficos de tendencias señalados anteriormente, también se quiso explorar la comparación de tendencias de ciertos sectores en dos elecciones diferentes, por lo que a través de estos gráficos buscaremos identificar la cantidad de votos de cada sector con el fin de poder identificar la fluctuación en contraste con otras comunas o sectores de interés. -->
 
 
-## Otras consideraciones
+## En resumen...
 
-
-1. Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, parlamentarias y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
+1. Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
+1. Asignación de tendencia: se realiza de manera binaria en la forma izquierda/derecha, dependiendo del partido del candidato. Es una simplificación, y en algunos casos (sobre todo más ligado al centro) puede ser un poco arbitraria, pero se trata de mantener el mismo criterio de asignación.
+1. Independientes fuera de pacto, y votos nulos/blancos no entran en el análisis (es imposible asignarles alguna tendencia).
 
 
 

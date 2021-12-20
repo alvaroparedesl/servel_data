@@ -3,10 +3,14 @@
 p, div {
   font-family: 'Roboto', roboto;
   font-size: 1.6rem;
+  text-align: justify;
 }
+
 p.caption {
   color: #777;
   margin-top: 10px;
+  text-align: center; 
+  font-style: italic; 
 }
 p code {
   white-space: inherit;
@@ -22,7 +26,6 @@ pre code {
 
 
 #-------------------------------
-
 .book .book-body .page-wrapper .page-inner {
   max-width: 1200px !important;
 }
@@ -46,4 +49,18 @@ pre code {
 
 .center {
   text-align: center;
+}
+
+
+#-------------------------------
+.book.with-summary .book-header.fixed {
+    left: 400px;
+}
+
+.book.with-summary .book-body {
+    left: 400px;
+}
+
+.book .book-summary {
+    width: 400px;
 }
