@@ -43,9 +43,11 @@ prep_table <- function(basedir, dictio, election, sheets=NULL){
     data.table::setnames(t_, unlist(idx_cols[election]), unlist(idx_cols['Nombre']))
   }
   
+  t_[, tipo_mesa:=as.character(tipo_mesa)]
   if ("mesa_nom" %in% names(t_)) {
     t_[, mesa_nom:=as.character(mesa_nom)]
     t_[is.na(mesa_nom), mesa_nom:='']
+    t_[is.na(tipo_mesa), tipo_mesa:='']
     t_[, mesa_:=do.call(paste0, .SD), .SDcols=c("mesa_nom", "tipo_mesa")]
   }
   else {
@@ -88,6 +90,7 @@ prep_table <- function(basedir, dictio, election, sheets=NULL){
 ids_mesa <- function(blist) {
   
   # cols_fil <- c('Circ.Electoral', 'Local', 'Mesa', 'Tipo mesa', 'Mesas Fusionadas')
+  # all[circelec_nom == 'PLAZA ÑUÑOA' & mesa_ %in% c(141, 143, 144, 145), c('db', 'group', 'mesa_', 'mesaf_nom')]
   cols_fil <- c('circelec_nom', 'local_nom', 'mesa_', 'tipo_mesa', 'mesaf_nom')
   
   t1 <- lapply(1:length(blist),
@@ -106,6 +109,9 @@ ids_mesa <- function(blist) {
   
   tt_ <- rbindlist(tt, fill=TRUE)
   t1_ <- rbindlist(t1, fill=TRUE)
+  
+  # t1_ <- t1_[circelec_nom == 'PLAZA ÑUÑOA' & mesa_ %in% c(141, 143, 144, 145)]
+  # tt_ <- tt_[circelec_nom == 'PLAZA ÑUÑOA' & mesa_ %in% c(141, 143, 144, 145)]
   # https://stackoverflow.com/questions/13773770/split-comma-separated-strings-in-a-column-into-separate-rows
   df <- setDT(tt_)[, strsplit(as.character(mesaf_nom), "-", fixed=TRUE), by = c("id", cols_fil)] #[, .(`Mesas Fusionadas` = V1, id)] |> as.data.frame()
   setnames(df, "V1", "Mesa individual")
@@ -113,7 +119,7 @@ ids_mesa <- function(blist) {
   ## Agrupando mesas
   # from: https://stackoverflow.com/questions/37216927/r-group-elements-of-a-list-that-share-at-least-one-value
   # from: https://stackoverflow.com/questions/36659114/using-two-grouping-designations-to-create-one-combined-grouping-variable
-  df[, m_code:=paste(circelec_nom, mesaf_nom, sep="-")]
+  df[, m_code:=paste(circelec_nom, `Mesa individual`, sep="-")]
   gmap <-  unique(stack(df[, c("id", "m_code")]))
   gmap$node = seq_len(nrow(gmap))
   
@@ -219,7 +225,6 @@ rastPlot <- function(df1, df2=NULL, outname, dropna=F, vertical=F, res_=15, rati
   }
   
   dev.off()
-  print(wh)
   
   return(list(out1=out1, out2=out2))
 }
