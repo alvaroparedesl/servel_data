@@ -19,13 +19,15 @@ procesar_electoral <- function(elecciones_lista, DICTIO, comunas, reg_orden, nom
   all <- ids_mesa(elecciones_lista)
   
   #--- Tendencias por mesa
+  print('Tendencias')
   ans <- tendencia_mesas(all)
   
   
   #-------- Cálculos de índices
   elec_cols <- c("NA", "-1", "1")   # elec_cols <- c("NA", "-1", "0", "1")
-  group_cols <- c("db", "group", "nom_com", "Reg_cod", "Latitud")
+  group_cols <- c("db", "group", "Comuna", "Reg_cod", "Latitud")
   
+  print('Índices')
   cindx <- calcular_indices(df=ans, elec_cols=elec_cols, group_cols=group_cols, 
                             comparar=nombres)
   

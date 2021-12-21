@@ -15,11 +15,12 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
 #' @param dictio diciontary of files and columns names
 #' @param election election name (to find the file inside dictio)
 #' @param sheets nombre de las hojas a leer. Nulo por defecto, se lee sólo la primera.
+#' @param to file to save the summary statistics
 #'
 #' @return un data.frame de data.table en el formato apropiado
 #' @export
 #'
-prep_table <- function(basedir, dictio, election, sheets=NULL){
+prep_table <- function(basedir, dictio, election, sheets=NULL, to='scripts/data.rds'){
   
   loc <- dictio[['ubicacion']][dictio[['ubicacion']]$`Elección`==election, ]
   path <- file.path(basedir, loc[1], loc[2])
@@ -71,9 +72,54 @@ prep_table <- function(basedir, dictio, election, sheets=NULL){
     Map <- with(idx_tend, setNames(tendencia, tolower(trimws(Valor))))
     t_[, tendencia:=Map[opcion]]
   }
+  #- Rename comunas
+  t_[, comuna_nom:=tolower(iconv(comuna_nom, from='UTF-8', to = 'ASCII//TRANSLIT'))]
+  
+  com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
+                          c('aisen', 'calera', "marchigue", "ohiggins", "llaillay", "cabo de hornos(ex-navarino)", "tiltil", "trehuaco"))
+  t_[comuna_nom %in% names(com_renames), comuna_nom:=com_renames[comuna_nom]]
+  
+  #- Regiones
+  t_ <- merge(t_, comunas[, c("Reg_cod", "Comuna", "nom_com", "Latitud")], by.x="comuna_nom", by.y="Comuna", sort=F)
+  t_[, Reg_cod:=factor(Reg_cod, levels=reg_orden)]
+  setnames(t_, "comuna_nom", "Comuna")
+  
+  ans <- t_[!is.na(mesa_)]
+  compute_summary(ans, election, to=to)
   
   
-  return(t_[!is.na(mesa_)])
+  return(ans)
+}
+
+compute_summary <- function(df, election, to) {
+  if (file.exists(to)) {
+    ans <- readRDS(to)
+  } else {
+    ans <- list()
+  }
+  
+  tans <- list()
+  
+  tans[['resumen_nacional']] <- list(votos=df[, list(N=sum(votos)), by=opcion][, opcion:=tools::toTitleCase(opcion)])
+  if ('habilitados_n' %in% names(df)) {
+    tans[['resumen_nacional']][['habilitados']]=unlist(unique(df[, c('Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(N=sum(habilitados_n))])
+  }
+  
+  tans[['resumen_regional']] <- list(votos=df[, list(N=sum(votos)), by=c("Reg_cod", "opcion")][, opcion:=tools::toTitleCase(opcion)])
+  if ('habilitados_n' %in% names(df)) {
+    tans[['resumen_regional']][['habilitados']]=unique(df[, c('Reg_cod', 'Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(N=sum(habilitados_n)), by='Reg_cod']
+  }
+  
+  tans[['resumen_comunal']] <- list(votos=df[, list(N=sum(votos)), by=c("Reg_cod", "Comuna", "opcion")][, c("Comuna", "opcion"):=list(tools::toTitleCase(Comuna), 
+                                                                                                                                      tools::toTitleCase(opcion))])
+  if ('habilitados_n' %in% names(df)) {
+    tans[['resumen_comunal']][['habilitados']]=unique(df[, c('Reg_cod', 'Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(N=sum(habilitados_n)), by=c('Reg_cod', 'Comuna')]
+    tans[['resumen_comunal']][['habilitados']][, Comuna:=tools::toTitleCase(Comuna)]
+  }
+  
+  ans[[election]] = tans
+  
+  saveRDS(ans, to)
 }
 
 
@@ -145,32 +191,21 @@ tendencia_mesas <- function(dt) {
   if ('habilitados_n' %in% names(dt)) {
     # all_ <- dt[, list(N=sum(`Votos TRICEL`)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'Mesa', 'Electores', 'tendencia')]
     # all_ <- all_[, list(electores=sum(Electores), N=sum(N)), by=c('db', 'Nro. Región', 'Comuna', 'group', 'tendencia')]
-    all_ <- dt[, list(N=sum(votos)), by=c('db', 'reg_cod', 'comuna_nom', 'group', 'mesa_', 'habilitados_n', 'tendencia')]
-    all_ <- all_[, list(electores=sum(habilitados_n), N=sum(N)), by=c('db', 'reg_cod', 'comuna_nom', 'group', 'tendencia')]
+    all_ <- dt[, list(N=sum(votos)), by=c('db', 'Reg_cod', 'Comuna', 'Latitud', 'group', 'mesa_', 'habilitados_n', 'tendencia')]
+    all_ <- all_[, list(electores=sum(habilitados_n), N=sum(N)), by=c('db', 'Reg_cod', 'Comuna', 'Latitud', 'group', 'tendencia')]
     #--- tendencia por mesa y elección??
     ans <- dcast(all_, 
-                 reg_cod + comuna_nom + group + db + electores ~ tendencia, 
+                 Reg_cod + Comuna + Latitud + group + db + electores ~ tendencia, 
                  value.var=c("N"), 
                  fun.aggregate=sum)
   } else {
-    all_ <- dt[, list(N=sum(votos)), by=c('db', 'reg_cod', 'comuna_nom', 'group', 'mesa_')]
+    all_ <- dt[, list(N=sum(votos)), by=c('db', 'Reg_cod', 'Comuna', 'Latitud', 'group', 'mesa_')]
     #--- tendencia por mesa y elección??
     ans <- dcast(all_, 
-                 reg_cod + comuna_nom + group + db ~ tendencia, 
+                 Reg_cod + Comuna + Latitud + group + db ~ tendencia, 
                  value.var=c("N"), 
                  fun.aggregate=sum)
   }
-  
-  
-  ans[, comuna_nom:=tolower(iconv(comuna_nom, from='UTF-8', to = 'ASCII//TRANSLIT'))]
-  
-  com_renames <- setNames(c('aysen', 'la calera', "marchihue", "o'higgins", 'llay-llay', "cabo de hornos", "til til", "treguaco"), 
-                          c('aisen', 'calera', "marchigue", "ohiggins", "llaillay", "cabo de hornos(ex-navarino)", "tiltil", "trehuaco"))
-  ans[comuna_nom %in% names(com_renames), comuna_nom:=com_renames[comuna_nom]]
-  
-  ans <- merge(ans, comunas[, c("Reg_cod", "Comuna", "nom_com", "Latitud")], by.x="comuna_nom", by.y="Comuna", sort=F)
-  ans[, Reg_cod:=factor(Reg_cod, levels=reg_orden)]
-  setnames(ans, "comuna_nom", "Comuna")
   # ans[, `Nro. Región`:=NULL]
   ans
 }
@@ -263,7 +298,7 @@ nlist <- function(...) {
   with(envn, {
     setorder(mt, Reg_cod, -Latitud)
     # n_comuna_reg <- mt[, list(N = .N %/% cols + 1), by=c("Reg_cod", "Comuna", "Latitud")]
-    n_comuna_reg <- mt[, list(N = .N), by=c("Reg_cod", "nom_com", "Latitud")]
+    n_comuna_reg <- mt[, list(N = .N), by=c("Reg_cod", "Comuna", "Latitud")]
     # n_comuna_reg[, N:=cumsum(N)]
     # n_comuna_reg[, pos:=(shift(cN, fill=max(cN), type='lead')- cN)/2 + cN - 1]
     
@@ -292,7 +327,7 @@ nlist <- function(...) {
     # axis(ax, (c(0, reg_cut$Nc[-nrow(reg_cut)]) + reg_cut$Nc) / 2, labels=reg_cut$Reg_cod, las=1, cex.axis=2, main="Región")
     mtext(reg_cut$Reg_cod, side=ax, line=1, outer=F, cex=2, las=1,
           at = (c(0, reg_cut$Nr[-nrow(reg_cut)]) + reg_cut$Nr) / 2)
-    mtext(com_cut$nom_com, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
+    mtext(com_cut$Comuna, side=ax+2, line=1, outer=F, cex=.7, las=com_las,
           at = (c(0, com_cut$Nc[-nrow(com_cut)]) + com_cut$Nc) / 2)
     if (vertical) {
       abline(h=round(reg_cut$Nr * rows)/rows, lwd=3)

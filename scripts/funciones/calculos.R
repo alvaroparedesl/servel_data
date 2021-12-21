@@ -33,7 +33,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   }
 
   # Pendiente de cambio izquierda vs derecha
-  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + nom_com + Latitud + group ~ db, value.var=elec_cols)
+  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
   form <- sprintf('(`-1_%2$s` - `-1_%1$s`) / (`1_%2$s` - `1_%1$s`)', c1, c2)
   ansp <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
   # ansp <- merge(ansp, comunas[, c("Comuna", "Latitud")], by="Comuna")
@@ -41,7 +41,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   out[['pendiente_extra_izq_der']] <- ansp
   
   # Proporción de votos entre elecciones izq/der
-  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + nom_com + Latitud + group ~ db, value.var=elec_cols)
+  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
   form <- sprintf('(`-1_%2$s` + `-1_%1$s`) / (`1_%2$s` + `1_%1$s` + `-1_%2$s` + `-1_%1$s`)', c1, c2)
   anst <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
   # anst <- merge(anst, comunas[, c("Comuna", "Latitud")], by="Comuna")
@@ -50,7 +50,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   
   
   # Diferencia votaciones izq
-  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + nom_com + Latitud + group ~ db, value.var=elec_cols)
+  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
   form <- sprintf('(`-1_%2$s` / `-1_%1$s`)', c1, c2)
   ansi <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
   # ansi <- merge(ansi, comunas[, c("Comuna", "Latitud")], by="Comuna")
@@ -58,7 +58,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   out[['diferencia_extra_izq']] <- ansi
   
   # Diferencia votaciones der
-  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + nom_com + Latitud + group ~ db, value.var=elec_cols)
+  cast_ = dcast(df[db %in% c(c1, c2), ], Reg_cod + Comuna + Latitud + group ~ db, value.var=elec_cols)
   form <- sprintf('(`1_%2$s` / `1_%1$s`)', c1, c2)
   ansd <- eval(parse(text=sprintf('cast_[, list(per=%s), by=group_cols__db]', form)) )
   # ansd <- merge(ansd, comunas[, c("Comuna", "Latitud")], by="Comuna")
@@ -69,7 +69,7 @@ calcular_indices <- function(df, group_cols, elec_cols, comparar=NULL, cindex=NU
   # Angulo y magnitud
   am <- df[, list(xdif=`1`[2] - `1`[1],
                    ydif=`-1`[2] - `-1`[1]),
-            by=c('Reg_cod', 'nom_com', 'Latitud', 'group')]
+            by=c('Reg_cod', 'Comuna', 'Latitud', 'group')]
   am[, slope:=ydif/xdif]
   am[, magnitud:=sqrt(xdif^2 + ydif^2)]
   am[, angle:=atan2(ydif, xdif)*180/pi]
