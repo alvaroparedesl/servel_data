@@ -180,9 +180,11 @@ temp |> knitr::kable(row.names=F, col.names=c('Código', 'Nombre'), caption='Equ
 
 ## En resumen...
 
-1. Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, y presidenciales entre sí. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
-1. Asignación de tendencia: se realiza de manera binaria en la forma izquierda/derecha, dependiendo del partido del candidato. Es una simplificación, y en algunos casos (sobre todo más ligado al centro) puede ser un poco arbitraria, pero se trata de mantener el mismo criterio de asignación.
-1. Independientes fuera de pacto, y votos nulos/blancos no entran en el análisis (es imposible asignarles alguna tendencia).
+Lo que queremos es:
+
+1.	Comparar eventos similares: se privilegió comparar eventos de similares características, como primarias con otras primarias, y presidenciales con otras presidenciales. Especialmente en el caso de las primarias, la participación es normalmente baja comparada con otro tipo de elecciones, por lo que se debe tener especial cuidado cuando se realizan cruces entre este tipo de información.
+1.	Asignación de tendencia: se realiza de manera binaria en la forma izquierda/derecha, dependiendo del partido del candidato. Es una simplificación, y en algunos casos (sobre todo más ligado al centro) puede ser un poco arbitraria, pero se trata de mantener el mismo criterio de asignación.
+1.	Independientes fuera de pacto, y votos nulos/blancos no entran en el análisis, ya que no es posible asignarles alguna tendencia.
 
 
 
