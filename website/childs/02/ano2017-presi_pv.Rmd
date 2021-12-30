@@ -3,8 +3,10 @@
 Ya con la primaria definida, los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2017-presi-pv).
 
 ```{r tendencia-2017-presi-pv}
+election <- '2017_presidencial_1v'
+
 tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
-temp <- tab[which(tab['Elección'] == '2017_presidencial_1v'), c('Valor', "label")]
+temp <- tab[which(tab['Elección'] == election), c('Valor', "label")]
 temp$Valor <- tools::toTitleCase(tolower(temp$Valor))
 # temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
 temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption='Candidatos y su tendencia')

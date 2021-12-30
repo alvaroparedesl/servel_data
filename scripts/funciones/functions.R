@@ -102,20 +102,29 @@ compute_summary <- function(df, election, to) {
   
   tans[['resumen_nacional']] <- list(votos=df[, list(N=sum(votos)), by=opcion][, opcion:=tools::toTitleCase(opcion)])
   if ('habilitados_n' %in% names(df)) {
-    tans[['resumen_nacional']][['habilitados']]=unlist(unique(df[, c('Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(N=sum(habilitados_n))])
+    tp_ <- cbind(tans[['resumen_nacional']]$votos[!opcion %in% c('Nulos', 'Blancos'), list(votos=sum(N))],
+                 unique(df[, c('Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(habilitados=sum(habilitados_n))])
+    
+    tans[['resumen_nacional']][['habilitados']]=tp_
   }
   
   tans[['resumen_regional']] <- list(votos=df[, list(N=sum(votos)), by=c("Reg_cod", "opcion")][, opcion:=tools::toTitleCase(opcion)])
   if ('habilitados_n' %in% names(df)) {
-    tans[['resumen_regional']][['habilitados']]=unique(df[, c('Reg_cod', 'Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(N=sum(habilitados_n)), by='Reg_cod']
+    tp_ <- merge(tans[['resumen_regional']]$votos[!opcion %in% c('Nulos', 'Blancos'), list(votos=sum(N)), by='Reg_cod'],
+                 unique(df[, c('Reg_cod', 'Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(habilitados=sum(habilitados_n)), by='Reg_cod'])
+    
+    tans[['resumen_regional']][['habilitados']]=tp_
   }
   
-  tans[['resumen_comunal']] <- list(votos=df[, list(N=sum(votos)), by=c("Reg_cod", "Comuna", "opcion")][, c("Comuna", "opcion"):=list(tools::toTitleCase(Comuna), 
-                                                                                                                                      tools::toTitleCase(opcion))])
+  tans[['resumen_comunal']] <- list(votos=df[, list(N=sum(votos)), by=c("Reg_cod", "Comuna", "opcion")])
   if ('habilitados_n' %in% names(df)) {
-    tans[['resumen_comunal']][['habilitados']]=unique(df[, c('Reg_cod', 'Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(N=sum(habilitados_n)), by=c('Reg_cod', 'Comuna')]
+    tp_ <- merge(tans[['resumen_comunal']]$votos[!opcion %in% c('Nulos', 'Blancos'), list(votos=sum(N)), by=c('Reg_cod', 'Comuna')],
+                 unique(df[, c('Reg_cod', 'Comuna', 'circelec_nom', 'mesaf_nom', 'habilitados_n')])[, list(habilitados=sum(habilitados_n)), by=c('Reg_cod', 'Comuna')])
+    
+    tans[['resumen_comunal']][['habilitados']]=tp_
     tans[['resumen_comunal']][['habilitados']][, Comuna:=tools::toTitleCase(Comuna)]
   }
+  tans[['resumen_comunal']]$votos[, c("Comuna", "opcion"):=list(tools::toTitleCase(Comuna), tools::toTitleCase(opcion))]
   
   ans[[election]] = tans
   

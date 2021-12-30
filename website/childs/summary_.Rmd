@@ -1,0 +1,301 @@
+---
+title: "PP"
+author: "APL"
+date: "24/12/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+# rmarkdown::render('G:/GIT/servel_data/website/childs/summary_.Rmd', output_file = 'G:/GIT/servel_data/website/childs/summary.html')
+knitr::opts_knit$set(root.dir = 'G:/GIT/servel_data/')
+knitr::opts_chunk$set(echo = FALSE,
+                      comment = NA)
+setwd('G:/GIT/servel_data/')
+
+source('scripts/funciones/functions.R', encoding="UTF-8")
+```
+
+
+```{r, echo=FALSE}
+election <- '2021_presidencial_1v'
+dt <- readRDS('scripts/data.rds')[[election]]
+
+format_ <- list(decimal.mark = ',', big.mark = ".")
+```
+
+
+```{r}
+library(data.table)
+library(waffle)
+library(plotly)
+library(sf)
+library(RColorBrewer)
+
+DICTIO <- read_excel_allsheets('scripts/dict.xlsx')
+# reg_orden <- c(15, 1:5, 13, 6:7, 16, 8:9, 14, 10:12)
+comunas <- fread('scripts/comunas.csv', encoding='UTF-8')
+
+d_ <- DICTIO$tendencia[DICTIO$tendencia$Elección == election, ]
+d_$Valor <- tools::toTitleCase(tolower(d_$Valor))
+```
+
+
+
+### Resultados a nivel nacional
+
+#### Votación
+
+```{r}
+##---- NACIONAL-----
+nacv <- dt$resumen_nacional$votos
+nacv <- rbind(nacv, list('Nulos/Blancos', nacv[opcion %in% c('Nulos', 'Blancos'), sum(N)]))[!opcion %in% c('Nulos', 'Blancos')]
+nacv[, per:=round(N/sum(N)*100, 2)]
+
+nacv <- merge(nacv, d_, all.x=T, by.x='opcion', by.y='Valor')
+nacv[is.na(Nombre), Nombre:='Nulos/Blancos']
+
+p1_ <- setNames(nacv$per, nacv$Nombre)
+
+
+nacp <- dt$resumen_nacional$habilitados
+nacp[, no_votos:=habilitados-votos]
+nacp <- rbind(nacp, as.list(round(nacp/nacp$habilitados*100, 2)) )
+
+p2_ <- setNames(nacp[2, c('votos', 'no_votos')], c("Sufragaron", "No sufragaron"))
+```
+
+
+```{r, fig.align='center'}
+waffle(round(p1_), rows = 10, colors = c(nacv$color[-nrow(nacv)], "#A9A9A9")) #,
+       # title = 'Resultado'), legend_pos="bottom")
+```
+
+
+```{r, warning=FALSE}
+knitr::kable(nacv[, c('Nombre', 'N', 'per')], col.names=c('Nombre', 'Votación', 'Porcentaje'), format.args=format_)
+```
+
+
+#### Participación
+
+```{r, fig.align='center'}
+waffle(round(p2_), rows = 10, colors = c("#006D2C", "#a1d99b"))
+```
+
+
+```{r, warning=FALSE}
+nacp <- as.data.frame(t(nacp[, c('votos', 'habilitados')]))
+rownames(nacp) <- c('Participación', 'Habilitados')
+colnames(nacp) <- c('Votación', 'Porcentaje')
+knitr::kable(nacp, format.args=format_)
+```
+
+
+### Resultados a nivel regional
+
+```{r}
+regv <- dt$resumen_regional$votos
+regv <- merge(regv, d_, all.x=T,  by.x='opcion', by.y='Valor', sort=F)
+regv[is.na(Nombre), Nombre:=opcion]
+p_ <- reshape2::dcast(as.data.frame(regv), Nombre~Reg_cod, value.var="N")
+rownames(p_) <- p_[, 1]
+p_ <- p_[, -1]
+nulos_blancos <- colSums(p_[c('Blancos', 'Nulos'), ])
+# p_ <- as.matrix(p_[-which(rownames(p_) %in% c('Blancos', 'Nulos')), ])
+p_ <- p_[-which(rownames(p_) %in% c('Blancos', 'Nulos')), ]
+p_ <- p_[na.omit(d_$Nombre), ]
+p_ <- as.data.frame(t(rbind(p_, `Nulos/Blancos`=nulos_blancos)))
+p_ <- cbind(`Región`=rownames(p_), p_)
+
+# barplot(p_[, rev(colnames(p_))], horiz=T, col=c(na.omit(d_$color), "#A9A9A9"), las=1, beside=F) #, log="x")
+colores <- setNames(c(na.omit(d_$color), "#A9A9A9"), colnames(p_)[-1])
+orden <- list(categoryorder = "array", categoryarray = rev(p_$Región))
+font_ <- list(family='Archivo')
+
+for (i in rev(2:(ncol(p_))) ) {
+  col_ <- sprintf("marker = list(color = '%s')", colores[colnames(p_)[i]])
+  # if (i==(ncol(p_) - 1)) {
+  #   eval(parse(text=sprintf("fig <- plot_ly(p_, x = ~`Región`, y =~`%s`, type='bar', name='%s', orientation = 'v', %s)", colnames(p_)[i], colnames(p_)[i], col_)) )
+  # } else {
+  #   eval(parse(text=sprintf("fig <- fig |> add_trace(y = ~`%s`, name = '%s', %s)", colnames(p_)[i], colnames(p_)[i], col_)) )  
+  # }
+  if (i==(ncol(p_)) ) {
+    eval(parse(text=sprintf("fig <- plot_ly(p_, x = ~`%s`, y =~`Región`, type='bar', name='%s', orientation = 'v', %s)", colnames(p_)[i], colnames(p_)[i], col_)) )
+  } else {
+    eval(parse(text=sprintf("fig <- fig |> add_trace(x = ~`%s`, name = '%s', %s)", colnames(p_)[i], colnames(p_)[i], col_)) )  
+  }
+}
+fig <- fig |> layout(barmode = 'stack', yaxis = orden, xaxis=list(title='Número de votos'),
+                     legend = list(x = .7, y = 1), font=font_)
+```
+
+```{r, fig.height=8}
+fig
+```
+
+
+#### Votación absoluta por región
+
+```{r}
+DT::datatable(p_, options = list(dom = 't', pageLength = 500, columnDefs = list(list(className = 'dt-center', targets = "_all"))), rownames=F) |>
+  DT::formatRound(columns = 2:ncol(p_), mark=".", dec.mark=",", digits=0)
+```
+
+
+#### Votación relativa por región
+
+```{r}
+p_p <- prop.table(as.matrix(p_[, -1]), margin=1)
+p_p <- cbind(`Región`=rownames(p_p), as.data.frame(p_p))
+DT::datatable(p_p, options = list(dom = 't', pageLength = 500, columnDefs = list(list(className = 'dt-center', targets = "_all"))), rownames=F) |>
+  DT::formatPercentage(columns = 2:ncol(p_), mark=".", dec.mark=",", digits=2)
+```
+
+
+#### Participación
+
+```{r}
+regp <- dt$resumen_regional$habilitados
+regp[, per:=sprintf("%0.2f%%", votos/habilitados*100)]
+DT::datatable(regp, options = list(dom = 't', pageLength = 500, columnDefs = list(list(className = 'dt-center', targets = "_all"))), 
+              rownames=F, colnames=c("Región", "Votantes", "Habilitados", "Porcentaje participación")) |>
+   DT::formatRound(columns = 2:(ncol(regp)-1), mark=".", dec.mark=",", digits=0)
+```
+
+
+
+### Resultados a nivel comunal
+
+```{r, warning=FALSE}
+##---- Comunal
+comunas[, CUT_COM:=sprintf('%05d', CUT)]
+comunas[, nom_com2:=tools::toTitleCase(tolower(nom_com))]
+comunas[, which(colnames(comunas) %in% c('Reg_cod')):=NULL]
+
+comp <- dt$resumen_comunal$habilitados
+comp <- merge(comp, comunas[, c('CUT_COM', 'nom_com2')], by.x='Comuna', by.y='nom_com2')
+comp[, labl:=sprintf('%s votos | %s habilitados (%s%%)', trimws(format(votos, big.mark=".")), 
+                     trimws(format(habilitados, big.mark=".")),
+                     trimws(format(round(votos/habilitados*100, 2), big.mark=".", decimal.mark=",")))]
+
+comv <- dt$resumen_comunal$votos
+comv <- merge(comv, comunas, by.x='Comuna', by.y='nom_com2')
+setorder(comv, Reg_cod)
+comv <- merge(comv, d_, all.x=T, by.x='opcion', by.y='Valor', sort=F)
+comv[is.na(Nombre.y), Nombre.y:=opcion]
+comv[, por:=round(N/sum(N)*100, 2), by=CUT_COM]
+comv[, lab:=sprintf('%s votos [%s%%]', trimws(format(N, big.mark=".", decimal.mark=",")), trimws(format(por, big.mark=".", decimal.mark=",")) )]
+
+com_per <- comv[!is.na(tendencia), list(per=round(sum(N[tendencia==-1]) / sum(N) * 100, 1) ), by=c("CUT_COM", "nom_com", "Región", "Provincia")]
+com_per <- merge(com_per, comp[, c('CUT_COM', 'labl')], by='CUT_COM', sort=F)
+
+
+com <- sf::st_read('scripts/COMUNAS_2020.geojson', quiet=T)
+com_ <- merge(com[, 'CUT_COM'], com_per, all.x=T)
+
+comv_ <- as.data.frame(dcast(comv, CUT_COM ~ Nombre.y, value.var="lab"))
+rownames(comv_) <- comv_[, 1]
+comv_ <- comv_[, c(nacv$Nombre[-nrow(nacv)], "Blancos", "Nulos")]
+sprin <- paste('<b>', c(colnames(comv_)), '</b>: %s', sep="", collapse='<br>')
+hoverlabels <- apply(comv_, 1, function(x) do.call(sprintf, c(list(sprin), as.list(x))))
+
+com_per[, header:=sprintf('<b>Región</b>: %s<br><b>Provincia</b>: %s<br><b>Comuna</b>: %s<br><br><b>Votación de Izquierda</b>: %s%%<br><b>Participación</b>: %s<br><br>', 
+                          `Región`, `Provincia`, `nom_com`, per, labl)]
+com_per[, body:=sprintf('%s<br>%s', header, hoverlabels[CUT_COM])]
+# hoveri <- setNames(paste(header_[com_per$CUT_COM], hoverlabels[com_per$CUT_COM]), com_per$CUT_COM)
+
+
+Noax <- list(
+  title = "",
+  zeroline = FALSE,
+  showline = FALSE,
+  showticklabels = FALSE,
+  showgrid = FALSE
+)
+ltemplate <- "<b>Comuna de %s</b><br><br><b>Porcentaje Izquierda</b>: %s%%<br>"
+paleta1 <- rev(brewer.pal(10, 'RdBu'))
+# plot(com_['per'])
+# g <- ggplot(data=com_[1:30, ]) +
+```
+
+
+```{r}
+library(leaflet)
+
+com__ <- merge(com_, com__[, c('CUT_COM')])
+com__ <-  as(com_, 'Spatial')
+pal <- colorNumeric('RdBu', domain=0:100, reverse=T)
+labels <- sprintf(
+  "<b>Comuna</b>: %s<br><b>Participación</b>: %s",
+  com__$nom_com, com__$labl
+) |> lapply(htmltools::HTML)
+
+
+m <- leaflet(com__) |>
+  addTiles() |>
+  setView(-71, -33, 4)
+
+m |> addPolygons(
+  fillColor = ~pal(per),
+  weight = 2,
+  opacity = .2,
+  color = "grey",
+  dashArray = "1",
+  fillOpacity = .9,
+  highlightOptions = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "small", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto")
+) |> 
+  addLegend(pal = pal, values = 0:100, opacity = 0.9, title = '% <i>Izquierda</i>', position = "bottomright")
+```
+
+
+
+
+
+
+```{r, eval=FALSE, warning=FALSE}
+g <- ggplot(data=com_) +
+  geom_sf(aes(fill=per, 
+              text=CUT_COM
+              ),
+          ) +
+  theme_void() +
+  coord_sf() +
+  scale_fill_gradientn(colours = paleta1, limits = c(0, 100)) +
+  theme(
+    text = element_text(color = "#22211d"),
+    # plot.background = element_rect(fill = "#f5f5f2", color = NA),
+    # panel.background = element_rect(fill = "#f5f5f2", color = NA),
+    # legend.background = element_rect(fill = "#f5f5f2", color = NA),
+  ) + labs(fill='Votación Izquierda (%)') 
+g <- ggplotly(g, tooltip='text') |>  style(hoveron='fill', hoverlabel = list(bgcolor = "white", font=font_),
+                                           xaxis = Noax, yaxis = Noax)
+
+for (i in 1:length(g$x$data)) {
+  if (!is.null(g$x$data[[i]]$line)) g$x$data[[i]]$line$width <- 0.3
+  if (!is.null(g$x$data[[i]]$text)) {
+    if (length(g$x$data[[i]]$text > 1)) {
+      g$x$data[[i]]$text <- g$x$data[[i]]$text[1]
+    }
+    loc <- g$x$data[[i]]$text
+    g$x$data[[i]]$text <- hoveri[loc]
+  }
+}
+```
+
+```{r, eval=FALSE, fig.height=10, fig.width=7}
+g
+```
+
+
