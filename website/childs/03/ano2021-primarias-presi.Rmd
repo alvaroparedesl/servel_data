@@ -7,14 +7,19 @@ Mientras que en el caso de la derecha, llevó cuatro candidatos, tres identifica
 Los candidatos finales y su tendencia pueden ser apreciados en la Tabla \@ref(tab:tendencia-2021-primarias-presi).
 
 ```{r tendencia-2021-primarias-presi}
+election <- '2021_primarias_presidenciales'
 tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
-temp <- tab[which(tab['Elección'] == '2021_primarias_presidenciales'), c('Valor', "label")]
+temp <- tab[which(tab['Elección'] == election), c('Valor', "label")]
 temp$Valor <- tools::toTitleCase(tolower(temp$Valor))
 # temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
 temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption='Candidatos y su tendencia')
 ```
 
-Recordando la simbología del ADN:
+```{r, child='../summary.Rmd', warning=FALSE, message=FALSE}
+```
+
+
+### ADN
 
 ```{r, echo=FALSE, fig.align = 'center'}
 knitr::include_graphics('images/plots/leyenda_general_adn.png')

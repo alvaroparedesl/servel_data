@@ -13,6 +13,12 @@ temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption
 ```
 
 
+```{r, child='../summary.Rmd', warning=FALSE, message=FALSE}
+```
+
+
+### ADN
+
 Recordando la simbología del ADN:
 
 ```{r, echo=FALSE, fig.align = 'center'}

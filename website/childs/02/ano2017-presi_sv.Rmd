@@ -3,13 +3,21 @@
 En primera vuelta ningún candidato alcanzó el 50% + 1 de los votos, por lo que fue necesario una segunda vuelta. Los candidatos de esta segunda parte se pueden apreciar en la Tabla \@ref(tab:tendencia-2017-presi-sv).
 
 ```{r tendencia-2017-presi-sv}
+election <- '2017_presidencial_2v'
+
 tab <- data.frame(readxl::read_excel("../../../scripts/dict.xlsx", "tendencia"))
-temp <- tab[which(tab['Elección'] == '2017_presidencial_2v'), c('Valor', "label")]
+temp <- tab[which(tab['Elección'] == election), c('Valor', "label")]
 temp$Valor <- tools::toTitleCase(tolower(temp$Valor))
 # temp |> DT::datatable(rownames=F, colnames=c('Candidato', 'Tendencia'), options = list(dom = 't'))
 temp |> knitr::kable(row.names=F, col.names=c('Candidato', 'Tendencia'), caption='Candidatos y su tendencia')
 ```
 
+
+```{r, child='../summary.Rmd', warning=FALSE, message=FALSE}
+```
+
+
+### ADN
 
 Recordando la simbología del ADN:
 
