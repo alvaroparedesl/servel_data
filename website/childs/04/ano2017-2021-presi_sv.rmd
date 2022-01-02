@@ -11,16 +11,24 @@ En este gráfico podemos observar:
 knitr::include_graphics('images/plots/nube_puntos_e2017_sv-e2021_sv.png')
 ```
 
+Observando esta figura, se puede apreciar un cambio importante con respecto a la comparación de la primera vuelta entre ambos años. Si bien hubieron algunas Mesas Estacionarias que disminuyeron su votación, la gran mayoría de ellas la aumentó. De ese aumento, un número importante se fue hacia la izquierda, seguido por un aumento en ambos sectores. La votación de derecha también tuvo algunas mesas en que aumentó, pero son la minoría.
+
+En otras palabras, el cambio entre ambas segundas vueltas indica que la izquierda ganó hasta 100 votos en algunas mesas y perdió como máximo, alrededor de 30 a 40 votos. La derecha, llegó a ganar como máximo 50 votos, pero también llegó a perder cerca de 60 votos en algunas mesas.
+
+
 ## Presidenciales (2v): ADN
 
-En construcción....
+Este ADN es diferente a los anteriores, ya que considera el cambio de comportamiento en la votación por Mesa Estacionaria entre la segunda vuelta 2017 y la segunda vuelta 2021, combinando la tasa y la dirección del cambio (según fue explicado en las secciones \@ref(metodos-magnitud-cambio) y \@ref(metodos-direccion-cambio)).
+
 
 ### ¿Cómo interpretar estos ADNs?
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics('images/plots/angulo_magnitud_leyenda_e2017_sv-e2021_sv.png')
-
 ```
+
+El color indica que tendencia tuvo la Mesa Estacionaria y la intensidad del color, el número de votos en que se movió.
+
 
 ### ADN
 
@@ -35,10 +43,11 @@ knitr::include_graphics('images/plots/angulo_magnitud_e2017_sv-e2021_sv.png')
 
 ::: {}
 <!-- Lado derecho -->
-El ADN de esta elección comparativa muestra que...
+El cambio entre ambos años es claro y el viraje a la izquierda se puede apreciar principalemnte en la zona norte y centro de Chile. El patrón de las comunas del sector alto de la capital no se logra apreciar con tanta claridad.
 
+Comunas como Temuco y Hualqui/Coronel tienen una clara tendencia de disminución de votos, de lo que se puede desprender que los candidatos de la segunda vuelta del 2021 fueron menos atractivos para los habitantes de dicho sector que los del año 2017.
 
-Los intervalos de colores, corresponden a los cuantiles de la magnitud total calculada.
+En la zona más austral del país el cambio es menos notorio y más repartido entre ambas coaliciones, mostrando un aumento leve en la votación.
 
 :::
 

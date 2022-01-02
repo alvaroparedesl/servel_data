@@ -11,16 +11,19 @@ En este gráfico podemos observar:
 knitr::include_graphics('images/plots/nube_puntos_e2021_pv-e2021_sv.png')
 ```
 
+Observando esta figura, se puede apreciar claramente que la votación aumentó en la segunda vuelta, comparando con la primera, tanto para la izquierda como para la derecha (cuadrante superior derecho, color verde). El segundo aumento, se dio en la votación de izquierda (cuadrante superior izquierdo, color rojo) que tuvo un aumento mayor comparado con su contraparte de derecha (cuadrante inferior derecho, color celeste). Muy pocas mesas disminuyeron su participación (cuadrante inferior izquierdo, color morado).
+
 ## Presidenciales (1v vs 2v): ADN
 
-En construcción....
+Este ADN es diferente a los anteriores, ya que considera el cambio de comportamiento en la votación por Mesa Estacionaria entre la primera y la segunda vuelta, combinando la tasa y la dirección del cambio (según fue explicado en las secciones \@ref(metodos-magnitud-cambio) y \@ref(metodos-direccion-cambio)).
 
 ### ¿Cómo interpretar estos ADNs?
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics('images/plots/angulo_magnitud_leyenda_e2021_pv-e2021_sv.png')
-
 ```
+
+El color indica que tendencia tuvo la Mesa Estacionaria y la intensidad del color, el número de votos en que se movió.
 
 ### ADN
 
@@ -35,10 +38,11 @@ knitr::include_graphics('images/plots/angulo_magnitud_e2021_pv-e2021_sv.png')
 
 ::: {}
 <!-- Lado derecho -->
-El ADN de esta elección comparativa muestra que...
+Data la alta participación que tuvo la segunda vuelta, este ADN se muestra casi por completo color verde ya que ambos sectores aumentaron sus votos en casi todas las mesas. 
 
+Sin embargo es interesante ver como la tendencia habitual en las comunas del sector alto de la RM se "anulan" en esta comparación y la tendencia hacia la derecha desaparece (no hay mesas azules prácticamente), mostrando un leve aumento en la votación (color verde/rojo claro) y con un cambio leve hacia la izquierda (color rojo). 
 
-Los intervalos de colores, corresponden a los cuantiles de la magnitud total calculada.
+En el caso de las comunas acomodadas de la RM, está claro que el número de votantes se mantuvo similar entre ambas vueltas, a diferencia del resto del territorio nacional en que si existió un aumento importante. Un efecto similar también se logra apreciar en la comuna de Temuco.
 
 :::
 

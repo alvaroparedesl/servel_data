@@ -38,6 +38,12 @@ knitr::include_graphics('images/plots/proporcion_intra_izq_der_e2021_pp.png')
 <!-- Lado derecho -->
 Los datos del SERVEL no venían con el número de votantes, por lo que sólo se aprecia el ADN de la elección.
 
+En esta elección, a diferencia del 2017, la mayoría de los votos se decantaron hacia la izquierda (aunque con menor intensidad). La zona centro sur es la única con una preferencia más de centro o centro derecha, pero para el resto del país la tendencia es clara.
+
+Llama la atención que en la RM se aprecia con claridad un patrón similar pero levemente menos intenso en las comunas del sector alto de la RM, que si bien votaron en general derecha, lo hicieron con menor claridad comparando otros eventos y que la misma primaria anterior (2017). 
+
+Antes de esta elección, se rumoreaba en el ambiente de que muchos votantes de derecha ejercerían su opción en la primaria de izquierda para evitar que el pre-candidato del PC Daniel Jadue participara del balotaje final, dado el mayor recelo que produce el Partido Comunista en el país. Esta teoría tendría al parecer algo de sustento si se comparan las comunas del sector alto de la RM con los resultados de la primera y segunda vuelta presidencial que vendría algunos meses después, en que si bien la tendencia general se mantiene tiene menor intensidad en la votación de dichas comunas. De todas maneras, comparando los ADNs de estas elecciones, dicho cambio no pareciera ser muy importante.
+
 :::
 
 ::::

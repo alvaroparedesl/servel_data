@@ -175,6 +175,10 @@ if (!is.null(regp)) {
 
 ### Resultados a nivel comunal
 
+En este mapa se muestran los resultados a nivel comunal de la elección. Cada comuna está coloreada según el porcentaje de votación de izquierda ($\%I$, sección \@ref(metodos-porcentaje-izq-der)). La intensidad del color indica que tan de izquierda/derecha fue la votación, siendo el color azul el correspondiente a la derecha y el rojo a la izquierda.
+
+Al pasar el cursor sobre una comuna se despliega un popup que contiene la información resumida de la comuna, que incluye el total de votación por candidato/opción y en caso de que esté disponible, la participación de dicha elección. Para hacer zoom en el mapa se puede usar la rueda del ratón o los controles de la parte superior izquierda. Para mover el mapa, basta con hacer clic izquierdo del ratón en cualquier parte del mapa y moverlo. 
+
 ```{r, warning=FALSE}
 ##---- Comunal
 comunas[, CUT_COM:=sprintf('%05d', CUT)]
@@ -257,5 +261,5 @@ m |> addPolygons(
     textsize = "10px",
     direction = "auto")
 ) |> 
-  addLegend(pal = pal, values = 0:100, opacity = 0.9, title = '%', position = "bottomright")
+  addLegend(pal = pal, values = 0:100, opacity = 0.9, title = '<b>%I</b>', position = "bottomright")
 ```

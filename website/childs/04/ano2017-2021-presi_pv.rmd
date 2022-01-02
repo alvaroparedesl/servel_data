@@ -11,16 +11,24 @@ En este gráfico podemos observar:
 knitr::include_graphics('images/plots/nube_puntos_e2017_pv-e2021_pv.png')
 ```
 
+Observando esta figura, se puede apreciar un cambio con respecto a las otras votaciones analizadas ya que tiene una distribución más centrada. Muchas Mesas Estacionarias disminuyeron su votación (cuadrante morado), mientras que una fracción importante aumentó su votación de derecha. En menor medida, se aprecia un efecto similar en la izquierda y en algunas mesas que aumentaron ambas votaciones.
+
+Eso si, la disminución de la votación puede ser en gran parte explicada porque la votación de Parisi no fue clasificada y por lo tanto, esos votos no están considerados en estas proporciones.
+
+
 ## Presidenciales (1v): ADN
 
-En construcción....
+Este ADN es diferente a los anteriores, ya que considera el cambio de comportamiento en la votación por Mesa Estacionaria entre la primera vuelta 2017 y la primera vuelta 2021, combinando la tasa y la dirección del cambio (según fue explicado en las secciones \@ref(metodos-magnitud-cambio) y \@ref(metodos-direccion-cambio)).
+
 
 ### ¿Cómo interpretar estos ADNs?
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics('images/plots/angulo_magnitud_leyenda_e2017_pv-e2021_pv.png')
-
 ```
+
+El color indica que tendencia tuvo la Mesa Estacionaria y la intensidad del color, el número de votos en que se movió.
+
 
 ### ADN
 
@@ -35,10 +43,11 @@ knitr::include_graphics('images/plots/angulo_magnitud_e2017_pv-e2021_pv.png')
 
 ::: {}
 <!-- Lado derecho -->
-El ADN de esta elección comparativa muestra que...
+El patrón de este ADN se muestra más bastante caótico y tiene menos tendencias marcadas. El patrón de las comunas más acomodadas de la RM no es tan claro como en los otros ADNs, aunque está levemente cargado a la derecha.
 
+Una alta presencia de color morado, indica una disminución de la votación para ambas tendencias, pero como se mencionó anteriormente es importante considerar el fenómeno Parisi, un candidato que es díficil de clasificar en una división izquierda/derecha como la que aquí se propone y que obtuvo cerca de 900.000 votos que aquí no están contabilizados.
 
-Los intervalos de colores, corresponden a los cuantiles de la magnitud total calculada.
+Llama la atención la alta votación de izquierda de las comunas de Freirina, Vallenar, que tienen una clara tendencia hacia ese sector.
 
 :::
 

@@ -1,6 +1,8 @@
-# Conclusiones
+# Palabras finales
 
-En construcción
+Queríamos mostrar otra manera de visualizar los resultados, ver el detalle de cada mesa, pero de la manera más amigable y resumida posible.
+
+Otras elecciones se irán agregando con el correr del tiempo y la ocurrencia de nuevas elecciones. Recuerda que cualquier cosa nos puedes contactar a [contacto@tecpar.cl](mailto:contacto@tecpar.cl).
 
 ::: {.infobox .caution data-latex="{caution}"}
 Este artículo fue redactado el 2021-12-19 y su última modificación fue en `r Sys.Date()`.

@@ -34,7 +34,7 @@ knitr::include_graphics('images/plots/proporcion_intra_izq_der__vot_hab_e2021_sv
 
 ::: {}
 <!-- Lado derecho -->
-Lorem ipsum
+No hay mayores sorpresas con este ADN, y se mantienen las tendencias de otras elecciones. 
 
 :::
 
